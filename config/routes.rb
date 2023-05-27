@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-   
+
   # 顧客用
 # URL /customers/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
@@ -17,37 +17,38 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
   # homes
     root to: "homes#top"
-    
+
   # users
+  get "/users/my_page"=>"users#my_page",as: 'my_page'
     resources :users, only: [:index, :show, :update, :edit] do
-    # relationships 
+    # relationships
       resources :relationships, only: [:create, :destroy, :following, :follower]
     # reports
       resources :reports, only: [:new, :create]
     end
     get "/users/unsubscribe"=>"users#unsubscribe",as: 'unsubscribe'
     patch "/users/withdraw"=>"users#withdraw"
-    get"/users/my_page"=>"users#my_page",as: 'my_page'
-    
+
+
   # posts
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
       # bookmarks
       resources :bookmarks, only: [:index, :create, :destroy]
     end
-    
-  # comments 
+
+  # comments
     resources :comments, only: [:index, :create, :destroy]
-  
-  end  
+
+  end
 
 # 管理者
   namespace :admin do
     root to: "users#index"
-  # posts 
+  # posts
     resources :posts, only: [:index, :show, :destroy]
   # users
     resources :users, only: [:show, :edit, :update]
-  # tags 
+  # tags
     resources :tags, only: [:index, :create, :destroy]
   # reports
     resources :reports, only: [:index, :show, :update]
