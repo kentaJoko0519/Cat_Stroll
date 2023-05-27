@@ -17,21 +17,24 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
   # homes
     root to: "homes#top"
+    
   # users
     resources :users, only: [:index, :show, :update, :edit] do
-      # relationships 
+    # relationships 
       resources :relationships, only: [:create, :destroy, :following, :follower]
+    # reports
+      resources :reports, only: [:new, :create]
     end
     get "/users/unsubscribe"=>"users#unsubscribe",as: 'unsubscribe'
     patch "/users/withdraw"=>"users#withdraw"
     get"/users/my_page"=>"users#my_page",as: 'my_page'
+    
   # posts
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
       # bookmarks
       resources :bookmarks, only: [:index, :create, :destroy]
     end
-  # reports
-    resources :reports, only: [:new, :create]
+    
   # comments 
     resources :comments, only: [:index, :create, :destroy]
   
@@ -43,7 +46,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   # posts 
     resources :posts, only: [:index, :show, :destroy]
   # users
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update]
   # tags 
     resources :tags, only: [:index, :create, :destroy]
   # reports
