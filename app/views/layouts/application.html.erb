@@ -11,9 +11,64 @@
   </head>
 
   <body>
+      <!--Header-->
     <header>
-      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      <nav>
+        <div>
+          <!--adminのログイン中のHeader-->
+          <ul>
+            <% if admin_signed_in? %>
+              <li class="">
+                <%= link_to "ユーザー", admin_root_path %>
+              </li>
+              <li class="">
+                <%= link_to "投稿一覧", admin_posts_path %>
+              </li>
+              <li class="">
+                <%= link_to "通報一覧", admin_reports_path %>
+              </li>
+              <li class="">
+                <%= link_to "タグ", admin_tags_path %>
+              </li>
+              <li class="">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
+            <!--publicのログイン中のHeader-->
+            <% elsif user_signed_in? %>
+              <li class="">
+                <%= link_to "マイページ", my_page_path %>
+              </li>
+              <li class="">
+                <%= link_to "ユーザー", users_path %>
+              </li>
+              <li class="">
+                <%= link_to "投稿", posts_path %>
+              </li>
+              <li class="">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+            <!--ログアウト中のHeader-->
+            <% else %>
+              <li class="">
+                <%= link_to "投稿一覧", posts_path %>
+              </li>
+              <li class="">
+                <%= link_to "新規登録", new_user_registration_path %>
+              </li>
+              <li class="">
+                <%= link_to "ログイン", new_user_session_path %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
-    <%= yield %>
+  <!--Main-->
+    <main>
+      <%= yield %>
+    </main>
+  <!--Footer-->
+    <footer>
+    </footer>
   </body>
 </html>
