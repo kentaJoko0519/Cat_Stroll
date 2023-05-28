@@ -21,14 +21,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   # users
   get "/users/my_page"=>"users#my_page",as: 'my_page'
+  get "/users/unsubscribe"=>"users#unsubscribe",as: 'unsubscribe'
+  patch "/users/withdraw"=>"users#withdraw"
     resources :users, only: [:index, :show, :update, :edit] do
     # relationships
       resources :relationships, only: [:create, :destroy, :following, :follower]
     # reports
       resources :reports, only: [:new, :create]
     end
-    get "/users/unsubscribe"=>"users#unsubscribe",as: 'unsubscribe'
-    patch "/users/withdraw"=>"users#withdraw"
+    
 
 
   # posts

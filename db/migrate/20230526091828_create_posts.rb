@@ -1,13 +1,13 @@
 class CreatePosts < ActiveRecord::Migration[6.1]
   def change
     create_table :posts do |t|
-      t.integer :user_id
-      t.string :name
-      t.string :address
-      t.string :postal_code
-      t.integer :latitude
-      t.integer :longitude
-      t.text :introduction
+      t.integer :user_id, null: false
+      t.string :name, null: false
+      t.string :address, null: false
+      t.string :postal_code, null: false
+      t.integer :latitude, null: false
+      t.integer :longitude, null: false
+      t.text :introduction, null: false
 
       t.timestamps
     end

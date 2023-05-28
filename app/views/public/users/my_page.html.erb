@@ -1,2 +1,29 @@
-<h1>Public::Users#my_page</h1>
-<p>Find me in app/views/public/users/my_page.html.erb</p>
+<h1>マイページ</h1>
+<h2>登録情報</h>
+
+<table>
+  <thead>
+    <th>
+      <tr>氏名</tr>
+      <tr>フリガナ</tr>
+      <tr>メールアドレス</tr>
+    </th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= @user.first_name %>  <%= @user.last_name %>
+      </td>
+      <td>
+        <%= @user.first_name_kana %>  <%= @user.last_name_kana %>
+      </td>
+      <td>
+        <%= @user.email %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to "編集する",edit_user_path(@user) %>
+</div>

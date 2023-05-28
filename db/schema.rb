@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_27_061350) do
+ActiveRecord::Schema.define(version: 2023_05_26_092140) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,16 +53,16 @@ ActiveRecord::Schema.define(version: 2023_05_27_061350) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
-    t.text "sentence"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.text "sentence", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,36 +73,36 @@ ActiveRecord::Schema.define(version: 2023_05_27_061350) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
-    t.string "address"
-    t.string "postal_code"
-    t.integer "latitude"
-    t.integer "longitude"
-    t.text "introduction"
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "postal_code", null: false
+    t.integer "latitude", null: false
+    t.integer "longitude", null: false
+    t.text "introduction", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reports", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "reporter_id"
-    t.integer "reported_id"
-    t.text "reason"
-    t.integer "status"
+    t.integer "user_id", null: false
+    t.integer "reporter_id", null: false
+    t.integer "reported_id", null: false
+    t.text "reason", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -113,12 +113,13 @@ ActiveRecord::Schema.define(version: 2023_05_27_061350) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "last_name_kana", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "first_name_kana"
-    t.string "last_name_kana"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
