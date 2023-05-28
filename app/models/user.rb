@@ -3,17 +3,17 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
 # post
   has_many :posts, dependent: :destroy
 # bookmark
   has_many :bookmarks, dependent: :destroy
-# comment 
+# comment
   has_many :comments, dependent: :destroy
 # report
   has_many :reports, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
   has_many :reverse_of_reports, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
-# relationship 
+# relationship
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
@@ -33,7 +33,7 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
-  
+
   # プロフィール画像
     has_one_attached :profile_image
 
