@@ -14,4 +14,6 @@ class Post < ApplicationRecord
     bookmarks.where(user_id: user).exists?
   end
   
+  has_one_attached :image
+  
 end

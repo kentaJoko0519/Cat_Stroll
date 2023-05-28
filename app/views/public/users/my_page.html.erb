@@ -3,14 +3,18 @@
 
 <table>
   <thead>
-    <th>
-      <tr>氏名</tr>
-      <tr>フリガナ</tr>
-      <tr>メールアドレス</tr>
-    </th>
+    <tr>
+      <th></th>
+      <th>氏名</th>
+      <th>フリガナ</th>
+      <th>メールアドレス</th>
+    </tr>
   </thead>
   <tbody>
     <tr>
+      <td>
+        <%= image_tag @user.get_profile_image(100,100) %>
+      </td>
       <td>
         <%= @user.first_name %>  <%= @user.last_name %>
       </td>
