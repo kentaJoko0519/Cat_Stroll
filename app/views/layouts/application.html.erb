@@ -13,10 +13,11 @@
   <body>
       <!--Header-->
     <header>
-      <nav>
-        <div>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <%= link_to "猫の散歩", root_path %>
           <!--adminのログイン中のHeader-->
-          <ul>
+          <ul class="navbar-nav">
             <% if admin_signed_in? %>
               <li class="">
                 <%= link_to "ユーザー", admin_root_path %>
