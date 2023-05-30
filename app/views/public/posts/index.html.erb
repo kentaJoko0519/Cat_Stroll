@@ -1,2 +1,68 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+
+<!--Google Map-->
+<style>
+    #map { height: 70%; width: 50%}
+</style>
+
+<input id="address" type="textbox" value="GeekSalon">
+<input type="button" value="検索" onclick="codeAddress()">
+<p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+
+<script>
+function initMap() {
+  geocoder = new google.maps.Geocoder()
+  var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
+  var Options = {
+   zoom: 15,      //地図の縮尺値
+   center: MyLatLng,    //地図の中心座標
+   mapTypeId: 'roadmap'   //地図の種類
+  };
+  var map = new google.maps.Map(document.getElementById('map'), Options);
+}
+</script>
+
+<div id="map" class="position-fixed"></div>
+
+<script>
+      //検索後のマップ作成
+    let geocoder
+    let aft
+    function codeAddress(){
+      let inputAddress = document.getElementById('address').value;
+      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+        if (status == 'OK') {
+            //マーカーが複数できないようにする
+            if (aft == true){
+                marker.setMap(null);
+            }
+    
+            //新しくマーカーを作成する
+            map.setCenter(results[0].geometry.location);
+                marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                draggable: true	// ドラッグ可能にする
+            });
+    
+            //二度目以降か判断
+            aft = true
+    
+            //検索した時に緯度経度を入力する
+            document.getElementById('latitude').value = results[0].geometry.location.lat();
+            document.getElementById('longitude').value = results[0].geometry.location.lng();
+    
+            // マーカーのドロップ（ドラッグ終了）時のイベント
+            google.maps.event.addListener( marker, 'dragend', function(ev){
+                // イベントの引数evの、プロパティ.latLngが緯度経度
+                document.getElementById('latitude').value = ev.latLng.lat();
+                document.getElementById('longitude').value = ev.latLng.lng();
+            });
+        } else {
+          alert('該当する結果がありませんでした：' + status);
+        }
+      });   
+    }
+</script>
+
+<script src="https://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&language=ja&callback=initMap"></script>
+
