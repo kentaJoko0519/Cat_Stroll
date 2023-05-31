@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2023_05_26_092140) do
     t.string "last_name", null: false
     t.string "first_name_kana", null: false
     t.string "last_name_kana", null: false
+    t.string "user_name"
     t.text "introduction"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false

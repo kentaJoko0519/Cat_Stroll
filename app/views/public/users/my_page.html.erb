@@ -1,37 +1,59 @@
-<h1>マイページ</h1>
-<h2>登録情報</h>
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>氏名</th>
-      <th>フリガナ</th>
-      <th>メールアドレス</th>
-      <th>自己紹介</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <%= image_tag @user.get_profile_image(100,100) %>
-      </td>
-      <td>
-        <%= @user.first_name %>  <%= @user.last_name %>
-      </td>
-      <td>
-        <%= @user.first_name_kana %>  <%= @user.last_name_kana %>
-      </td>
-      <td>
-        <%= @user.email %>
-      </td>
-      <td>
-        <%= @user.introduction %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div>
-  <%= link_to "編集する",edit_user_path(@user) %>
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-3">
+      <h3><strong>マイページ</strong></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 mt-5">
+      <h5><strong>登録情報</strong></h5>
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th>プロフィール画像</th>
+            <th>氏名</th>
+            <th>ユーザーネーム</th>
+            <th>メールアドレス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= image_tag @user.get_profile_image(100,100) %>
+            </td>
+            <td>
+              <%= @user.first_name %>  <%= @user.last_name %>
+            </td>
+            <td>
+              <% if @user.user_name==true %>
+                <%= @user.user_name %>
+              <% else %>
+                <p style="opacity:0.5">※ユーザーネームは設定されていません</p>
+              <% end %>  
+            </td>
+            <td>
+              <%= @user.email %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h6><strong>自己紹介</strong></h6>
+      <% if @user.introduction==true %>
+       <%= @user.introduction %>
+      <% else %>
+        <p style="opacity:0.5">※自己紹介は設定されていません</p>
+      <% end %>
+      
+      <div>
+        <%= link_to "編集する",edit_user_path(@user), class: "btn btn-secondary", style: "text-center" %>
+      </div>
+            
+    </div>
+  </div>
 </div>
+
+
+
+
+

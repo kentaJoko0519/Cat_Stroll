@@ -1,27 +1,41 @@
-<h1>登録情報編集</h1>
-<%= form_with model: @user,url: user_path, method: :patch do |f| %>
-  <table>
-    <tr>
-      <td>プロフィール画像</td>
-      <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
-    </tr>
-    <tr>
-      <td>氏名</td>
-      <td><%= f.text_field :first_name %> <%= f.text_field :last_name %></td>
-    </tr>
-    <tr>
-      <td>フリガナ</td>
-      <td><%= f.text_field :first_name_kana %> <%= f.text_field :last_name_kana %></td>
-    </tr>
-    <tr>
-      <td>メールアドレス</td>
-      <td><%= f.text_field :email %></td>
-    </tr>
-    <tr>
-      <td>自己紹介</td>
-      <td><%= f.text_area :introduction %></td>
-    </tr>
-  </table>
-  <%= f.submit'変更する' %>
-  <%=link_to "退会する", unsubscribe_path %>
-<% end %>
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-10">
+      <h3><strong>登録情報編集</strong></h3>
+      <%= form_with model: @user,url: user_path, method: :patch do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <td>プロフィール画像</td>
+            <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td>氏名</td>
+            <td><%= f.text_field :first_name %> <%= f.text_field :last_name %></td>
+          </tr>
+          <tr>
+            <td>フリガナ</td>
+            <td><%= f.text_field :first_name_kana %> <%= f.text_field :last_name_kana %></td>
+          </tr>
+          <tr>
+            <td>ユーザーネーム</td>
+            <td><%= f.text_field :user_name %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <td>自己紹介</td>
+            <td><%= f.text_area :introduction, style: "width:400px" %></td>
+          </tr>
+        </table>
+        <%= f.submit'変更する' %>
+      <% end %>
+      
+      <%=link_to "退会する", unsubscribe_path, class: "btn btn-danger", style: "margin-top:70px;" %>
+      
+    </div>
+  </div>
+</div>
+
+
