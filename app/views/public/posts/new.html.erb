@@ -1,2 +1,39 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  
+  <div class="row">
+    <div class="col-md-12 mt-5 text-center">
+      <h5><strong>新規投稿</strong></h5>
+    </div>
+  </div>  
+  
+  <div class="row text-center">
+    <div class="col-md-8" style="margin-left:14%;">
+      <table class="table">  
+        <tr>
+          <td>名称</td>
+          <td><strong><%= params[:name] %></strong></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= params[:address] %></td>
+        </tr>
+      </table>
+      <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+        <table class="table">  
+          <tr>
+            <td>投稿文</td>
+            <td><%= f.text_area :introduction, style: "width: 500px; height:370px;" %></td>
+          </tr>
+        </table>
+        　<%= f.hidden_field :user_id %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :address %>
+          <%= f.hidden_field :latitude %>
+          <%= f.hidden_field :longitude %>
+        <%= f.submit "投稿する", class: "btn btn-success", style: "margin-left:80px;" %>
+      <% end %>
+    </div>
+  </div>
+  
+</div>
+

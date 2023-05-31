@@ -1,5 +1,5 @@
 
-<!--Google Map-->
+<!--ーーーーーーーーーーーーーーーーーーーーーーーーーー（Google Map）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
 
 <!--Google Mapのスタイル-->
 <style>
@@ -16,16 +16,72 @@
 <div id="map" class="position-fixed"></div>
 
 <script>
+let map;
+let geocoder;
+let marker;
+let infoWindow;
+
 function initMap() {
+  geocoder = new google.maps.Geocoder(); // ジオコーディングができるようにしておく
+
   var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
   var Options = {
    zoom: 15,      //地図の縮尺値
    center: MyLatLng,    //地図の中心座標
    mapTypeId: 'roadmap'   //地図の種類
   };
-  var map = new google.maps.Map(document.getElementById('map'), Options);
+  map = new google.maps.Map(document.getElementById('map'), Options);
+}
+
+function codeAddress() {
+  let inputAddress = $('#address').val(); // テキストエリアから検索対象文字取得
+
+  geocoder.geocode({'address': inputAddress}, function(results, status) {
+    if (status === 'OK') { // 結果があれば
+      map.setCenter(results[0].geometry.location); // 地図の中央をマーカーと揃える
+
+      if (marker != undefined) {
+        marker.setMap(null); // マーカーの初期化
+      }
+
+      // マーカーを表示する
+      marker = new google.maps.Marker({
+        position: results[0].geometry.location,
+        map: map
+      })
+
+      // マーカーをクリックしたときのポップアップの中身
+      infoWindow = new google.maps.InfoWindow({
+        content: '<div class="p-3">' +
+                '<h5>' + inputAddress + '</h5>' +
+                results[0].formatted_address.split('、')[1] + // '、'より前には不要な(日本、)文字列があるので分割して2つ目の配列を取得
+                //以下、「投稿するボタンを押すことで」新規投稿画面にデータ（name,latitude,longitude,address）を送る
+                '<br><a href="<%= new_post_url %>' +  
+                '?name=' +
+                inputAddress +
+                '&latitude=' +
+                results[0].geometry.location.lat() +
+                '&longitude=' +
+                results[0].geometry.location.lng() +
+                '&address=' +
+                results[0].formatted_address.split('、')[1] +
+                '"><h5 mt-2>投稿する</h5></a>' +
+                '</div>'
+                
+      })
+
+      // マーカーがクリックされたらinfoWindowを開く
+      marker.addListener('click', function() {
+        infoWindow.open(map, marker)
+      })
+
+    } else { // 検索した時に該当なしの場合、アラートを表示
+      alert('該当なし');
+    }
+  })
 }
 </script>
 
 <script src="https://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&language=ja&callback=initMap"></script>
 
+<!--ーーーーーーーーーーーーーーーーーーーーーーーーー（一覧画面）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->

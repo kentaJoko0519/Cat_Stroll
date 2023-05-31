@@ -1,5 +1,11 @@
 class Public::PostsController < ApplicationController
   def new
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
   end
 
   def index
@@ -17,12 +23,9 @@ class Public::PostsController < ApplicationController
   def destroy
   end
 
-  def create
-  end
-  
   private
   def post_params
-    params.require(:post).permit(:user_id, :name, :address, :postal_code, :latitude, :longitude, :introduction)
+    params.require(:post).permit(:user_id, :name, :address, :latitude, :longitude, :introduction)
   end
-  
+
 end
