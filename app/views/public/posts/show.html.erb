@@ -1,2 +1,110 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12 mt-5 text-center">
+      <h5><strong>投稿</strong></h5>
+    </div>
+  </div>
+　<!--投稿者-->
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-borderless">
+        <tr>
+          <td class="text-right"><%= image_tag @user.get_profile_image(60,60) %></td>
+          <td class="text-left">
+            <strong>
+              <% if @user.user_name==true %>
+                <%= @user.user_name %>
+              <% else %>
+                <%= @user.first_name %>  <%= @user.last_name %>
+              <% end %>
+            </strong>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <!--投稿画像-->
+      <td><%= image_tag @post.get_image(300,200) %></td>
+      <!--投稿情報-->
+      <table class="table table-border mt-2">
+        <tr>
+          <td>名称</td>
+          <td><strong><%= @post.name %></strong></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @post.address %></td>
+        </tr>
+        <tr>
+          <td>投稿文</td>
+          <td><%= @post.introduction %></td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="col-md-4">
+<!--ーーーーーーーーーーーーーーーーーーーーーーーーーー（Google Map）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
+      
+      <!--Google Mapのスタイル-->
+      <style>
+          #map { height: 50%; width: 30%;}
+      </style>
+      
+      <!--Google Map-->
+      <div id="map" class="position-fixed"></div>
+      
+      <script>
+      let map;
+      let geocoder;
+      let marker;
+      let infoWindow;
+      
+      function initMap() {
+        geocoder = new google.maps.Geocoder(); // ジオコーディングができるようにしておく
+      
+        var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
+        var Options = {
+         zoom: 15,      //地図の縮尺値
+         center: MyLatLng,    //地図の中心座標
+         mapTypeId: 'roadmap'   //地図の種類
+        };
+        map = new google.maps.Map(document.getElementById('map'), Options);
+      }
+      
+      function codeAddress() {
+        let inputAddress = $('#address').val(); // テキストエリアから検索対象文字取得
+      
+        geocoder.geocode({'address': inputAddress}, function(results, status) {
+          if (status === 'OK') { // 結果があれば
+            map.setCenter(results[0].geometry.location); // 地図の中央をマーカーと揃える
+      
+            if (marker != undefined) {
+              marker.setMap(null); // マーカーの初期化
+            }
+      
+            // マーカーを表示する
+            marker = new google.maps.Marker({
+              position: results[0].geometry.location,
+              map: map
+            })
+      
+          } else { // 検索した時に該当なしの場合、アラートを表示
+            alert('該当なし');
+          }
+        })
+      }
+      </script>
+      
+      <script src="https://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&language=ja&callback=initMap"></script>
+
+<!--ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
+
+    </div>
+    
+  </div>
+
+</div>

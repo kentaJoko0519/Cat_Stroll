@@ -1,14 +1,14 @@
 <div class="container">
-  
+
   <div class="row">
     <div class="col-md-12 mt-5 text-center">
       <h5><strong>新規投稿</strong></h5>
     </div>
-  </div>  
-  
+  </div>
+
   <div class="row text-center">
     <div class="col-md-8" style="margin-left:14%;">
-      <table class="table">  
+      <table class="table">
         <tr>
           <td>名称</td>
           <td><strong><%= params[:name] %></strong></td>
@@ -19,21 +19,25 @@
         </tr>
       </table>
       <%= form_with model: @post, url: posts_path, method: :post do |f| %>
-        <table class="table">  
+        <table class="table">
           <tr>
             <td>投稿文</td>
-            <td><%= f.text_area :introduction, style: "width: 500px; height:370px;" %></td>
+            <td><%= f.text_area :introduction, style: "width: 500px; height:300px;" %></td>
+          </tr>
+          <tr>
+            <td>画像</td>
+            <td><%= f.file_field :image, placeholder: "画像", accept: "image/*" %></td>
           </tr>
         </table>
         　<%= f.hidden_field :user_id %>
-          <%= f.hidden_field :name %>
-          <%= f.hidden_field :address %>
-          <%= f.hidden_field :latitude %>
-          <%= f.hidden_field :longitude %>
+          <%= f.hidden_field :name, :value => params[:name] %>
+          <%= f.hidden_field :address, :value => params[:address] %>
+          <%= f.hidden_field :latitude, :value => params[:latitude] %>
+          <%= f.hidden_field :longitude, :value => params[:longitude] %>
         <%= f.submit "投稿する", class: "btn btn-success", style: "margin-left:80px;" %>
       <% end %>
     </div>
   </div>
-  
+
 </div>
 
