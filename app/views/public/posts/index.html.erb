@@ -56,7 +56,9 @@
             infoWindow = new google.maps.InfoWindow({
               content: '<div class="p-3">' +
                       '<h5>' + inputAddress + '</h5>' +
-                      results[0].formatted_address.split('、')[1] + // '、'より前には不要な(日本、)文字列があるので分割して2つ目の配列を取得
+                      '<h6 class="mt-4">' + 
+                      results[0].formatted_address.split('、')[1] +
+                      '</h6>' +   // '、'より前には不要な(日本、)文字列があるので分割して2つ目の配列を取得
                       //以下、「投稿するボタンを押すことで」新規投稿画面にデータ（name,latitude,longitude,address）を送る
                       '<br><a href="<%= new_post_url %>' +  
                       '?name=' +
@@ -67,7 +69,7 @@
                       results[0].geometry.location.lng() +
                       '&address=' +
                       results[0].formatted_address.split('、')[1] +
-                      '"><h5 mt-2>投稿する</h5></a>' +
+                      '"><h6 class="mt-2" style="color:#0066FF;">投稿する</h6></a>' +
                       '</div>'
                       
             })
