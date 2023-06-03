@@ -30,8 +30,8 @@
           <td><%= f.text_area :introduction, style: "width: 500px; height:300px;" %></td>
         </tr>
         <tr>
-          <td>画像</td>
-          <td><%= f.file_field :image, placeholder: "画像", accept: "image/*" %></td>
+          <td>画像(複数選択可)</td>
+          <td><%= f.file_field :image, placeholder: "画像", accept: "image/*", multiple: true %></td>
         </tr>
       </table>
       <%= f.submit '更新する', class: "btn btn-success", style: "margin-left:30px" %>

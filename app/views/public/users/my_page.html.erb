@@ -25,7 +25,7 @@
               <%= @user.first_name %>  <%= @user.last_name %>
             </td>
             <td>
-              <% if @user.user_name==true %>
+              <% if @user.user_name == true %>
                 <%= @user.user_name %>
               <% else %>
                 <p style="opacity:0.5">※ユーザーネームは設定されていません</p>
@@ -39,7 +39,7 @@
       </table>
       
       <h6><strong>自己紹介</strong></h6>
-      <% if @user.introduction==true %>
+      <% if @user.introduction == true %>
        <%= @user.introduction %>
       <% else %>
         <p style="opacity:0.5">※自己紹介は設定されていません</p>
