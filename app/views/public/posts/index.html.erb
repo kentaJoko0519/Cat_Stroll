@@ -6,17 +6,17 @@
       <style>
           #map { height: 70%; width: 50%;}
       </style>
-      
+
       <!--地図検索-->
       <div style="margin-top: 80px; margin-bottom: 10px;">
-        <input id="address" type="textbox" style="margin-left: 100px;">　
+        <input id="address" type="textbox" style="margin-left: 20px; width:350px;">
         <input type="button" value="検索" onclick="codeAddress()">
-        <input type="button" value="現在位置から探す" onclick="CurrentLocations()" style="margin-left:100px;">
+        <input type="button" value="現在位置から探す" onclick="CurrentLocations()" style="margin-left:50px;">
       </div>
-      
+
       <!--Google Map-->
       <div id="map" class="position-fixed"></div>
-      
+
       <script>
       let map;
       let geocoder;
@@ -83,14 +83,13 @@
         })
       }
       </script>
-      
       <script src="https://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&language=ja&callback=initMap"></script>
-      
+
       <!--ーーーーーーーーーーーーーーーーーーーーーーーーー（一覧画面）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
     </div>
-    
-    <div class="col-md-5">
-      <table>
+
+    <div class="col-md-5 mt-5">
+      <table class="table table-borderless" style="margin-left:100px">
         <thead>
           <tr>
             <th>名称</th>
@@ -108,10 +107,10 @@
         </tbody>
         <% end %>
       </table>
-      
-        
-      
+
+
+
     </div>
-    
+
   </div>
 </div>

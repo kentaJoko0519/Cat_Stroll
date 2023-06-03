@@ -26,7 +26,7 @@
           </tr>
           <tr>
             <td>画像</td>
-            <td><%= f.file_field :image, placeholder: "画像", accept: "image/*" %></td>
+            <td><%= f.file_field :images, placeholder: "画像", accept: "image/*", multiple: true %></td>
           </tr>
         </table>
         　<%= f.hidden_field :user_id %>
