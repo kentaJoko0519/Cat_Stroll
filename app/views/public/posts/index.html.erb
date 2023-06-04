@@ -95,7 +95,7 @@
         <thead>
           <tr>
             <th>名称</th>
-            <th>ユーザー</th>
+            <th>投稿者</th>
             <th>詳細</th>
           </tr>
         </thead>
@@ -103,7 +103,13 @@
         <tbody>
           <tr>
             <td><%= post.name %></td>
-            <td></td>
+            <td>
+              <% if post.user.user_name.present? %>
+                <%= post.user.user_name %>
+              <% else %>
+                <%= post.user.first_name + post.user.last_name %>
+              <% end %>  
+            </td>
             <td><%= link_to "詳細",post_path(post.id) %></td>
           </tr>
         </tbody>

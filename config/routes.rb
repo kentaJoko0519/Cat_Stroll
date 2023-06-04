@@ -39,7 +39,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     end
 
   # comments
-    resources :comments, only: [:index, :create, :destroy]
+    resources :comments, only: [:create, :destroy]
 
   end
 

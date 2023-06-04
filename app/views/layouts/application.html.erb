@@ -36,16 +36,16 @@
             <!--publicのログイン中のHeader-->
             <% elsif user_signed_in? %>
               <li class="">
-                <%= link_to "マイページ", my_page_path %>
+                <%= link_to "マイページ", my_page_path, class: "nav-link text-dark", style: "font-size:20px;"  %>
               </li>
               <li class="">
-                <%= link_to "ユーザー", users_path %>
+                <%= link_to "ユーザー", users_path, class: "nav-link text-dark", style: "font-size:20px;"  %>
               </li>
               <li class="">
-                <%= link_to "投稿", posts_path %>
+                <%= link_to "投稿", posts_path, class: "nav-link text-dark", style: "font-size:20px;"  %>
               </li>
               <li class="">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-dark", style: "font-size:20px;"  %>
               </li>
             <!--ログアウト中のHeader-->
             <% else %>
@@ -64,7 +64,7 @@
       </nav>
     </header>
   <!--Main-->
-    <main>
+    <main style="margin-bottom:50px;">
       <%= yield %>
     </main>
   <!--Footer-->
