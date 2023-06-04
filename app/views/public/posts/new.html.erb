@@ -5,7 +5,7 @@
       <h5><strong>新規投稿</strong></h5>
     </div>
   </div>
-
+<!--投稿する場所の情報-->
   <div class="row text-center">
     <div class="col-md-8" style="margin-left:14%;">
       <table class="table">
@@ -18,6 +18,8 @@
           <td><%= params[:address] %></td>
         </tr>
       </table>
+      
+      <!--投稿文と画像のフォーム-->
       <%= form_with model: @post, url: posts_path, method: :post do |f| %>
         <table class="table">
           <tr>
@@ -29,6 +31,7 @@
             <td><%= f.file_field :images, placeholder: "画像", accept: "image/*", multiple: true %></td>
           </tr>
         </table>
+          <!--hidden_fuieldでマップから送られた情報をcreateアクションに-->
         　<%= f.hidden_field :user_id %>
           <%= f.hidden_field :name, :value => params[:name] %>
           <%= f.hidden_field :address, :value => params[:address] %>

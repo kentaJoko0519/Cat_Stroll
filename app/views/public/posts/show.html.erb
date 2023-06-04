@@ -1,25 +1,26 @@
 <div class="container">
-
-
+  <!--見出し-->
   <div class="row">
     <div class="col-md-12 mt-3 text-center">
       <h5><strong>投稿</strong></h5>
     </div>
   </div>
+  
 　<!--投稿者-->
   <div class="row">
+    
     <div class="col-md-6">
       <table class="table table-borderless">
-        <tr>
+        <tr>　<!--プロフィール画像-->
           <td class="col-md-3 text-center">
             <%= image_tag @user.get_profile_image(60,60) %>
           </td>
           <td style="margin-left:-100px;">
-            <h5>
+            <h5>　<!--ユーザーネーム or 氏名-->
               <% if @user.user_name.present? %>
-                <%= @user.user_name %>
+                <%= link_to @user.user_name, user_path(@user.id) %>
               <% else %>
-                <%= @user.first_name %>  <%= @user.last_name %>
+                <%= link_to @user.first_name + @user.last_name, user_path(@user.id) %>
               <% end %>
             </h5>
           </td>
@@ -71,13 +72,17 @@
       <table class="table table-border mt-4">
         <tr>
           <td>名称</td>
-          <td><strong><%= @post.name %></strong></td>
+          <td><strong><%= @post.name %></strong></td>　　<!--投稿した場所-->
         </tr>
         <tr>
           <td>住所</td>
-          <td><%= @post.address %></td>
+          <td><%= @post.address %></td>　　<!--投稿場所の住所-->
         </tr>
       </table>
+      <!--タグ追加予定-->
+      
+      
+      <!--編集、削除リンク-->
       <div class="mt-5">
         <% if @user.id == @post.user_id %>
           <%= link_to "編集",edit_post_path(@post.id), class: "btn btn-secondary", style: "margin-left:200px;"%>
@@ -86,7 +91,7 @@
       </div>
 
     </div>
-
+    <!--投稿文-->
     <div class="col-md-6">
       <div class="post">
         <h6 class="text-center">
@@ -96,18 +101,18 @@
           <%= @post.introduction %>
         </div>
       </div>
-
-      <div class="comment mt-4">
+      <!--コメント欄-->
+      <div class="comment mt-2">
         <h6 class="text-center">
           <strong>コメント</strong>
           <p>コメント件数：<%= @post.comments.count %>件</p>
         </h6>
-        <div class="border border-dark border-5 rounded" style="width:600px; height:100px; padding:5px;">
+        <div class="border border-dark border-5 rounded" style="width:600px; height:150px; padding:5px; overflow: scroll; overflow-x: hidden;">
           <% @comments.each do |comment|%>
             <table class="table table-borderless table-sm">
               <tr>
                 <td class="col-md-4">
-                  <%= image_tag @user.get_profile_image(20,20) %>
+                  <%= image_tag @user.get_profile_image(35,35) %>
                   <% if @user.user_name.present? %>
                     <%= link_to @user.user_name, user_path(@user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
                   <% else %>
@@ -125,14 +130,11 @@
           <%= form_with model: [@post , @comment], url: comments_path, method: :post do |f| %>
             <%= f.text_area :sentence, rows: '5', placeholder: "コメントをここに", style: "width: 400px; height:50px;" %>
             <%= f.hidden_field :post_id, :value => @post.id %>
-            <%= f.submit "送信する", class: "btn btn-success" %>
+            <%= f.submit "送信する", class: "btn btn-success", style: "height:40px; width:90px;" %>
           <% end %>
         </div>
-
       </div>
-
     </div>
     
-
   </div>
 </div>
