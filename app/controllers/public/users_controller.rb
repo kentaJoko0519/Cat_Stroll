@@ -10,6 +10,9 @@ class Public::UsersController < ApplicationController
   def show
     @user=User.find(params[:id])
     @posts=@user.posts
+    # フォロー機能
+    @following_users = current_user.following_user
+    @follower_users = current_user.follower_user
   end
   
 # 退会確認
@@ -31,6 +34,7 @@ class Public::UsersController < ApplicationController
   def my_page
     # @user→ログインしているユーザーの情報
     @user=current_user
+    @posts=@user.posts
   end
 
 # 登録情報編集画面
