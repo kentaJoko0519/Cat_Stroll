@@ -1,2 +1,38 @@
-<h1>Public::Relationships#follower</h1>
-<p>Find me in app/views/public/relationships/follower.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div col-md-12>
+      <h3>
+        <strong>フォロー中のユーザー</strong>
+      </h3>
+      <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>ユーザー名</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @follower_users.each do |follower_user| %>
+            <tr>
+              <td>
+                <%= image_tag follower_user.get_profile_image(70,70) %>
+              </td>
+              <td>
+                <% if follower_user.user_name==true %>
+                  <%= follower_user.user_name%><!--ユーザーネーム-->
+                <% else %>
+                  <%= follower_user.first_name %><%= follower_user.last_name %>
+                <% end %>
+              </td>
+              <td><%= link_to "詳細", user_path(follower_user.id)%></td>
+              <td><%= link_to 'フォローする', user_relationships_path(follower_user.id), method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

@@ -10,6 +10,15 @@
           <%= @user.first_name + @user.last_name %>
         <% end %>
       </strong></h3>
+      
+      <% if current_user != @user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to 'フォロー外す', user_relationship_path(@user.id), method: :delete %>
+        <% else %>
+          <%= link_to 'フォローする', user_relationships_path(@user.id), method: :POST %>
+        <% end %>
+      <% end %>
+      
       <!--投稿数-->
       <div class="col-md-12 d-flex" style="margin-left:270px;">
         <div class="col-md-2 d-flex flex-column">
@@ -21,16 +30,16 @@
       <!--フォロー中-->
         <div class="col-md-2 d-flex flex-column">
           <strong>
-            <!--フォロー数-->
+            <%= @user.follower.count %>
           </strong>
-          フォロー中
+          <%= link_to "フォロー中",user_following_path(@follower_users) %>
         </div>
       <!--フォロワー-->
         <div class="col-md-2 d-flex flex-column">
           <strong>
-            <!--フォロワー数-->
+            <%= @user.followed.count %>
           </strong>
-          フォロワー
+          <%= link_to "フォロワー",user_follower_path(@following_users) %>
         </div>
       </div>
     </div>

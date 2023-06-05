@@ -25,7 +25,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   patch "/users/withdraw"=>"users#withdraw"
     resources :users, only: [:index, :show, :update, :edit] do
     # relationships
-      resources :relationships, only: [:create, :destroy, :following, :follower]
+      resources :relationships, only: [:create, :destroy, :follower]
+      get "/relationships/following"=>"relationships#following",as: 'following'
+      get "/relationships/follower"=>"relationships#follower",as: 'follower'
     # reports
       resources :reports, only: [:new, :create]
     end
