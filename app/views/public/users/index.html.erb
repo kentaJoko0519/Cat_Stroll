@@ -2,9 +2,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 mt-5">
-      
+
       <h3><strong>ユーザー</strong></h3>
-      
+
       <% @users.each do |user| %>
         <table class="table table-border">
           <tr>
@@ -16,7 +16,7 @@
                 <%= user.user_name%><!--ユーザーネーム-->
               <% else %>
                 <%= user.first_name %><%= user.last_name %>
-              <% end %>  
+              <% end %>
             </td>
             <td>
               <%= link_to "詳細", user_path(user.id), style: "font-size:20px"  %><!--詳細ページへのリンク-->
