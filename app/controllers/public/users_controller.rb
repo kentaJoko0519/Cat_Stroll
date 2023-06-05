@@ -9,6 +9,7 @@ class Public::UsersController < ApplicationController
 # ユーザー詳細
   def show
     @user=User.find(params[:id])
+    @posts=@user.posts
   end
   
 # 退会確認

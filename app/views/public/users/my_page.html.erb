@@ -39,13 +39,14 @@
       </table>
       
       <h6><strong>自己紹介</strong></h6>
-      <% if @user.introduction.present? %>
-       <%= @user.introduction %>
-      <% else %>
-        <p style="opacity:0.5">※自己紹介は設定されていません</p>
-      <% end %>
-      
-      <div>
+      <div class="border border-dark" style="height:200px; width:700px; padding:10px; overflow: scroll; overflow-x: hidden;;">
+        <% if @user.introduction.present? %>
+         <%= @user.introduction %>
+        <% else %>
+          <p style="opacity:0.5">※自己紹介は設定されていません</p>
+        <% end %>
+      </div>
+      <div class="mt-3">
         <%= link_to "編集する",edit_user_path(@user), class: "btn btn-secondary", style: "text-center" %>
       </div>
             
