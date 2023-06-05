@@ -5,14 +5,14 @@
       <h5><strong>投稿</strong></h5>
     </div>
   </div>
-  
+
 　<!--投稿者-->
   <div class="row">
-    
+
     <div class="col-md-6">
       <table class="table table-borderless">
         <tr>　<!--プロフィール画像-->
-          <td class="col-md-3 text-center">
+          <td class="text-center">
             <%= image_tag @user.get_profile_image(60,60) %>
           </td>
           <td style="margin-left:-100px;">
@@ -69,19 +69,23 @@
       <% end %>
 
       <!--投稿情報-->
-      <table class="table table-border mt-4">
+      <table class="table table-border mt-2">
+        <tr>
+          <td>投稿日</td>
+          <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
+        </tr>
         <tr>
           <td>名称</td>
           <td><strong><%= @post.name %></strong></td>　　<!--投稿した場所-->
         </tr>
-        <tr>
+        <tr class="border-bottom">
           <td>住所</td>
           <td><%= @post.address %></td>　　<!--投稿場所の住所-->
         </tr>
       </table>
       <!--タグ追加予定-->
-      
-      
+
+
       <!--編集、削除リンク-->
       <div class="mt-5">
         <% if @user.id == @post.user_id %>
@@ -97,7 +101,7 @@
         <h6 class="text-center">
           <strong>投稿文</strong>
         </h6>
-        <div class="border border-dark border-5 rounded" style="width:600px; height:400px; padding:5px;">
+        <div class="border border-dark border-5 rounded" style="width:600px; height:400px; padding:5px; overflow: scroll; overflow-x: hidden;">
           <%= @post.introduction %>
         </div>
       </div>
@@ -126,15 +130,16 @@
             </table>
           <% end %>
         </div>
-        <div class="mt-3">
+        <!--コメント入力欄-->
+        <div class="col-md-6 mt-3">
           <%= form_with model: [@post , @comment], url: comments_path, method: :post do |f| %>
-            <%= f.text_area :sentence, rows: '5', placeholder: "コメントをここに", style: "width: 400px; height:50px;" %>
+            <%= f.text_area :sentence, rows: '5', placeholder: "コメントをここに", style: "width: 400px; height:50px; padding:5px;" %>
             <%= f.hidden_field :post_id, :value => @post.id %>
             <%= f.submit "送信する", class: "btn btn-success", style: "height:40px; width:90px;" %>
           <% end %>
         </div>
       </div>
     </div>
-    
+
   </div>
 </div>
