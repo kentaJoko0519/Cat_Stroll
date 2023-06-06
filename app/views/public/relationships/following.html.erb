@@ -1,32 +1,32 @@
 <div class="container">
-  <div class="row">
-    <div col-md-12>
+  <div class="row text-center mt-3">
+    <div class="col-md-12">
       <h3>
-        <strong>フォロー中のユーザー</strong>
+        <strong>
+          フォロー中のユーザー
+        </strong>
       </h3>
-      <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th>ユーザー名</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
+      <%= @following_users.count %>人
+    </div>
+  </div>
+      
+  <div class="row mt-3">
+    <div class="col-md-8 border border-dark" style="margin-left:20%; height:500px; padding:10px; overflow: scroll; overflow-x: hidden;">
+      <table class="table table-border table-sm">
         <tbody>
           <% @following_users.each do |following_user| %>
             <tr>
-              <td>
+              <td class="col-md-2">
                 <%= image_tag following_user.get_profile_image(70,70) %>
               </td>
-              <td>
-                <% if following_user.user_name==true %>
+              <td class="col-md-4">
+                <% if following_user.user_name.present? %>
                   <%= following_user.user_name%><!--ユーザーネーム-->
                 <% else %>
                   <%= following_user.first_name %><%= following_user.last_name %>
                 <% end %>
               </td>
-              <td><%= link_to "詳細", user_path(following_user.id)%></td>
+              <td class="col-md-2"><%= link_to "詳細", user_path(following_user.id)%></td>
             </tr>
           <% end %>
         </tbody>

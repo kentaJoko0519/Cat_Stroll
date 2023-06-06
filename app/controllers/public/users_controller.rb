@@ -10,9 +10,6 @@ class Public::UsersController < ApplicationController
   def show
     @user=User.find(params[:id])
     @posts=@user.posts
-    # フォロー機能
-    @following_users = current_user.following_user
-    @follower_users = current_user.follower_user
   end
   
 # 退会確認
