@@ -100,7 +100,17 @@
       <div class="post">
         <h6 class="text-center">
           <strong>投稿文</strong>
+          
+          <!--ブックマーク機能-->
+          <div style="margin-left:70%;">
+            <% if @post.bookmarked_by?(current_user) %>
+              <td><%= link_to "お気に入りから外す", post_bookmarks_path(@post), method: :delete %></td>
+            <% else %>
+              <td><%= link_to "お気に入り登録", post_bookmarks_path(@post), method: :post %></td>
+            <% end %>
+          </div>
         </h6>
+        
         <div class="border border-dark border-5 rounded" style="width:600px; height:400px; padding:5px; overflow: scroll; overflow-x: hidden;">
           <%= @post.introduction %>
         </div>

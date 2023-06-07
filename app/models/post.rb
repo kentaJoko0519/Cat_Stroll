@@ -10,6 +10,7 @@ class Post < ApplicationRecord
 # comment
   has_many :comments, dependent: :destroy
 
+# 既にブックマークしているかを検証します
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end

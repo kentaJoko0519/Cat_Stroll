@@ -37,7 +37,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   # posts
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
       # bookmarks
-      resources :bookmarks, only: [:index, :create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
+      get "/bookmarks/favorite"=>"bookmarks#favorite",as: 'favorite'
     end
 
   # comments
