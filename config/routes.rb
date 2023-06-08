@@ -16,32 +16,30 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 # ユーザー
   scope module: :public do
-  # homes
+    # homes
     root to: "homes#top"
 
-  # users
-  get "/users/my_page"=>"users#my_page",as: 'my_page'
-  get "/users/unsubscribe"=>"users#unsubscribe",as: 'unsubscribe'
-  patch "/users/withdraw"=>"users#withdraw"
+    # users
+    get "/users/my_page"=>"users#my_page",as: 'my_page'
+    get "/users/unsubscribe"=>"users#unsubscribe",as: 'unsubscribe'
+    patch "/users/withdraw"=>"users#withdraw"
     resources :users, only: [:index, :show, :update, :edit] do
-    # relationships
+      # relationships
       resource :relationships, only: [:create, :destroy, :follower]
       get "/relationships/following"=>"relationships#following",as: 'following'
       get "/relationships/follower"=>"relationships#follower",as: 'follower'
-    # reports
+      # reports
       resources :reports, only: [:new, :create]
     end
-
-
-
-  # posts
+    
+    # posts
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
       # bookmarks
       resource :bookmarks, only: [:create, :destroy]
       get "/bookmarks/favorite"=>"bookmarks#favorite",as: 'favorite'
     end
-
-  # comments
+    
+    # comments
     resources :comments, only: [:create, :destroy]
 
   end

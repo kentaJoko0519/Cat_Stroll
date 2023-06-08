@@ -61,3 +61,5 @@ gem 'image_processing', '~> 1.2'
 # 地図機能
 gem 'dotenv-rails'
 gem 'geocoder'
+# 通報機能用enum
+gem "enum_help"
