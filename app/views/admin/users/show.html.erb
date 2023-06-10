@@ -1,2 +1,102 @@
-<h1>Admin::Usres#show</h1>
-<p>Find me in app/views/admin/usres/show.html.erb</p>
+<div class="container">
+
+  <div class="row text-center">
+    <div class="col-md-12 mt-4">
+      <%= image_tag @user.get_profile_image(100,100) %>
+      <h3><strong>
+        <% if @user.user_name.present? %>
+          <%= @user.user_name%>
+        <% else %>
+          <%= @user.first_name + @user.last_name %>
+        <% end %>
+        さんの登録情報
+      </strong></h3>
+
+      <!--投稿数-->
+      <div class="col-md-12 d-flex" style="margin-left:15%;">
+        <div class="col-md-2 d-flex flex-column">
+          <strong>
+            <%= @posts.count %>
+          </strong>
+          投稿数
+        </div>
+      <!--フォロー中-->
+        <div class="col-md-2 d-flex flex-column">
+          <strong>
+            <%= @user.follower.count %>
+          </strong>
+          <%= link_to "フォロー中",user_following_path(@user) %>
+        </div>
+      <!--フォロワー-->
+        <div class="col-md-2 d-flex flex-column">
+          <strong>
+            <%= @user.followed.count %>
+          </strong>
+          <%= link_to "フォロワー",user_follower_path(@user) %>
+        </div>
+        <div class="col-md-2 d-flex flex-column">
+          <strong>
+            <% if @user.is_deleted == false %>
+              <strong style="color:blue;">有効</strong>
+            <% else %>
+              <strong style="color:red;">退会</strong>
+            <% end %>
+          </strong>
+          ステータス
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--自己紹介-->
+  <div class="row mt-4">
+    <div class="col-md-5">
+      <h6>
+        <strong>自己紹介</strong>
+      </h6>
+      <div class="border border-dark" style="height:200px; width:400px; padding:10px; overflow: scroll; overflow-x: hidden;">
+        <% if @user.introduction.present? %>
+         <%= @user.introduction %>
+        <% else %>
+          <p style="opacity:0.5">※自己紹介は設定されていません</p>
+        <% end %>
+      </div>
+    </div>
+  <!--過去投稿一覧-->
+    <div class="col-md-4">
+      <h6>
+        <strong>投稿</strong>
+      </h6>
+      <div class="border border-dark border-5 rounded" style="width:650px; height:200px; overflow: scroll; overflow-x: hidden;">
+        <table class="table table-borderless">
+          <thead>
+            <tr class="table-secondary">
+              <th>名称</th>
+              <th>住所</th>
+              <th>詳細</th>
+            </tr>
+          </thead>
+          <% @posts.each do |post| %>
+          <tbody>
+            <tr>
+              <td><%= post.name %></td>　　<!--投稿場所-->
+              <td><%= post.address %></td>
+              <td><%= link_to "詳細",aadmin_post_path(post.id) %></td>   <!--投稿詳細へのリンク-->
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--ユーザーのステータス-->
+  <div class="row text-center">
+    <div class="col-md-12 mt-5">
+      
+      <%= link_to "登録情報を編集",edit_admin_user_path(@user.id), class: "btn btn-secondary" %>
+      
+    </div>
+  </div>
+
+</div>

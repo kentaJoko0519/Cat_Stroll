@@ -36,19 +36,19 @@
           <ul class="navbar-nav">
             <% if admin_signed_in? %>
               <li class="">
-                <%= link_to "ユーザー", admin_root_path %>
+                <%= link_to "ユーザー", admin_root_path, class: "nav-link text-dark", style: "font-size:20px;" %>
               </li>
               <li class="">
-                <%= link_to "投稿一覧", admin_posts_path %>
+                <%= link_to "投稿一覧", admin_posts_path, class: "nav-link text-dark", style: "font-size:20px;" %>
               </li>
               <li class="">
-                <%= link_to "通報一覧", admin_reports_path %>
+                <%= link_to "通報一覧", admin_reports_path, class: "nav-link text-dark", style: "font-size:20px;" %>
               </li>
               <li class="">
-                <%= link_to "タグ", admin_tags_path %>
+                <%= link_to "タグ", admin_tags_path, class: "nav-link text-dark", style: "font-size:20px;" %>
               </li>
               <li class="">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark", style: "font-size:20px;" %>
               </li>
             <!--publicのログイン中のHeader-->
             <% elsif user_signed_in? %>
