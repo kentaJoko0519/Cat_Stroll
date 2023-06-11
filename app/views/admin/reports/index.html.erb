@@ -1,2 +1,52 @@
-<h1>Admin::Reports#index</h1>
-<p>Find me in app/views/admin/reports/index.html.erb</p>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-12 mt-3">
+      <h3>
+        <strong>通報一覧</strong>
+      </h3>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-md-8 border border-dark" style="margin-left:15%; height:540px; overflow: scroll; overflow-x: hidden;">
+      <table class="table">
+        <thead class="table-secondary">
+          <tr>
+            <th>通報ID</th>
+            <th>通報されたユーザー</th>
+            <th>対応</th>
+            <td>ステータス</td>
+          </tr>
+        </thead>
+        <% @reports.each do |report| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to report.id, admin_report_path(report.id) %>
+              </td>
+              <td>
+                <% if report.reported.user_name.present? %>
+                  <%= report.reported.user_name %>
+                <% else %>
+                  <%= report.reported.first_name + report.reported.last_name %>
+                <% end %>
+              </td>
+              <td>
+                <%= report.status_i18n %>
+              </td>
+              <td>
+                <% if report.reported.is_deleted == false %>
+                  <strong style="color:blue;">有効</strong>
+                <% else %>
+                  <strong style="color:red;">退会</strong>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+
+</div>

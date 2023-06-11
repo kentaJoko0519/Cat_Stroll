@@ -1,2 +1,65 @@
-<h1>Admin::Reports#show</h1>
-<p>Find me in app/views/admin/reports/show.html.erb</p>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-12 mt-4">
+      <h3>
+        <strong>通報詳細</strong>
+      </h3>
+    </div>
+  </div>
+  
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <h5 class="mt-4">
+        <strong>通報詳細情報</strong>
+      </h5>
+      <table class="table">
+        <tr>
+          <td>通報ID</td>
+          <td>
+            <%= @report.id %>
+          </td>
+        </tr>
+        <tr>
+          <td>通報されたユーザー</td>
+          <td>
+            <% if @report.reported.user_name.present? %>
+              <%= link_to @report.reported.user_name, edit_admin_user_path(@report.reported.id) %>
+            <% else %>
+              <%= link_to @report.reported.first_name + @report.reported.last_name, edit_admin_user_path(@report.reported.id) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>ステータス</td>
+          <td>
+            <%= form_with model:@report, url:admin_report_path(@report), method: :patch, local: true do |f| %>
+              <%= f.select :status, Report.statuses.keys.map { |k| [t("enums.report.status.#{k}"), k] } %>
+              <%= f.submit '更新', style: "margin-left:5%;" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="text-center">
+        通報者：
+        <% if @report.reporter.user_name.present? %>
+          <%= link_to @report.reporter.user_name, admin_user_path(@report.reporter.id) %>
+        <% else %>
+          <%= link_to @report.reporter.first_name + @report.reporter.last_name, admin_user_path(@report.reporter.id) %>
+        <% end %>
+      </div>
+      <div>
+        <h5>
+          <strong>通報理由</strong>
+        </h5>
+        <div class="border border-dark" style="width:100%; height:400px; padding:10px; overflow: scroll; overflow-x: hidden;">
+          <%= @report.reason %>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
