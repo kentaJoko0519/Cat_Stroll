@@ -126,11 +126,11 @@
             <table class="table table-borderless table-sm">
               <tr>
                 <td class="col-md-4">
-                  <%= image_tag @user.get_profile_image(35,35) %>
-                  <% if @user.user_name.present? %>
-                    <%= link_to @user.user_name, user_path(@user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
+                  <%= image_tag comment.user.get_profile_image(35,35) %>
+                  <% if comment.user.user_name.present? %>
+                    <%= link_to comment.user.user_name, user_path(comment.user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
                   <% else %>
-                    <%= link_to @user.first_name + @user.last_name, user_path(@user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
+                    <%= link_to comment.user.first_name + comment.user.last_name, user_path(comment.user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
                   <% end %>
                 </td>
                 <td class="ml-5">

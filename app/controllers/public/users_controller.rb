@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
 
 # ユーザー一覧
   def index
-    @users=User.all
+    @users=User.where(is_deleted: false)
   end
 
 # ユーザー詳細
@@ -20,8 +20,18 @@ class Public::UsersController < ApplicationController
 # 退会処理
   def withdraw
     @user=current_user
+    reports = Report.where(reported_id: current_user.id)
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)
+    reports.each do |report|
+      report.update(status: 2)
+    end
+    Bookmark.where(post_id: @user.posts.ids).destroy_all    # 退会した場合、他のユーザーのブックマークにある退会したユーザーの投稿も削除する
+    @user.posts.destroy_all                                         #退会した場合、投稿したものも全て削除される
+    Relationship.where(follower_id: current_user.id).destroy_all    #退会した場合、他のユーザーのフォロワーにある退会したユーザーもなくなる
+    Relationship.where(followed_id: current_user.id).destroy_all    #退会した場合、フォローにある他のユーザーもなくなる
+    @user.comments.destroy_all                                      #退会した場合、退会したユーザーがコメントしたものは全て削除する
+    @user.bookmarks.destroy_all                                     #退会した場合、退会したユーザーのブックマークはなくなる
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
