@@ -1,2 +1,39 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="container">
+  
+  <div class="row text-center">
+    <div class="col-md-12 mt-4">
+      <h3><strong>投稿一覧</strong></h3>
+    </div>
+  </div>
+  
+  <div class="row text-center">
+    <div class="col-md-8 mt-2 border border-dark" style="margin-left:15%; height:540px; overflow: scroll; overflow-x: hidden;">
+      <table class="table table-borderless">
+        <thead>
+          <tr class="table-secondary">
+            <th>投稿場所</th>
+            <th>投稿者ID</th>
+            <th>投稿者</th>
+            <th>詳細</th>
+          </tr>
+        </thead>
+        <% @posts.each do |post| %>
+        <tbody>
+          <tr>
+            <td><%= post.name %></td>　　<!--投稿場所-->
+            <td><%= post.user_id %></td>
+            <td>
+              <% if post.user.user_name.present? %>　<!--ユーザーネームが設定されているか？-->
+                <%= post.user.user_name %>　　　　　<!--ユーザーネームを表示-->
+              <% else %>　　　　　　　　　　　　　　<!--設定されていなければ、氏名を表示-->
+                <%= post.user.first_name + post.user.last_name %>
+              <% end %>  
+            </td>
+            <td><%= link_to "詳細",admin_post_path(post.id) %></td>   <!--投稿詳細へのリンク-->
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
