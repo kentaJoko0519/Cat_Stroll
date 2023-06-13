@@ -83,8 +83,11 @@
           <td><%= @post.address %></td>　　<!--投稿場所の住所-->
         </tr>
       </table>
-      <!--タグ追加予定-->
-
+      
+      <!--タグのリンク(リンク先はそのタグが検索された状態の一覧画面)-->
+      <% @post.tags.each do |post| %>
+        <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false %>
+      <% end %>
 
       <!--編集、削除リンク-->
       <div class="mt-5">

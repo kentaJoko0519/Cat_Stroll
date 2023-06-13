@@ -14,10 +14,13 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    # タグ検索機能・・・タグがある投稿を探す
+    @posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%" ) if params[:search].present?
   end
 
   def show
     @post = Post.find(params[:id])
+    @post.split_text
     @user = @post.user
     # コメント機能
     @comments = @post.comments  #投稿詳細に関連付けてあるコメントを全取得
