@@ -94,10 +94,11 @@
     <div class="col-md-6 mt-5">
       
     <!--タグ検索-->
-      <div class="ml-5 mb-3">
+      <div class="ml-5 mb-2">
         <%= form_with url: posts_path, method: :get, local: true do |f| %>
-          <%= f.text_field :search, class: "form-control w-50 d-inline", value: params[:search], id: "searchBox" %>
-          <%= f.submit 'search', class: "btn btn-primary d-inline" %><span id="clearSearch" class="ml-4">x</span>
+          <%= f.text_field :search, class: "form-control w-50 d-inline border border-dark", value: params[:search], id: "searchBox" %>
+          <%= f.submit 'search', class: "btn btn-primary d-inline" %>
+          <span id="clearSearch" class="ml-2 btn btn-secondary">クリア</span>
         <% end %>
       </div>
       <!--検索ボックスの中をクリアに-->
@@ -108,7 +109,7 @@
         })
       </script>
       
-      <div class="border border-dark border-5 rounded" style="margin-left:40px; height:545px; overflow: scroll; overflow-x: hidden;">
+      <div class="border border-dark border-5 rounded" style="margin-left:40px; height:510px; overflow: scroll; overflow-x: hidden;">
         <table class="table table-borderless">
           <thead>
             <tr class="table-secondary">

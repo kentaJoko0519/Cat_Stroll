@@ -13,7 +13,7 @@ class Post < ApplicationRecord
 
   before_validation :split_text
   after_save :save_tags
-  after_initialize :append_tags
+  after_initialize :append_tags, unless: :new_record?
 
   def split_text
     data = self.introduction.split("#")     #新規投稿でのデータで、タグを表す # のもつデータを配列で、投稿文と分ける

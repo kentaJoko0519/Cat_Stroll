@@ -85,8 +85,9 @@
       </table>
       
       <!--タグのリンク(リンク先はそのタグが検索された状態の一覧画面)-->
+      <p class="d-inline"><strong>タグ：</strong></p>
       <% @post.tags.each do |post| %>
-        <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false %>
+        <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
       <% end %>
 
       <!--編集、削除リンク-->
