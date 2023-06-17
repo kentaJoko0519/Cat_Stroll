@@ -18,5 +18,16 @@
   background-color: #000;
 }
 
+// 新規登録でのエラー箇所の赤枠
+.field_with_errors {
+  input {
+    border: 2px solid red;
+    outline: none;
+    appearance: none;
+  }
+  .error-msg{
+    color: red;
+  }
+}
 
 
