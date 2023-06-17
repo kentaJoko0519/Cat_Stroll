@@ -1,3 +1,4 @@
+# 通報機能
 ja:
   enums:
     report:
@@ -5,3 +6,38 @@ ja:
         waiting: "対応待ち"
         keep: "保留"
         finish: "対応済み"
+        
+  #  新規登録でのエラー数
+  errors:
+    messages:
+      not_saved: "の未入力項目があります"
+      
+  # 新規登録でのエラー表示
+  activerecord:
+    attributes:
+      user:
+        first_name: "姓が"
+        last_name: "名が"
+        first_name_kana: "セイが"
+        last_name_kana: "メイが"
+        email: "メールアドレスが"
+        password: "パスワードが"
+        password_confirmation: "パスワードが"
+    errors:
+      models:
+        user:
+          attributes:
+            first_name:
+              blank: "未入力です"
+            last_name:
+              blank: "未入力です"  
+            first_name_kana:
+              blank: "未入力です" 
+            last_name_kana:
+              blank: "未入力です" 
+            email:  
+              blank: "未入力です" 
+            password:
+              blank: "未入力です" 
+            password_confirmation:
+              confirmation: "一致していません" 
