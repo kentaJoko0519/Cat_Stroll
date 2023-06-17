@@ -15,7 +15,11 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
     # タグ検索機能・・・タグがある投稿を探す
-    @posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%" ) if params[:search].present?
+    if user_signed_in?
+      @posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%" ) if params[:search].present?
+    else
+      render :index
+    end  
   end
 
   def show

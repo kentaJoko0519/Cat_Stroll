@@ -17,7 +17,7 @@
           
           <% if user_signed_in? %>
             <%= image_tag current_user.get_profile_image(50,50) %>
-            <h5 style="margin-left:-100px;">
+            <h5 class="mt-2" style="margin-left:-6%;">
               <strong>
                 <% if current_user.user_name.present? %>
                   <%= current_user.user_name%><!--ユーザーネーム-->
@@ -26,12 +26,15 @@
                 <% end %>
               </strong>
             </h5>
+            <%= link_to "猫の散歩", root_path, class: "text-dark", style: "margin-top:5px; margin-left:20%; font-size:30px;" %>
           <% elsif %>
-            <div style="margin-left:90px;"></div>
+            <p class="mt-3" style="color:red; margin-left:-6%;">
+              ※投稿するには新規登録が必要です
+            </p>
+            <%= link_to "猫の散歩", root_path, class: "text-dark", style: "margin-top:5px; margin-left:8%; font-size:30px;" %>
           <% end %>
+
           
-          
-          <%= link_to "猫の散歩", root_path, class: "text-dark", style: "margin-top:5px;  margin-left:200px; font-size:30px;" %>
           <!--adminのログイン中のHeader-->
           <ul class="navbar-nav">
             <% if admin_signed_in? %>
@@ -63,7 +66,7 @@
               </li>
             <!--ログアウト中のHeader-->
             <% else %>
-              <li class="">
+              <li>
                 <%= link_to "投稿一覧", posts_path, class: "nav-link text-dark", style: "font-size:20px;" %>
               </li>
               <li class="">
