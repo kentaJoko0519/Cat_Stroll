@@ -3,8 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  validates :first_name, :last_name, :first_name_kana, :last_name_kana, presence: true
+
+  validates :first_name, :last_name, presence: true
+  # フリガナには全角カタカナしか保存できないようにする
+  validates :first_name_kana, :last_name_kana, format: {with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,message: "全角カタカナで入力して下さい"}
   
 # post
   has_many :posts, dependent: :destroy
