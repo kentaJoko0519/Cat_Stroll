@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2023_05_26_092140) do
     t.string "address", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false
-    t.text "introduction", null: false
+    t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
