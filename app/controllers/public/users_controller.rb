@@ -4,6 +4,8 @@ class Public::UsersController < ApplicationController
 # ユーザー一覧
   def index
     @users=User.where(is_deleted: false)
+    @following_users = current_user.following_user
+    @follower_users = current_user.follower_user
   end
 
 # ユーザー詳細
@@ -11,7 +13,7 @@ class Public::UsersController < ApplicationController
     @user=User.find(params[:id])
     @posts=@user.posts
   end
-  
+
 # 退会確認
   def unsubscribe
     @user=current_user

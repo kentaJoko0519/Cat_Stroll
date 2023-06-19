@@ -7,29 +7,35 @@
     </div>
   </div>
   
-  <div class="row">
-    <div class="col-md-8 mt-3 border border-dark" style="margin-left:18%; height:500px; padding:10px; overflow: scroll; overflow-x: hidden;">  
-      <% @users.each do |user| %>
-        <table class="table table-border table-sm">
-          <tr>
-            <td class="col-md-2">
-              <%= image_tag user.get_profile_image(70,70) %><!--プロフィール画像-->
-            </td>
-            <td class="col-md-4" style="font-size:20px;">
-              <% if user.user_name.present? %>
-                <%= user.user_name%><!--ユーザーネーム-->
-              <% else %>
-                <%= user.first_name %><%= user.last_name %>
-              <% end %>
-            </td>
-            <td class="col-md-2">
-              <%= link_to "詳細", user_path(user.id), style: "font-size:20px"  %><!--詳細ページへのリンク-->
-            </td>
-          </tr>
-        </table>
-      <% end %>
+  <!--タブ部分-->
+  <div>
+    <div>
+      <ul class="tab-list list-unstyled d-flex text-center" style="margin-left:16%;">
+        <li class="tab tab-active">
+          ユーザー
+        </li>
+        <li class="tab">
+          フォロワー
+        </li>
+        <li class="tab">
+          フォロー中
+        </li>
+      </ul>
+      <!--タブで選択された要素部分-->
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <%= render 'list', users: @users %>    
+        </div>
+        <div class="tabbox">
+          <%= render 'list', users: @follower_users %>
+        </div>
+        <div class="tabbox">
+          <%= render 'list', users: @following_users %>
+        </div>
+      </div>
     </div>
   </div>
+      
   
 </div>
 
