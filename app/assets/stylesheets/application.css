@@ -13,17 +13,3 @@
  *= require_tree .
  *= require_self
  */
- 
- *{
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  color: #6c6b6b
-}
- 
- 
- header{
-   background-color: #DDFFFF;
-   font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
- }
- 
