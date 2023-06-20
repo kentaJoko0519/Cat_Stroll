@@ -1,4 +1,3 @@
-
 // turbolinksの無効化
 $(document).on('turbolinks:load', function() {
   $(function() {

@@ -1,22 +1,28 @@
 class Public::PostsController < ApplicationController
+  
+# ユーザー側  投稿
+
+  # indexアクション以外は新規登録orログインしないとアクションが実行されない
   before_action :authenticate_user!, only: [:new, :show, :create, :edit, :update, :destroy]
   
+  # 新規投稿
   def new
-    @post = Post.new
+    @post = Post.new                          # 空のインスタンスを生成
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-    @post.save!
-    redirect_to post_path(@post.id)
+    @post = Post.new(post_params)             # データを新規登録するためのインスタンス生成
+    @post.user_id = current_user.id           # 投稿の user_id には current_user.id を入れる
+    @post.save!                               # データをデータベースに保存するためのsaveメソッド実行
+    redirect_to post_path(@post.id)           # 投稿した詳細へリダイレクト
   end
-
+  
+  # 投稿一覧
   def index
-    @posts = Post.all
+    @posts = Post.all                         # 投稿の情報を全取得
     # 検索機能
-    if user_signed_in?
-      if params[:search].present?
+    if user_signed_in?                        # もし、ユーザーがログインしているなら
+      if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
         # 投稿のタグから探す
         tag_posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%")
         # 投稿者を探す
@@ -28,36 +34,39 @@ class Public::PostsController < ApplicationController
         @posts = (tag_posts + posts).uniq
       end
     else
-      render :index
+      render :index                           # ユーザーがログインしていないなら、投稿一覧に render する
     end  
   end
-
+  
+  # 投稿詳細
   def show
-    @post = Post.find(params[:id])
-    @post.split_text
-    @user = @post.user
+    @post = Post.find(params[:id])            # PostモデルのIDを取得して詳細ページを表示
+    @post.split_text                          # Postモデルの split_textメソッドを実行
+    @user = @post.user                        # @user には投稿したユーザーを取得
     # コメント機能
-    @comments = @post.comments  #投稿詳細に関連付けてあるコメントを全取得
-    @comment = Comment.new
+    @comments = @post.comments                #投稿詳細に関連付けてあるコメントを全取得
+    @comment = Comment.new                    # コメントの空のインスタンスを生成
   end
 
+  # 投稿編集
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id])            # PostモデルのIDを取得して編集ページを表示
   end
 
   def update
-    @post = Post.find(params[:id])
-    if @post.update(post_params)
-      redirect_to post_path(@post.id)
+    @post = Post.find(params[:id])            # PostモデルのIDを取得
+    if @post.update(post_params)              # もし、編集された投稿がアップデートされたなら
+      redirect_to post_path(@post.id)         # 詳細ページへリダイレクト
     else
-      render :edit
+      render :edit                            # アップデートされなければ、編集ページへ render される
     end  
   end
 
+  # 投稿削除
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path
+    post = Post.find(params[:id])             # PostモデルのIDを取得
+    post.destroy                              # 投稿の削除
+    redirect_to posts_path                    # 投稿一覧ページへリダイレクト
   end
 
   private
