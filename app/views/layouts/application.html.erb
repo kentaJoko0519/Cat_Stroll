@@ -11,74 +11,64 @@
 
   <body>
       <!--Header-->
-    <header class=" border-bottom border-dark m-0" style="height :70px;">
-      <nav class="navbar navbar-expand-lg">
+    <header class=" border-bottom border-dark m-0" style="height:5%;">
         <div class="container">
-          
-          <% if user_signed_in? %>
-            <%= image_tag current_user.get_profile_image(50,50) %>
-            <h5 class="mt-2" style="margin-left:-6%;">
-              <strong>
-                <% if current_user.user_name.present? %>
-                  <%= current_user.user_name%><!--ユーザーネーム-->
-                <% else %>
-                  <%= current_user.first_name + current_user.last_name %>
-                <% end %>
-              </strong>
-            </h5>
-            <%= link_to "猫の散歩", root_path, class: "text-dark", style: "margin-top:5px; margin-left:20%; font-size:30px;" %>
-          <% elsif %>
-            <p class="mt-3" style="color:red; margin-left:-6%;">
-              ※投稿するには新規登録が必要です
-            </p>
-            <%= link_to "猫の散歩", root_path, class: "text-dark", style: "margin-top:5px; margin-left:8%; font-size:30px;" %>
-          <% end %>
 
-          
-          <!--adminのログイン中のHeader-->
-          <ul class="navbar-nav">
-            <% if admin_signed_in? %>
-              <li class="">
-                <%= link_to "ユーザー", admin_root_path, class: "nav-link text-dark", style: "font-size:20px;" %>
-              </li>
-              <li class="">
-                <%= link_to "投稿一覧", admin_posts_path, class: "nav-link text-dark", style: "font-size:20px;" %>
-              </li>
-              <li class="">
-                <%= link_to "通報一覧", admin_reports_path, class: "nav-link text-dark", style: "font-size:20px;" %>
-              </li>
-              <li class="">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark", style: "font-size:20px;" %>
-              </li>
-            <!--publicのログイン中のHeader-->
-            <% elsif user_signed_in? %>
-              <li class="">
-                <%= link_to "マイページ", my_page_path, class: "nav-link text-dark", style: "font-size:20px;"  %>
-              </li>
-              <li class="">
-                <%= link_to "ユーザー", users_path, class: "nav-link text-dark", style: "font-size:20px;"  %>
-              </li>
-              <li class="">
-                <%= link_to "投稿", posts_path, class: "nav-link text-dark", style: "font-size:20px;"  %>
-              </li>
-              <li class="">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-dark", style: "font-size:20px;"  %>
-              </li>
-            <!--ログアウト中のHeader-->
-            <% else %>
-              <li>
-                <%= link_to "投稿一覧", posts_path, class: "nav-link text-dark", style: "font-size:20px;" %>
-              </li>
-              <li class="">
-                <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-dark", style: "font-size:20px;" %>
-              </li>
-              <li class="">
-                <%= link_to "ログイン", new_user_session_path, class: "nav-link text-dark", style: "font-size:20px;" %>
-              </li>
-            <% end %>
-          </ul>
+        <!--トップロゴ-->
+          <div class="row">
+            <div class="col-md-12 text-center mt-1" strong="margin:0 auto;">
+              <%= link_to "Cat Walk", root_path, style: "font-size:60px; color:#555555;" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <!--ナビリスト-->
+            <div class="col-md-12">
+              <!--adminのログイン中のHeader-->
+              <ul class="nav-list" style="">
+                <% if admin_signed_in? %>
+                  <li class="nav-list-item">
+                    <%= link_to "ユーザー", admin_root_path, style: "color:#778899;" %>
+                  </li>  
+                  <li class="nav-list-item">
+                    <%= link_to "投稿一覧", admin_posts_path, style: "color:#778899;" %>
+                  </li>
+                  <li class="nav-list-item">
+                    <%= link_to "通報一覧", admin_reports_path, style: "color:#778899;" %>
+                  </li>
+                  <li class="nav-list-item">
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, style: "color:#778899;" %>
+                  </li>
+                <!--publicのログイン中のHeader-->
+                <% elsif user_signed_in? %>
+                  <li class="nav-list-item">
+                    <%= link_to "投稿", posts_path, style: "color:#778899;" %>
+                  </li>
+                  <li class="nav-list-item">
+                    <%= link_to "ユーザー", users_path, style: "color:#778899;" %>
+                  </li>
+                  <li class="nav-list-item">
+                    <%= link_to "マイページ", my_page_path, style: "color:#778899;" %>
+                  </li>
+                <!--ログアウト中のHeader-->
+                <% else %>
+                  <li class="nav-list-item">
+                    <%= link_to "投稿", posts_path, style: "color:#778899;" %>
+                  </li>
+                  <li class="nav-list-item">
+                    <%= link_to "新規登録", new_user_registration_path, style: "color:#778899;" %>
+                  </li>
+                  <li class="nav-list-item">
+                    <%= link_to "ログイン", new_user_session_path, style: "color:#778899;" %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
         </div>
-      </nav>
+
+
+        </div>
     </header>
   <!--Main-->
     <main style="margin-bottom:50px;">
