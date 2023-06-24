@@ -7,6 +7,32 @@
     <%= csp_meta_tag %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--ナビゲーション-->
+    <style>
+      /*ページにいるときのcss*/
+      nav li {
+        border-bottom: 5px solid #BAD3FF;
+        border-radius: 5px;
+      }
+      
+      /*aタグを持っている場合*/
+      nav li:has(> a) {
+        border-bottom: none;
+      }
+      
+      /*hoverした時のcss*/
+      nav li:hover{
+        color: #555555;
+        border-bottom: 5px solid #A9A9A9;
+        border-radius: 5px;
+      }
+      
+      /*aタグを持っている場合に、hoverした時のcss*/
+      nav li:hover > a {
+        text-decoration: none;
+        color: #CC0000;
+      }
+    </style>
   </head>
 
   <body>
@@ -17,52 +43,55 @@
         <!--トップロゴ-->
           <div class="row">
             <div class="col-md-12 text-center mt-1" strong="margin:0 auto;">
-              <%= link_to "Cat Walk", root_path, style: "font-size:60px; color:#555555;" %>
+              <%= link_to "猫の散歩", root_path, class: "logo", style: "font-size:50px; color:#555555;" %>
             </div>
           </div>
 
           <div class="row">
             <!--ナビリスト-->
-            <div class="col-md-12">
+            <div class="col-md-12 mb-2">
               <!--adminのログイン中のHeader-->
-              <ul class="nav-list" style="">
-                <% if admin_signed_in? %>
-                  <li class="nav-list-item">
-                    <%= link_to "ユーザー", admin_root_path, style: "color:#778899;" %>
-                  </li>  
-                  <li class="nav-list-item">
-                    <%= link_to "投稿一覧", admin_posts_path, style: "color:#778899;" %>
-                  </li>
-                  <li class="nav-list-item">
-                    <%= link_to "通報一覧", admin_reports_path, style: "color:#778899;" %>
-                  </li>
-                  <li class="nav-list-item">
-                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, style: "color:#778899;" %>
-                  </li>
-                <!--publicのログイン中のHeader-->
-                <% elsif user_signed_in? %>
-                  <li class="nav-list-item">
-                    <%= link_to "投稿", posts_path, style: "color:#778899;" %>
-                  </li>
-                  <li class="nav-list-item">
-                    <%= link_to "ユーザー", users_path, style: "color:#778899;" %>
-                  </li>
-                  <li class="nav-list-item">
-                    <%= link_to "マイページ", my_page_path, style: "color:#778899;" %>
-                  </li>
-                <!--ログアウト中のHeader-->
-                <% else %>
-                  <li class="nav-list-item">
-                    <%= link_to "投稿", posts_path, style: "color:#778899;" %>
-                  </li>
-                  <li class="nav-list-item">
-                    <%= link_to "新規登録", new_user_registration_path, style: "color:#778899;" %>
-                  </li>
-                  <li class="nav-list-item">
-                    <%= link_to "ログイン", new_user_session_path, style: "color:#778899;" %>
-                  </li>
-                <% end %>
-              </ul>
+              <nav>
+                <ul>
+                  <% if admin_signed_in? %>
+                    <li>
+                      <%= link_to_unless_current "ユーザー", admin_root_path %>
+                    </li>  
+                    <li>
+                      <%= link_to_unless_current "投稿一覧", admin_posts_path %>
+                    </li>
+                    <li>
+                      <%= link_to_unless_current "通報一覧", admin_reports_path %>
+                    </li>
+                    <li>
+                      <%= link_to_unless_current "ログアウト", destroy_admin_session_path, method: :delete %>
+                    </li>
+                  <!--publicのログイン中のHeader-->
+                  <% elsif user_signed_in? %>
+                    <li>
+                      <%= link_to_unless_current "投稿", posts_path %>
+                    </li>
+                    <li>
+                      <%= link_to_unless_current "ユーザー", users_path %>
+                    </li>
+                    <li>
+                      <%= link_to_unless_current "マイページ", my_page_path %>
+                    </li>
+                  <!--ログアウト中のHeader-->
+                  <% else %>
+                    <li>
+                      <%= link_to_unless_current "投稿", posts_path %>
+                    </li>
+                    <li>
+                      <%= link_to_unless_current "新規登録", new_user_registration_path %>
+                    </li>
+                    <li>
+                      <%= link_to_unless_current "ログイン", new_user_session_path %>
+                    </li>
+                  <% end %>
+                  <!--link_to_unless_current はリンク先が今いるページの場合、aタグをつけない-->
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
