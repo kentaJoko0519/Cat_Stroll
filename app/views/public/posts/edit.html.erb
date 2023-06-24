@@ -1,8 +1,8 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-12 mt-3 text-center">
-      <h5><strong>投稿編集</strong></h5>
+    <div class="col-md-12 mt-4 text-center">
+      <h3><strong>投稿編集</strong></h3>
     </div>
   </div>
 
@@ -12,21 +12,13 @@
       <table class="table table-borderless">
         <tr>
           <td>名称</td>
-          <td><strong><%= @post.name %></strong></td>
+          <td><%= @post.name %></td>
         </tr>
         <tr>
           <td>住所</td>
           <td><%= @post.address %></td>
         </tr>
-      </table>
-    </div>
-  </div>
-
-<!--投稿文と画像の編集-->
-  <div class="row" style="margin-left:200px">
-    <div class="col-md-12">
-      <%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
-      <table class="table table-borderless">
+        <%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
         <tr>
           <td>投稿文</td>
           <td><%= f.text_area :introduction, style: "width: 500px; height:300px;" %></td>
@@ -36,7 +28,7 @@
           <td><%= f.file_field :images, placeholder: "画像", accept: "image/*", multiple: true %></td>
         </tr>
       </table>
-      <%= f.submit '更新する', class: "btn btn-success", style: "margin-left:30px" %>
+      <%= f.submit '更新する', class: "btn btn-success", style: "margin-left:35%" %>
       <% end %>
     </div>
   </div>

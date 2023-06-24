@@ -18,12 +18,10 @@
 
       <!--地図のjs-->
       <script>
-      　if (typeof map == "undefind"){
-          let map;
-          let geocoder;
-          let marker;
-          let infoWindow;
-      　}
+        let map;
+        let geocoder;
+        let marker;
+        let infoWindow;
 
         function initMap() {
           geocoder = new google.maps.Geocoder(); // ジオコーディングができるようにしておく
