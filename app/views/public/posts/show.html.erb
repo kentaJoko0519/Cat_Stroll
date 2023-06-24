@@ -10,12 +10,12 @@
   <div class="row">
 
     <div class="col-md-6">
-      <table class="table table-borderless">
+      <table class="table table-borderless table-sm">
         <tr>　<!--プロフィール画像-->
           <td class="text-center">
             <%= image_tag @user.get_profile_image(60,60) %>
           </td>
-          <td style="margin-left:-100px;">
+          <td style="margin-left:-20%;">
             <h5>　<!--ユーザーネーム or 氏名-->
               <% if @user.user_name.present? %>
                 <%= link_to @user.user_name, user_path(@user.id) %>
@@ -67,6 +67,14 @@
         </div>
       <!--end-->
       <% end %>
+      
+      <!--編集、削除リンク-->
+      <div class="mt-4 text-center">
+        <% if @user.id == @post.user_id %>
+          <%= link_to "編集",edit_post_path(@post.id), class: "mr-4"%>
+          <%= link_to "削除",post_path(@post), method: :delete, class: "ml-4", "data-confirm" => "本当に削除しますか？"%>
+        <% end %>
+      </div>
 
       <!--投稿情報-->
       <table class="table table-border mt-2">
@@ -89,14 +97,6 @@
       <% @post.tags.each do |post| %>
         <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
       <% end %>
-
-      <!--編集、削除リンク-->
-      <div class="mt-5">
-        <% if @user.id == @post.user_id %>
-          <%= link_to "編集",edit_post_path(@post.id), class: "btn btn-secondary", style: "margin-left:200px;"%>
-          <%= link_to "削除",post_path(@post), method: :delete, class: "btn btn-danger", style: "margin-left:50px;", "data-confirm" => "本当に削除しますか？"%>
-        <% end %>
-      </div>
 
     </div>
     <!--投稿文-->

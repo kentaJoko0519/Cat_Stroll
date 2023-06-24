@@ -9,7 +9,7 @@
 
       <!--地図検索-->
       <div style="margin-top: 50px; margin-bottom: 10px;">
-        <input id="address" type="textbox" style="margin-left: 20px; width:400px;">
+        <input id="address" type="textbox" style="margin-left: 60px; width:400px;">
         <input type="button" value="検索" onclick="codeAddress()">
       </div>
 
@@ -18,10 +18,12 @@
 
       <!--地図のjs-->
       <script>
-        let map;
-        let geocoder;
-        let marker;
-        let infoWindow;
+      　if (typeof map == "undefind"){
+          let map;
+          let geocoder;
+          let marker;
+          let infoWindow;
+      　}
 
         function initMap() {
           geocoder = new google.maps.Geocoder(); // ジオコーディングができるようにしておく
@@ -87,7 +89,7 @@
       </script>
 
       <!--APIキー-->
-      <script src="https://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&language=ja&callback=initMap"></script>
+      <script src="https://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&language=ja&callback=initMap" data-turbolinks-track="reload"></script>
 
     </div>
 <!--ーーーーーーーーーーーーーーーーーーーーーーーーー（一覧画面）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
