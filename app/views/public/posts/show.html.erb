@@ -2,7 +2,7 @@
   <!--見出し-->
   <div class="row">
     <div class="col-md-12 mt-3 text-center">
-      <h5><strong>投稿</strong></h5>
+      <h3><strong>投稿</strong></h3>
     </div>
   </div>
 
@@ -71,13 +71,18 @@
       <!--編集、削除リンク-->
       <div class="mt-4 text-center">
         <% if @user.id == @post.user_id %>
-          <%= link_to "編集",edit_post_path(@post.id), class: "mr-4"%>
-          <%= link_to "削除",post_path(@post), method: :delete, class: "ml-4", "data-confirm" => "本当に削除しますか？"%>
+          
+          <%= link_to edit_post_path(@post.id), class: "mr-5" do %>
+            <i class="fa-regular fa-pen-to-square" style="font-size:30px;"></i>
+          <% end %>  
+          <%= link_to post_path(@post), method: :delete, class: "ml-5", "data-confirm" => "本当に削除しますか？" do %>
+            <i class="far fa-trash-alt" style="font-size:30px;"></i>
+          <% end %> 
         <% end %>
       </div>
 
       <!--投稿情報-->
-      <table class="table table-border mt-2">
+      <table class="table table-border">
         <tr>
           <td>投稿日</td>
           <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
@@ -92,11 +97,13 @@
         </tr>
       </table>
       
-      <!--タグのリンク(リンク先はそのタグが検索された状態の一覧画面)-->
-      <p class="d-inline"><strong>タグ：</strong></p>
-      <% @post.tags.each do |post| %>
-        <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
-      <% end %>
+      <!--タグのリンク一覧表示(リンク先はそのタグが検索された状態の一覧画面)-->
+      <% if @post.tags.present? %>
+        <p class="d-inline"><strong>タグ：</strong></p>
+        <% @post.tags.each do |post| %>
+          <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
+        <% end %>
+      <% end %>  
 
     </div>
     <!--投稿文-->
