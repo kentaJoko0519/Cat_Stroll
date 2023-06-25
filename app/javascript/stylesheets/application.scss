@@ -202,6 +202,7 @@ button.gradient:hover {
   color:#111;
 }
 
+// マイページのブックマークリンク
 #button-16{
   width: 150px;
   height: 25px;
@@ -218,6 +219,46 @@ button.gradient:hover {
 
 #button-16:hover{
   border-radius: 20px;
+}
+
+// マイページの編集リンク,ログアウトリンク
+.edit-btn-hover, .delete-btn-hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.edit-btn-hover:hover, .delete-btn-hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.edit-btn-hover:focus, .delete-btn-hover:focus {
+  outline: none;
+}
+
+.edit-btn-hover.color-edit {
+  background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+.delete-btn-hover.color-delete {
+  background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
 }
  
 // ユーザー一覧のタブ

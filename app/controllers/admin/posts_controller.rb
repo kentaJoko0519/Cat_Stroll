@@ -5,6 +5,20 @@ class Admin::PostsController < ApplicationController
   # 投稿一覧
   def index
     @posts = Post.all                   # ユーザーの投稿を全取得
+    # 検索機能
+    if admin_signed_in?                        # もし、ユーザーがログインしているなら
+      if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
+        # 投稿のタグから探す
+        tag_posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%")
+        # 投稿者を探す
+        posts = @posts.joins(:user).where('posts.name like ?', "%#{params[:search]}%").or(
+                @posts.joins(:user).where('users.first_name like ?', "%#{params[:search]}%")).or(
+                @posts.joins(:user).where('users.last_name like ?', "%#{params[:search]}%")).or(
+                @posts.joins(:user).where('users.user_name like ?', "%#{params[:search]}%"))
+        # tag_posts と posts で重複しないように uniq を設定
+        @posts = (tag_posts + posts).uniq
+      end
+    end
   end
   
   # 投稿詳細
