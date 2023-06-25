@@ -6,6 +6,30 @@
     </div>
   </div>
   
+  <!--検索-->
+  <div class="row">
+    <div class="col-md-12 text-center" style="margin-left:10%;">
+      <div class="ml-5 mb-2">
+        <%= form_with url: admin_posts_path, method: :get, local: true do |f| %>
+          <div class="d-flex">
+            <i class="fas fa-search fa-lg mt-2 ml-2"></i>
+            <%= f.text_field :search, class: "ml-2 mr-2 form-control w-50 border border-dark", value: params[:search], id: "searchBox" %>
+            <%= f.submit 'search', class: "btn btn-primary" %>
+            <span id="clearSearch" class="ml-2 btn btn-secondary">クリア</span>
+          </div>
+        <% end %>
+      </div>
+      
+      <!--検索ボックスの中をクリアに-->
+      <script>
+        $('#clearSearch').on('click', (e) => {
+          //console.log(e.target)
+          $('#searchBox').val("")
+        })
+      </script>
+    </div>
+  </div>
+      
   <div class="row text-center">
     <div class="col-md-8 mt-2 border border-dark" style="margin-left:15%; height:540px; overflow: scroll; overflow-x: hidden;">
       <table class="table table-borderless">

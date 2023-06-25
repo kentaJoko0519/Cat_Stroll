@@ -67,17 +67,20 @@
         </div>
       <!--end-->
       <% end %>
-      
+
       <!--編集、削除リンク-->
       <div class="mt-4 text-center">
-        <% if @user.id == @post.user_id %>
-          
+        <% if @post.user_id == current_user.id %>
+          <!--編集リンクFont Awesome-->
           <%= link_to edit_post_path(@post.id), class: "mr-5" do %>
-            <i class="fa-regular fa-pen-to-square" style="font-size:30px;"></i>
-          <% end %>  
+            <i class="fa-regular fa-pen-to-square" style="font-size:30px; color:#111;"></i>
+          <% end %>
+          <!--削除リンクFont Awesome-->
           <%= link_to post_path(@post), method: :delete, class: "ml-5", "data-confirm" => "本当に削除しますか？" do %>
-            <i class="far fa-trash-alt" style="font-size:30px;"></i>
-          <% end %> 
+            <i class="far fa-trash-alt" style="font-size:30px; color:red;"></i>
+          <% end %>
+        <% else %>
+
         <% end %>
       </div>
 
@@ -96,14 +99,14 @@
           <td><%= @post.address %></td>　　<!--投稿場所の住所-->
         </tr>
       </table>
-      
+
       <!--タグのリンク一覧表示(リンク先はそのタグが検索された状態の一覧画面)-->
       <% if @post.tags.present? %>
         <p class="d-inline"><strong>タグ：</strong></p>
         <% @post.tags.each do |post| %>
           <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
         <% end %>
-      <% end %>  
+      <% end %>
 
     </div>
     <!--投稿文-->
@@ -120,12 +123,12 @@
           </div>
         <% end %>
       </div>
-        
+
       <div class="post">
         <h6 class="text-center">
           <strong>投稿文</strong>
         </h6>
-        
+
         <div class="border border-dark border-5 rounded" style="width:600px; height:400px; padding:5px; overflow: scroll; overflow-x: hidden;">
           <%= @post.introduction %>
         </div>
@@ -156,7 +159,7 @@
           <% end %>
         </div>
         <!--コメント入力欄-->
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-2">
           <%= form_with model: [@post , @comment], url: comments_path, method: :post do |f| %>
             <%= f.text_area :sentence, rows: '5', placeholder: "コメントをここに", style: "width: 400px; height:50px; padding:5px;" %>
             <%= f.hidden_field :post_id, :value => @post.id %>

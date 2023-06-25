@@ -94,7 +94,7 @@
 <!--ーーーーーーーーーーーーーーーーーーーーーーーーー（一覧画面）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
     <div class="col-md-6 mt-5">
       
-    <!--タグ検索-->
+    <!--検索-->
       <div class="ml-5 mb-2">
         <%= form_with url: posts_path, method: :get, local: true do |f| %>
           <div class="d-flex">
@@ -114,7 +114,7 @@
         })
       </script>
       
-      <div class="border border-dark border-5 rounded text-center" style="margin-left:40px; height:430px; overflow: scroll; overflow-x: hidden;">
+      <div class="border border-dark border-5 rounded text-center" style="margin-left:40px; height:480px; overflow: scroll; overflow-x: hidden;">
         <table class="table table-borderless">
           <thead>
             <tr class="table-secondary">
