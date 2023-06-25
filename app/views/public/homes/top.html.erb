@@ -2,15 +2,20 @@
   <div class="row text-center">
     <div class="col-md-12 mt-5">
       <h4>welcome to </h4>
-      <h1><strong>Cat Stroll</strong></h1>
+      <h1><strong>Cat Walk</strong></h1>
       <p>
         猫の散歩へ　ようこそ<br>
-        様々な場所に行き、貴重な経験を投稿し、記録に残しましょう
+        様々な場所に行き、貴重な経験を投稿していきましょう
       </p>
-      <%= link_to "はじめる",new_user_registration_path, class: "btn btn-primary mr-5 mt-5" %>
-      <%= link_to "ログイン",new_user_session_path, class: "btn btn-info mt-5" %>
+      
+      
     </div>
   </div>
+</div>
+
+<div class="wrapper d-flex">
+  <%= link_to "はじめる",new_user_registration_path, class: "mr-2" %>
+  <%= link_to "ログイン",new_user_session_path, class: "ml-2" %>
 </div>
 
 

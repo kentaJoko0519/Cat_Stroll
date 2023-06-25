@@ -1,6 +1,226 @@
 @use '~bootstrap/scss/bootstrap';
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+*,
+*:before,
+*:after{
+  box-sizing: border-box;
+}
+
+// トップページのボタン
+.wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wrapper a{
+  display: block;
+  width: 250px;
+  height: 50px;
+  line-height: 46px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 50px;
+  border: 3px solid #111;
+  color: #111;
+  font-size: 20px;
+  font-family: arial;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  text-transform: uppercase;
+  transition: all .35s;
+}
+
+.wrapper a:before,
+.wrapper a:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: #3399FF;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.wrapper a:before{
+  opacity: .5;
+}
+
+.wrapper a:after{
+  transition-delay: .2s;
+}
+
+.wrapper a:hover{
+  color: #fff;
+}
+
+.wrapper a:hover:before,
+.wrapper a:hover:after{
+  top: 0;
+}
+
  
+// 新規登録、ログイン、ブックマーク　ボタンのベース
+.registration_button,.session_button,.add-bookmark,.remove-bookmark {
+  font-size: 20px;
+  padding: 5px 20px;
+  margin: 5 10px;
+  border: 1;
+  cursor: pointer;
+  color: black;
+  text-transform: lowercase;
+  border-radius: 10px;
+  display: inline-block;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(.86, .01, .15, .99);
+}
+
+.registration_button::before, .session_button::before, .add-bookmark::before ,.remove-bookmark::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0;
+}
+
+// 新規登録ボタンでのアニメーション
+.registration_button {
+  background: #fff;
+  transform: perspective(1px) translateZ(0);
+  color: black;
+  transition: 0.5s;
+}
+
+.registration_button::before {
+  background: rgb(255, 90, 20);
+  clip-path: inset(0 100% 0 0);
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.registration_button:hover::before {
+  clip-path: inset(0 0 0 0);
+}
+
+.registration_button:hover {
+  color: white;
+  box-shadow: 0 0 0 10px rgba(250, 250, 250, 0.1)
+}
+
+// ログインボタンでのアニメーション
+.session_button {
+  background: white;
+  color: black;
+  transform: perspective(1px) translateZ(0);
+  transition: 0.4s;
+}
+
+.session_button::before {
+  background: rgb(20, 120, 255);
+  clip-path: polygon(50% 0, 50% 0, 50% 50%, 50% 100%, 50% 100%, 50% 50%);
+  opacity: 1;
+  transition: 0.4s;
+}
+
+.session_button:hover::before {
+  clip-path: polygon(25% -70%, 75% -70%, 120% 50%, 75% 170%, 25% 170%, -20% 50%);
+}
+
+.session_button:hover {
+  color: white;
+  box-shadow: 0 0 0 10px rgba(250, 250, 250, 0.1)
+}
+
+// ブックマーク gradient
+button.gradient:hover {
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.6);
+  transform: translateY(-5px);
+}
+
+// ブックマークに追加のリンク
+.add-bookmark {
+  -webkit-transform: perspective(1px) translateZ(0);
+  background: #08aa61;
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  transition-timing-function: cubic-bezier(.86, .01, .15, .99);
+  transition-duration: 0.4s;
+}
+
+.add-bookmark a {
+  color: #fff; 
+}
+
+.add-bookmark:before {
+  background: linear-gradient(to bottom, #88daa1, #08aa61);
+  transform: scaleY(0);
+  transform-origin: 0% 0%;
+  transition: 0.4s cubic-bezier(.86, .01, .15, .99);
+}
+
+.add-bookmark:hover:before {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+.add-bookmark a:hover{
+  color:#111;
+}
+
+// ブックマークから外すリンク
+.remove-bookmark {
+  background: #B384FF;
+  transform: perspective(1px) translateZ(0);
+  transition: 0.4s cubic-bezier(.86, .01, .15, .99);
+}
+
+.remove-bookmark a {
+  color: #fff; 
+}
+
+.remove-bookmark:before {
+  background: linear-gradient(to right, #B384FF, #EAD9FF, #B384FF);
+  transform: scaleX(0);
+  opacity: 0;
+  transform-origin: 50% 50%;
+  transition: 0.4s cubic-bezier(.86, .01, .15, .99);
+}
+
+.remove-bookmark:hover:before {
+  transform: scaleX(1) scaleY(1);
+  opacity: 1;
+}
+
+.remove-bookmark a:hover{
+  color:#111;
+}
+
+#button-16{
+  width: 150px;
+  height: 25px;
+  padding: 3 7px;
+  background-color: #34495e;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#button-16 a{
+  color: #fff;
+}
+
+#button-16:hover{
+  border-radius: 20px;
+}
+ 
+// ユーザー一覧のタブ
 .tab {
   width: 27%;
   padding: 10px;

@@ -1,3 +1,14 @@
+#error_explanation{
+  color: red;
+}
+
+.field_with_errors input:first-child {
+   border: 2px solid red;
+}
+
+.field_with_errors{
+    color: red;
+}
 
 /*カルーセルのコントローラー(左)を黒(#000)に変換する*/
 .carousel-control-prev-icon {
@@ -47,5 +58,3 @@ nav a{
   text-decoration: none;
   color: #555;
 }
-
-
