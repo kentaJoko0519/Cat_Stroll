@@ -9,7 +9,8 @@
 
       <!--地図検索-->
       <div style="margin-top: 50px; margin-bottom: 10px;">
-        <input id="address" type="textbox" style="margin-left: 60px; width:400px;">
+        <i class="fas fa-search-location fa-lg" style="margin-left: 30px;"></i>
+        <input id="address" type="textbox" style="margin-left: 10px; width:400px;">
         <input type="button" value="検索" onclick="codeAddress()">
       </div>
 
@@ -97,7 +98,8 @@
       <div class="ml-5 mb-2">
         <%= form_with url: posts_path, method: :get, local: true do |f| %>
           <div class="d-flex">
-            <%= f.text_field :search, class: "ml-4 mr-2 form-control w-50 border border-dark", value: params[:search], id: "searchBox" %>
+            <i class="fas fa-search fa-lg mt-2 ml-2"></i>
+            <%= f.text_field :search, class: "ml-2 mr-2 form-control w-50 border border-dark", value: params[:search], id: "searchBox" %>
             <%= f.submit 'search', class: "btn btn-primary" %>
             <span id="clearSearch" class="ml-2 btn btn-secondary">クリア</span>
           </div>

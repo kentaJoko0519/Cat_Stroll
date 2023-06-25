@@ -33,6 +33,7 @@ ja:
               blank: "入力必須項目です"  
             email:  
               blank: "入力必須項目です" 
+              taken: "このメールアドレスは既に使われています"
             password:
               blank: "入力必須項目です" 
             password_confirmation:

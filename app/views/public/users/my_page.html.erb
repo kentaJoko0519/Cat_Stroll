@@ -10,8 +10,16 @@
     <div class="col-md-10 mt-1" style="margin:0 auto;">
       <div class="d-flex">
         <h5><strong>登録情報</strong></h5>
-        <%= link_to "ブックマークを見る", post_favorite_path(@user), style: "margin-left:70%;" %>
+        
+        <div class="six col" style="margin-left:65%;">
+          <div id="button-16" class="text-center">
+            <%= link_to "ブックマーク", post_favorite_path(@user), style: "text-decoration: none;" %>
+          </div>
+        </div>
+        
+        
       </div>
+      
       <table class="table text-center">
         <thead>
           <tr>
