@@ -1,5 +1,7 @@
 @use '~bootstrap/scss/bootstrap';
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
+// ロゴのフォント
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
 
 *,
 *:before,
@@ -7,13 +9,14 @@
   box-sizing: border-box;
 }
 
-// トップページのボタン
-.wrapper{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+// ロゴ
+header{
+  background-image: linear-gradient(150deg, rgba(57, 74, 245, 0.85) 10%, rgba(46, 110, 219, 0.58) 34%, rgba(62, 120, 204, 0.43) 60%, rgba(210, 199, 157, 0.47) 87%);
+  font-family: 'Amatic SC', cursive;
+  text-decoration: none;
 }
+
+// トップページのボタン
 
 .wrapper a{
   display: block;
@@ -203,9 +206,9 @@ button.gradient:hover {
 }
 
 // マイページのブックマークリンク
-#button-16{
-  width: 150px;
-  height: 25px;
+.bookmark-button{
+  width: 200px;
+  height: 30px;
   padding: 3 7px;
   background-color: #34495e;
   -webkit-transition: all 0.3s ease-in-out;
@@ -213,16 +216,12 @@ button.gradient:hover {
   transition: all 0.3s ease-in-out;
 }
 
-#button-16 a{
-  color: #fff;
-}
-
-#button-16:hover{
+.bookmark-button:hover{
   border-radius: 20px;
 }
 
-// マイページの編集リンク,ログアウトリンク
-.edit-btn-hover, .delete-btn-hover {
+// マイページの編集リンク,編集アップデート,ログアウトリンク
+.edit-btn-hover, .delete-btn-hover, .update-btn-hover {
   width: 200px;
   font-size: 16px;
   font-weight: 600;
@@ -240,7 +239,7 @@ button.gradient:hover {
   transition: all .4s ease-in-out;
 }
 
-.edit-btn-hover:hover, .delete-btn-hover {
+.edit-btn-hover:hover, .delete-btn-hover:hover, .update-btn-hover:hover {
   background-position: 100% 0;
   moz-transition: all .4s ease-in-out;
   -o-transition: all .4s ease-in-out;
@@ -248,16 +247,24 @@ button.gradient:hover {
   transition: all .4s ease-in-out;
 }
 
-.edit-btn-hover:focus, .delete-btn-hover:focus {
+.edit-btn-hover:focus, .delete-btn-hover:focus, .update-btn-hover:focus {
   outline: none;
 }
 
 .edit-btn-hover.color-edit {
+  // 編集ボタン
   background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
   box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 
+  // マイページアップデートボタン
+.update-btn-hover.color-update {
+  background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
 .delete-btn-hover.color-delete {
+  // 削除ボタン
   background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
 }
  

@@ -1,26 +1,17 @@
 <div class="container">
 
-  <div class="row mt-4">
-    <div class="col-md-12 text-center">
-      <h3><strong>マイページ</strong></h3>
-    </div>
-  </div>
-
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-md-10 mt-1" style="margin:0 auto;">
       <div class="d-flex">
         <h5><strong>登録情報</strong></h5>
-        
-        <div class="six col" style="margin-left:65%;">
-          <div id="button-16" class="text-center">
-            <%= link_to "ブックマーク", post_favorite_path(@user), style: "text-decoration: none;" %>
-          </div>
+
+        <div style="margin-left:65%;">
+          <%= link_to "ブックマーク", post_favorite_path(@user),class: "bookmark-button text-center p-2 ", style: "text-decoration: none; color: #fff;" %>
         </div>
         
-        
       </div>
-      
-      <table class="table text-center">
+
+      <table class="table text-center mt-1">
         <thead>
           <tr>
             <th>プロフィール画像</th>
@@ -96,14 +87,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <div class="mt-1">
-        <button class="edit-btn-hover color-edit">
-          <%= link_to "編集する",edit_user_path(@user), style: "color:#fff; text-decoration: none;" %>
-        </button>
-      </div>
-    </div>
+  <div class="mt-1 d-flex justify-content-center">
+    <%= link_to "edit",edit_user_path(@user),class: "edit-btn-hover color-edit d-flex justify-content-center align-items-center", style: "color:#fff; text-decoration: none;" %>
   </div>
 
           <!--過去投稿一覧-->
@@ -135,12 +120,8 @@
     </div>
   </div>
 
-  <div class="row mt-4">
-    <div class="col-md-12 text-center" style="margin:0 auto;">
-      <button class="delete-btn-hover color-delete">
-       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, style: "color:#fff; text-decoration: none;" %>
-      </button>
-    </div>
+  <div class="mt-1 d-flex justify-content-center">
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "delete-btn-hover color-delete d-flex justify-content-center align-items-center", style: "color:#fff; text-decoration: none;" %>
   </div>
 
 </div>
