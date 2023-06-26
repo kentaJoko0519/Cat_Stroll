@@ -27,6 +27,8 @@ class Public::PostsController < ApplicationController
         tag_posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%")
         # 投稿者を探す
         posts = @posts.joins(:user).where('posts.name like ?', "%#{params[:search]}%").or(
+                # ↓ address を検索に入れることにより、地名で検索できるようにする
+                @posts.joins(:user).where('posts.address like ?', "%#{params[:search]}%")).or(
                 @posts.joins(:user).where('users.first_name like ?', "%#{params[:search]}%")).or(
                 @posts.joins(:user).where('users.last_name like ?', "%#{params[:search]}%")).or(
                 @posts.joins(:user).where('users.user_name like ?', "%#{params[:search]}%"))
