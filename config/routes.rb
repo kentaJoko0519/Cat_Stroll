@@ -18,6 +18,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
     # homes
     root to: "homes#top"
+    get "/privacy"=>"homes#privacy",as: 'privacy'
+    get "/help"=>"homes#help",as: 'help'
 
     # users
     get "/users/my_page"=>"users#my_page",as: 'my_page'
