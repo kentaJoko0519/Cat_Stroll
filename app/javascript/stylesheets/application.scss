@@ -2,6 +2,8 @@
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
 // ロゴのフォント
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+// フッターのフォント
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
 *,
 *:before,
@@ -16,8 +18,40 @@ header{
   text-decoration: none;
 }
 
-// トップページのボタン
+footer{
+  background-image: linear-gradient(150deg, rgba(3, 3, 3, 1) 9%, rgba(49, 49, 49, 1) 32%, rgba(112, 111, 111, 1) 55%, rgba(170, 169, 169, 1) 83%);
+  font-family: 'Caveat', cursive;
+}
 
+.copyright {
+  color: #DDDDDD;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.privacy, .help {
+  font-family: 'Caveat', cursive;
+}  
+
+.privacy a, .help a {
+  padding: 20px;
+  color: #DDDDDD;
+  font-family: 'Caveat', cursive;
+  text-decoration: none;
+  font-size: 20px;
+  display: flex;
+}  
+
+.help-text h6 {
+  margin-top: 30px;
+}
+
+.help-text p {
+  margin-left: 50px;
+}
+
+// トップページのボタン
 .wrapper a{
   display: block;
   width: 250px;
@@ -221,7 +255,7 @@ button.gradient:hover {
 }
 
 // マイページの編集リンク,編集アップデート,ログアウトリンク
-.edit-btn-hover, .delete-btn-hover, .update-btn-hover {
+.new-post-btn-hover, .edit-btn-hover, .delete-btn-hover, .update-btn-hover {
   width: 200px;
   font-size: 16px;
   font-weight: 600;
@@ -239,7 +273,7 @@ button.gradient:hover {
   transition: all .4s ease-in-out;
 }
 
-.edit-btn-hover:hover, .delete-btn-hover:hover, .update-btn-hover:hover {
+.new-post-btn-hover:hover, .edit-btn-hover:hover, .delete-btn-hover:hover, .update-btn-hover:hover {
   background-position: 100% 0;
   moz-transition: all .4s ease-in-out;
   -o-transition: all .4s ease-in-out;
@@ -247,8 +281,13 @@ button.gradient:hover {
   transition: all .4s ease-in-out;
 }
 
-.edit-btn-hover:focus, .delete-btn-hover:focus, .update-btn-hover:focus {
+.new-post-btn-hover:focus, .edit-btn-hover:focus, .delete-btn-hover:focus, .update-btn-hover:focus {
   outline: none;
+}
+
+.new-post-btn-hover.color-new-post {
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
 }
 
 .edit-btn-hover.color-edit {

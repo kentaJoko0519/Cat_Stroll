@@ -108,7 +108,19 @@
       <%= yield %>
     </main>
   <!--Footer-->
-    <footer class="border-top border-dark m-0" style="height:275px;">
+    <footer class="border-top border-dark m-0" style="height:275px; padding: 100px;">
+      <!--プライバシーポリシー、HELP、コピーライト-->
+      <div class="d-flex justify-content-center">
+        <div class="privacy">
+          <%= link_to "Privacy Policy", privacy_path %>
+        </div>
+        <div class="help">
+          <%= link_to "Help", help_path %>
+        </div>
+        </div>
+      <p class="copyright">
+        ©️ 2023 Kenta Joko
+      </p>
     </footer>
   </body>
 </html>
