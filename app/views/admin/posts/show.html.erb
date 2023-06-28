@@ -75,21 +75,33 @@
           <td><%= @post.address %></td>　　<!--投稿場所の住所-->
         </tr>
       </table>
-      
-      <%= link_to "削除",admin_post_path(@post), method: :delete, class: "btn btn-danger", style: "margin-left:50px;", "data-confirm" => "本当に削除しますか？"%>
-      <!--タグ追加予定-->
 
+      <!--タグのリンク一覧表示(リンク先はそのタグが検索された状態の一覧画面)-->
+      <% if @post.tags.present? %>
+        <p class="d-inline"><strong>タグ：</strong></p>
+        <% @post.tags.each do |post| %>
+          <%= link_to post.name, admin_posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
+        <% end %>
+      <% end %>
+      
+      <!--投稿削除-->
+      <div class="mt-3 text-center">
+        <%= link_to "削除",admin_post_path(@post), method: :delete, class: "btn btn-danger", style: "margin-left:50px;", "data-confirm" => "本当に削除しますか？"%>
+      </div>
+      
     </div>
-    <!--投稿文-->
+
     <div class="col-md-6">
+      <!--投稿文-->
       <div class="post">
         <h6 class="text-center">
           <strong>投稿文</strong>
-        
+        </h6>
         <div class="border border-dark border-5 rounded" style="width:600px; height:400px; padding:5px; overflow: scroll; overflow-x: hidden;">
           <%= @post.introduction %>
         </div>
       </div>
+      
       <!--コメント欄-->
       <div class="comment mt-2">
         <h6 class="text-center">
