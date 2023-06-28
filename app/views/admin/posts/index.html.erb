@@ -1,13 +1,7 @@
 <div class="container">
-  
-  <div class="row text-center">
-    <div class="col-md-12 mt-4">
-      <h3><strong>投稿一覧</strong></h3>
-    </div>
-  </div>
-  
+
   <!--検索-->
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-md-12 text-center" style="margin-left:10%;">
       <div class="ml-5 mb-2">
         <%= form_with url: admin_posts_path, method: :get, local: true do |f| %>
@@ -19,7 +13,7 @@
           </div>
         <% end %>
       </div>
-      
+
       <!--検索ボックスの中をクリアに-->
       <script>
         $('#clearSearch').on('click', (e) => {
@@ -29,9 +23,9 @@
       </script>
     </div>
   </div>
-      
+
   <div class="row text-center">
-    <div class="col-md-8 mt-2 border border-dark" style="margin-left:15%; height:540px; overflow: scroll; overflow-x: hidden;">
+    <div class="col-md-8 mt-2 border border-dark" style="margin-left:15%; height:700px; overflow: scroll; overflow-x: hidden;">
       <table class="table table-borderless">
         <thead>
           <tr class="table-secondary">
@@ -51,7 +45,7 @@
                 <%= post.user.user_name %>　　　　　<!--ユーザーネームを表示-->
               <% else %>　　　　　　　　　　　　　　<!--設定されていなければ、氏名を表示-->
                 <%= post.user.first_name + post.user.last_name %>
-              <% end %>  
+              <% end %>
             </td>
             <td><%= link_to "詳細",admin_post_path(post.id) %></td>   <!--投稿詳細へのリンク-->
           </tr>

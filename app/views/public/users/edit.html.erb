@@ -37,13 +37,25 @@
             update
           </button>
         </div>
-
       <% end %>
-      
-      <%=link_to "退会する", unsubscribe_path, class: "btn btn-danger", style: "margin-top:70px;" %>
-      
     </div>
   </div>
+  
+  <div class="row mt-5">
+    <div class="col-md-12 text-center">
+      <p>
+        <strong>退会はこちらから</strong>
+      </p>
+      
+      <div class="row cf">
+        <div class="six col">
+          <%=link_to "退会する", unsubscribe_path, id: "unsubscribe-button", class: "unsubscribe" %>
+        </div>
+      </div>
+        
+    </div>
+  </div>
+  
 </div>
 
 

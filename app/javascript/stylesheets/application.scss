@@ -32,7 +32,7 @@ footer{
 
 .privacy, .help {
   font-family: 'Caveat', cursive;
-}  
+}
 
 .privacy a, .help a {
   padding: 20px;
@@ -41,7 +41,7 @@ footer{
   text-decoration: none;
   font-size: 20px;
   display: flex;
-}  
+}
 
 .help-text h6 {
   margin-top: 30px;
@@ -101,7 +101,7 @@ footer{
   top: 0;
 }
 
- 
+
 // 新規登録、ログイン、ブックマーク　ボタンのベース
 .registration_button,.session_button,.add-bookmark,.remove-bookmark {
   font-size: 20px;
@@ -192,7 +192,7 @@ button.gradient:hover {
 }
 
 .add-bookmark a {
-  color: #fff; 
+  color: #fff;
 }
 
 .add-bookmark:before {
@@ -219,7 +219,7 @@ button.gradient:hover {
 }
 
 .remove-bookmark a {
-  color: #fff; 
+  color: #fff;
 }
 
 .remove-bookmark:before {
@@ -306,7 +306,7 @@ button.gradient:hover {
   // 削除ボタン
   background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
 }
- 
+
 // ユーザー一覧のタブ
 .tab {
   width: 27%;
@@ -334,4 +334,73 @@ button.gradient:hover {
 .tab:hover{
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(-1px);
+}
+
+// 退会ボタン
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  *zoom: 1;
+}
+
+.unsubscribe{
+  width: 200px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 20px 50px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.unsubscribe a{
+  color: #111111;
+}
+
+
+#unsubscribe-button{
+  border: 2px solid #34495e;
+  color: #34495e;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#unsubscribe-button:before, #unsubscribe-button:after{
+  content: "";
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: -50%;
+  left: 0;
+  background-color: #BB0000;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#unsubscribe-button:after{
+  top: 100%;
+}
+
+#unsubscribe-button:hover{
+  color: #DDDDDD;
+  text-decoration: none;
+}
+
+#unsubscribe-button:hover:before{
+  top: 0;
+}
+
+#unsubscribe-button:hover:after{
+  top: 50%;
 }
