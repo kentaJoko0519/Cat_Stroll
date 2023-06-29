@@ -1,4 +1,6 @@
 class Public::ReportsController < ApplicationController
+  # 新規登録orログインしないとアクションが実行されない
+  before_action :authenticate_user!
   
 # ユーザー側  通報
   

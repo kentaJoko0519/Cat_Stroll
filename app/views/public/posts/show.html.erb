@@ -154,6 +154,11 @@
                 <td class="ml-5">
                   <%= comment.sentence %>
                 </td>
+                <td>
+                  <% if comment.user == current_user %>
+                  <%= link_to "削除", comment_path, method: :delete %>
+                  <% end %>
+                </td>
               </tr>
             </table>
           <% end %>

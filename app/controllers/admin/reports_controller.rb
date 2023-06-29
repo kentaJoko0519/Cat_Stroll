@@ -1,5 +1,5 @@
 class Admin::ReportsController < ApplicationController
-  
+  before_action :authenticate_admin!
 # 管理者側  通報 
   
   # 通報一覧
