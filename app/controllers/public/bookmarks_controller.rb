@@ -1,7 +1,8 @@
 class Public::BookmarksController < ApplicationController
   
 # ユーザー側  ブックマーク
-
+  # 新規登録orログインしないとアクションが実行されない
+  before_action :authenticate_user!
   # ブックマーク一覧
   def favorite
     @bookmarks = Bookmark.where(user_id: current_user.id)            # Bookmarkモデルの user_id カラムから current_user.id を全取得

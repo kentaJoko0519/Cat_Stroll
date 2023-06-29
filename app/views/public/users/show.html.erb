@@ -48,11 +48,11 @@
 
   <!--自己紹介-->
   <div class="row mt-4">
-    <div class="col-md-5">
+    <div class="col-md-5" style="margin-left:22%;">
       <h6>
         <strong>自己紹介</strong>
       </h6>
-      <div class="border border-dark" style="height:300px; width:400px; padding:10px; overflow: scroll; overflow-x: hidden;">
+      <div class="border border-dark" style="height:200px; width:650px; padding:10px; overflow: scroll; overflow-x: hidden;">
         <% if @user.introduction.present? %>
          <%= @user.introduction %>
         <% else %>
@@ -60,12 +60,14 @@
         <% end %>
       </div>
     </div>
+  </div>
   <!--過去投稿一覧-->
-    <div class="col-md-4">
+  <div class="row mt-4">
+    <div class="col-md-4" style="margin-left:22%;">
       <h6>
         <strong>投稿</strong>
       </h6>
-      <div class="border border-dark border-5 rounded" style="width:650px; height:300px; overflow: scroll; overflow-x: hidden;">
+      <div class="border border-dark border-5 rounded" style="width:650px; height:600px; overflow: scroll; overflow-x: hidden;">
         <table class="table table-borderless">
           <thead>
             <tr class="table-secondary">

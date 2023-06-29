@@ -1,26 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 mt-5">
+    <div class="col-md-12 mt-5 text-center">
       <h3><strong>パスワードを忘れた方</strong></h3>
       <p>登録しているメールアドレスを入力してください。再設定のリンクをお送りします。</p>
     </div>
   </div>
-    
+
   <div class="row mt-4">
-    <div class="col-md-8">
+    <div class="col-md-8" style="margin-left:24%;">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
-    
+
         <h6>メールアドレス</h6>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width:45%" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width:60%" %>
 
         <%= f.submit "送信する", class: "btn btn-primary" %>
       <% end %>
     </div>
-  </div>  
-  
+  </div>
+
   <div class="row mt-5">
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-left: 22%;">
       <p>
         ※登録時のメールアドレスが、アドレス変更等の理由により利用できない場合は、<br>
         ご本人確認ができないためパスワードを再発行できません。その場合は、お手数です<br>
@@ -28,5 +28,5 @@
       </p>
     </div>
   </div>
-  
+
 </div>

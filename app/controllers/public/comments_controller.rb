@@ -1,7 +1,7 @@
 class Public::CommentsController < ApplicationController
-
-  def destroy
-  end
+# 新規登録orログインしないとアクションが実行されない
+  before_action :authenticate_user!
+  
 
   def create
     @comment = Comment.new(comment_params)
@@ -12,6 +12,12 @@ class Public::CommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
 
+  end
+  
+  def destroy
+    comment = Comment.find(params[:post_id])
+    comment.destroy
+    redirect_to post_path(params[:post_id])
   end
   
   private
