@@ -21,7 +21,7 @@
       <% end %>
 
       <!--投稿数-->
-      <div class="col-md-12 d-flex" style="margin-left:270px;">
+      <div class="col-md-8 text-center d-flex justify-content-center" style="margin: 0 auto;">
         <div class="col-md-2 d-flex flex-column">
           <strong>
             <%= @posts.count %>
@@ -43,6 +43,7 @@
           <%= link_to "フォロワー",user_follower_path(@user) %>
         </div>
       </div>
+      
     </div>
   </div>
 
@@ -61,34 +62,9 @@
       </div>
     </div>
   </div>
+  
   <!--過去投稿一覧-->
-  <div class="row mt-4">
-    <div class="col-md-4" style="margin-left:22%;">
-      <h6>
-        <strong>投稿</strong>
-      </h6>
-      <div class="border border-dark border-5 rounded" style="width:650px; height:600px; overflow: scroll; overflow-x: hidden;">
-        <table class="table table-borderless">
-          <thead>
-            <tr class="table-secondary">
-              <th>名称</th>
-              <th>住所</th>
-              <th>詳細</th>
-            </tr>
-          </thead>
-          <% @posts.each do |post| %>
-          <tbody>
-            <tr>
-              <td><%= post.name %></td>　　<!--投稿場所-->
-              <td><%= post.address %></td>
-              <td><%= link_to "詳細",post_path(post.id) %></td>   <!--投稿詳細へのリンク-->
-            </tr>
-          </tbody>
-          <% end %>
-        </table>
-      </div>
-    </div>
-  </div>
+  <%= render 'posted', posts: @posts %>
 
   <!--ユーザーの通報-->
   <div class="row text-center">

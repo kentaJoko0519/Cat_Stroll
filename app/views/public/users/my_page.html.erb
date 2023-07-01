@@ -41,33 +41,32 @@
           </tr>
         </tbody>
       </table>
+      
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-12 text-center mb-3">
-       <!--投稿数-->
-      <div class="col-md-12 d-flex" style="margin-left:270px;">
-        <div class="col-md-2 d-flex flex-column">
-          <strong>
-            <%= @posts.count %>
-          </strong>
-          投稿数
-        </div>
+    <div class="col-md-8 text-center d-flex justify-content-center mb-3" style="margin: 0 auto;">
+      <!--投稿数-->
+      <div class="col-md-2 d-flex flex-column">
+        <strong>
+          <%= @posts.count %>
+        </strong>
+        投稿数
+      </div>
       <!--フォロー中-->
-        <div class="col-md-2 d-flex flex-column">
-          <strong>
-            <%= @user.follower.count %>
-          </strong>
-          <%= link_to "フォロー中",user_following_path(@user) %>
-        </div>
+      <div class="col-md-2 d-flex flex-column">
+        <strong>
+          <%= @user.follower.count %>
+        </strong>
+        <%= link_to "フォロー中",user_following_path(@user) %>
+      </div>
       <!--フォロワー-->
-        <div class="col-md-2 d-flex flex-column">
-          <strong>
-            <%= @user.followed.count %>
-          </strong>
-          <%= link_to "フォロワー",user_follower_path(@user) %>
-        </div>
+      <div class="col-md-2 d-flex flex-column">
+        <strong>
+          <%= @user.followed.count %>
+        </strong>
+        <%= link_to "フォロワー",user_follower_path(@user) %>
       </div>
     </div>
   </div>
@@ -91,34 +90,8 @@
     <%= link_to "edit",edit_user_path(@user),class: "edit-btn-hover color-edit d-flex justify-content-center align-items-center", style: "color:#fff; text-decoration: none;" %>
   </div>
 
-          <!--過去投稿一覧-->
-  <div class="row mt-3">
-    <div class="col-md-12">
-      <h6 class="text-center">
-        <strong>投稿</strong>
-      </h6>
-      <div class="border border-dark border-5 rounded" style="width:660px; height:600px; margin:0 auto; overflow: scroll; overflow-x: hidden;">
-        <table class="table table-borderless">
-          <thead>
-            <tr class="table-secondary">
-              <th>名称</th>
-              <th>住所</th>
-              <th>詳細</th>
-            </tr>
-          </thead>
-          <% @posts.each do |post| %>
-          <tbody>
-            <tr>
-              <td><%= post.name %></td>　　<!--投稿場所-->
-              <td><%= post.address %></td>
-              <td><%= link_to "詳細",post_path(post.id) %></td>   <!--投稿詳細へのリンク-->
-            </tr>
-          </tbody>
-          <% end %>
-        </table>
-      </div>
-    </div>
-  </div>
+  <!--過去投稿一覧-->
+  <%= render 'posted', posts: @posts %>
 
   <div class="mt-1 d-flex justify-content-center">
     <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "delete-btn-hover color-delete d-flex justify-content-center align-items-center", style: "color:#fff; text-decoration: none;" %>
