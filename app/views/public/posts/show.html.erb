@@ -65,7 +65,8 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-      <!--end-->
+      <% else %>
+        <%= image_tag asset_path('no_image.jpg'),width: 600, height: 400 %>
       <% end %>
 
       <!--編集、削除リンク-->

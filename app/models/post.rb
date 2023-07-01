@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  
+
   attribute :current_tags       # current_tagsというカラムを作成
 # user
   belongs_to :user
@@ -20,7 +20,7 @@ class Post < ApplicationRecord
       data = self.introduction.split("#")     #新規投稿でのデータで、タグを表す # のもつデータを配列で、投稿文と分ける
       self.introduction = data.shift.chomp
       self.current_tags = data                #タグをcurrent_tagsへ
-    end  
+    end
   end
 
   # タグの保存
@@ -43,16 +43,16 @@ class Post < ApplicationRecord
           post_tag = self.post_tags.find_by(tag_id: tag.id)
           post_tag.destroy if post_tag
         end
-      end  
+      end
     end
   end
-  
+
   # 編集する際にフォームにタグを表示させる
   def append_tags
     unless self.introduction == ""
       recorded_tags = "\r\n#" + self.tags.pluck(:name).join(' #')
       self.introduction = self.introduction + recorded_tags
-    end  
+    end
   end
 
 # 既にブックマークしているかを検証します
@@ -62,12 +62,17 @@ class Post < ApplicationRecord
 
 # 投稿画像(複数)
   has_many_attached :images
+  validate :image_length
+
   def get_image(image, width, height)
-    unless images.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
     image.variant(resize_to_limit: [width, height]).processed
   end
-
+  
+  private 
+  
+  def image_length
+    if images.length > 5
+      errors.add(:images, "は枚以内にしてください")
+    end
+  end
 end

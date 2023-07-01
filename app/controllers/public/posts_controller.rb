@@ -13,8 +13,11 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)             # データを新規登録するためのインスタンス生成
     @post.user_id = current_user.id           # 投稿の user_id には current_user.id を入れる
-    @post.save!                               # データをデータベースに保存するためのsaveメソッド実行
-    redirect_to post_path(@post.id)           # 投稿した詳細へリダイレクト
+    if @post.save                               # データをデータベースに保存するためのsaveメソッド実行
+      redirect_to post_path(@post.id)           # 投稿した詳細へリダイレクト
+    else 
+      render :new
+    end  
   end
   
   # 投稿一覧
