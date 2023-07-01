@@ -1,21 +1,21 @@
 <div class="container">
   <div class="row">
 <!--ーーーーーーーーーーーーーーーーーーーーーーーーーー（Google Map）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
-    <div class="col-md-6">
+    <div class="col-md-12 text-center">
       <!--Google Mapのスタイル-->
       <style>
-          #map { height: 85%; width: 100%;}
+          #map { height: 400px; width: 60%;}
       </style>
 
       <!--地図検索-->
       <div style="margin-top: 50px; margin-bottom: 10px;">
-        <i class="fas fa-search-location fa-lg" style="margin-left: 30px;"></i>
+        <i class="fas fa-search-location fa-lg"></i>
         <input id="address" type="textbox" style="margin-left: 10px; width:400px;">
         <input type="button" value="検索" onclick="codeAddress()">
       </div>
 
       <!--Google Map-->
-      <div id="map"></div>
+      <div id="map" class="d-inline-flex justify-content-center"></div>
 
       <!--地図のjs-->
       <script>
@@ -91,13 +91,14 @@
       <script src="https://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&language=ja&callback=initMap" data-turbolinks-track="reload"></script>
 
     </div>
+  </div>
 <!--ーーーーーーーーーーーーーーーーーーーーーーーーー（一覧画面）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
-    <div class="col-md-6 mt-5">
-      
+  <div class="row">
+    <div class="col-md-12 mt-5">
     <!--検索-->
-      <div class="ml-5 mb-2">
+      <div class=" mb-2">
         <%= form_with url: posts_path, method: :get, local: true do |f| %>
-          <div class="d-flex">
+          <div class="d-flex justify-content-center">
             <i class="fas fa-search fa-lg mt-2 ml-2"></i>
             <%= f.text_field :search, class: "ml-2 mr-2 form-control w-50 border border-dark", value: params[:search], id: "searchBox" %>
             <%= f.submit 'search', class: "btn btn-primary" %>
@@ -105,7 +106,7 @@
           </div>
         <% end %>
       </div>
-      
+
       <!--検索ボックスの中をクリアに-->
       <script>
         $('#clearSearch').on('click', (e) => {
@@ -113,12 +114,19 @@
           $('#searchBox').val("")
         })
       </script>
-      
-      <div class="border border-dark border-5 rounded text-center" style="margin-left:40px; height:440px; overflow: scroll; overflow-x: hidden;">
-        <table class="table table-borderless">
-          <% @posts.each do |post| %>
+
+      <div class="post_list">
+        <table class="table table-hover text-center">
           <tbody>
+          <% @posts.each do |post| %>
             <tr>
+              <td>
+                <% if post.images.attached? %>
+                  <%= image_tag post.get_image(post.images[0], 90,70) %>
+                <% else %>
+                  <%= image_tag asset_path('no_image.jpg'),width: 90, height: 70 %>
+                <% end %>
+              </td>
               <td><%= post.name %></td>　　<!--投稿場所-->
               <td>
                 <% if post.user.user_name.present? %>　<!--ユーザーネームが設定されているか？-->
@@ -129,8 +137,8 @@
               </td>
               <td><%= link_to "詳細",post_path(post.id) %></td>   <!--投稿詳細へのリンク-->
             </tr>
-          </tbody>
           <% end %>
+          </tbody>
         </table>
       </div>
     </div>

@@ -404,3 +404,18 @@ button.gradient:hover {
 #unsubscribe-button:hover:after{
   top: 50%;
 }
+
+// 新規投稿で投稿画像が５枚より多い時のエラー
+#post_images {
+  padding: 5px;
+}
+
+.post_list {
+  border: 1px solid #111111;
+  width: 70%;
+  height: 700px;
+  padding: 10px;
+  margin-left: 15%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
