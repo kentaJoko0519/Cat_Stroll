@@ -66,7 +66,9 @@
           </a>
         </div>
       <% else %>
-        <%= image_tag asset_path('no_image.jpg'),width: 600, height: 400 %>
+        <div class="d-flex justify-content-center">
+          <%= image_tag asset_path('no_image.jpg'),width: 200, height: 170 %>
+        </div>
       <% end %>
 
       <!--編集、削除リンク-->
@@ -157,7 +159,7 @@
                 </td>
                 <td>
                   <% if comment.user == current_user %>
-                  <%= link_to "削除", comment_path, method: :delete %>
+                  <%= link_to "削除", comment_path(comment.id), method: :delete %>
                   <% end %>
                 </td>
               </tr>

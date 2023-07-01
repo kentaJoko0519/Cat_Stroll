@@ -124,7 +124,7 @@
                 <% if post.images.attached? %>
                   <%= image_tag post.get_image(post.images[0], 90,70) %>
                 <% else %>
-                  <%= image_tag asset_path('no_image.jpg'),width: 90, height: 70 %>
+                  <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
                 <% end %>
               </td>
               <td><%= post.name %></td>　　<!--投稿場所-->
