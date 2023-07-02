@@ -13,6 +13,7 @@ class Public::BookmarksController < ApplicationController
     @post = Post.find(params[:post_id])                              # Postモデルの post_id を取得
     bookmark = @post.bookmarks.new(user_id: current_user.id)         # @post.bookmarks.new の user_id に current_user.id を紐づける
     if bookmark.save                                                 # もし、ブックマークに追加できたら
+      flash[:notice] = "ブックマークに追加しました"
       redirect_to request.referer                                    # 同じ画面に戻る(ボタンの表示に変更あり)
     else
       redirect_to request.referer                                    # 同じ画面に戻る(ボタンの表示は変わらない)
@@ -24,6 +25,7 @@ class Public::BookmarksController < ApplicationController
     bookmark = @post.bookmarks.find_by(user_id: current_user.id)     # @post.bookmarks.new の user_id に current_user.id を紐づける
     if bookmark.present?                                             # ブックマークに追加してあるかの確認(２度押しのエラーを回避するため)
         bookmark.destroy                                             # ブックマークから削除
+        flash[:alert] = "ブックマークを外しました"
         redirect_to request.referer                                  # 同じ画面に戻る(ボタンの表示に変更あり)
     else
         redirect_to request.referer                                  # 同じ画面に戻る(ボタンの表示は変わらない)

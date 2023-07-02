@@ -55,6 +55,7 @@ class Public::UsersController < ApplicationController
   def update
     @user=current_user           # @user→ログインしているユーザーの情報
     @user.update(user_params)    # 登録情報のアップデート
+    flash[:notice] = "更新しました"
     redirect_to my_page_path     # マイページにリダイレクト
   end
 

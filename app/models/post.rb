@@ -72,7 +72,7 @@ class Post < ApplicationRecord
   
   def image_length
     if images.length > 5
-      errors.add(:images, "は枚以内にしてください")
+      errors.add(:images, "投稿画像は枚以内にしてください")
     end
   end
 end

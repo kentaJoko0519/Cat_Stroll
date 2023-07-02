@@ -29,7 +29,7 @@ module CatStroll
         html_tag.html_safe
       else
         method_name = instance.instance_variable_get(:@method_name)
-        errors = instance.object.errors.full_messages_for(method_name)
+        errors = instance.object.errors[method_name]
         errors_tag = errors.map do |error|
           %(<span class="error-msg">#{error}</span>)
         end

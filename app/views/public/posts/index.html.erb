@@ -119,7 +119,7 @@
         <table class="table table-hover text-center">
           <tbody>
           <% @posts.each do |post| %>
-            <tr>
+            <tr data-href="/posts/<%= post.id %>">
               <td>
                 <% if post.images.attached? %>
                   <%= image_tag post.get_image(post.images[0], 90,70) %>
@@ -127,21 +127,28 @@
                   <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
                 <% end %>
               </td>
-              <td><%= post.name %></td>　　<!--投稿場所-->
+              <td><%= post.name %></td>                 <!--投稿場所-->
               <td>
-                <% if post.user.user_name.present? %>　<!--ユーザーネームが設定されているか？-->
-                  <%= post.user.user_name %>　　　　　<!--ユーザーネームを表示-->
-                <% else %>　　　　　　　　　　　　　　<!--設定されていなければ、氏名を表示-->
+                <% if post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
+                  <%= post.user.user_name %>            <!--ユーザーネームを表示-->
+                <% else %>                              <!--設定されていなければ、氏名を表示-->
                   <%= post.user.first_name + post.user.last_name %>
                 <% end %>
               </td>
-              <td><%= link_to "詳細",post_path(post.id) %></td>   <!--投稿詳細へのリンク-->
             </tr>
           <% end %>
           </tbody>
         </table>
       </div>
     </div>
+    
+    <script>
+    $('tr[data-href]').click(function (e) {
+      if (!$(e.target).is('a')) {
+        window.location = $(e.target).closest('tr').data('href');
+      };
+    });
+  </script>
 
   </div>
 </div>

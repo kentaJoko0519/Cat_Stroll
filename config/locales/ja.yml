@@ -14,17 +14,6 @@ ja:
       
   # 新規登録でのエラー表示
   activerecord:
-    attributes:
-      post: 
-        images: "投稿画像"
-      user:
-        first_name: ""
-        last_name: ""
-        first_name_kana: ""
-        last_name_kana: ""
-        email: ""
-        password: ""
-        password_confirmation: "パスワードが"
     errors:
       models:
         user:
@@ -39,7 +28,11 @@ ja:
             password:
               blank: "入力必須項目です" 
             password_confirmation:
-              confirmation: "一致していません" 
+              confirmation: "パスワードが一致していません" 
+        report:
+          attributes:
+            reason:
+              blank: "通報理由を記載してください"
       messages: 
         record_invalid: "テスト"
   

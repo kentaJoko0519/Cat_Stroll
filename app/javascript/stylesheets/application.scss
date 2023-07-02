@@ -423,3 +423,43 @@ button.gradient:hover {
   overflow: scroll;
   overflow-x: hidden;
 }
+
+// フォローするボタン
+.follow-button {
+  width: 150px;
+  height: 30px;
+  margin: 0 auto;
+  background-color: #3366FF;
+  border: 1px solid #111111;
+  border-radius: 15px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #EEEEEE;
+  text-decoration: none;
+}
+
+.follow-button:hover {
+  color: #EEEEEE;
+  text-decoration: none;
+}
+
+// フォローを外すボタン
+.unset-follow-button {
+  width: 150px;
+  height: 30px;
+  margin: 0 auto;
+  background-color: #BBBBBB;
+  border: 1px solid #111111;
+  border-radius: 15px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #222222;
+  text-decoration: none;
+}
+
+.unset-follow-button:hover {
+  color: #EEEEEE;
+  text-decoration: none;
+}

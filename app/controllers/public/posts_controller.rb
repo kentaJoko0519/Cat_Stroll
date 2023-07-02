@@ -14,6 +14,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)             # データを新規登録するためのインスタンス生成
     @post.user_id = current_user.id           # 投稿の user_id には current_user.id を入れる
     if @post.save                               # データをデータベースに保存するためのsaveメソッド実行
+      flash[:notice] = "投稿完了"
       redirect_to post_path(@post.id)           # 投稿した詳細へリダイレクト
     else 
       render :new
@@ -61,6 +62,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])            # PostモデルのIDを取得
     if @post.update(post_params)              # もし、編集された投稿がアップデートされたなら
+      flash[:notice] = "更新しました"
       redirect_to post_path(@post.id)         # 詳細ページへリダイレクト
     else
       render :edit                            # アップデートされなければ、編集ページへ render される
@@ -71,6 +73,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])             # PostモデルのIDを取得
     post.destroy                              # 投稿の削除
+    flash[:notice] = "投稿を削除しました"
     redirect_to posts_path                    # 投稿一覧ページへリダイレクト
   end
 

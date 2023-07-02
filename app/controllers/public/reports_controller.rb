@@ -17,9 +17,11 @@ class Public::ReportsController < ApplicationController
     @report.reporter_id = current_user.id      # 通報者(reporter_id)にcurrent_user.idを入れる
     @report.reported_id = @user.id             # 通報される人(reported_id)に上で取得した@user.idを入れる
     if @report.save                            # もし、保存されたなら
+      flash[:notice] = "このユーザーを通報しました"
       redirect_to user_path(@user)             # ユーザー詳細ページにリダイレクト
     else
-      render "new"                             # 保存されなければ、通報ページに render
+      flash.now[:alert] = "通報に失敗しました"
+      render :new                              # 保存されなければ、通報ページに render
     end  
   end
   

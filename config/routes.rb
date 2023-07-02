@@ -33,6 +33,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
       # reports
       resources :reports, only: [:new, :create]
     end
+    get 'users/:id/reports' => redirect("/users/%{id}/reports/new")
     
     # posts
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
