@@ -11,18 +11,20 @@
   box-sizing: border-box;
 }
 
-// ロゴ
+// ヘッダー
 header{
   background-image: linear-gradient(150deg, rgba(57, 74, 245, 0.85) 10%, rgba(46, 110, 219, 0.58) 34%, rgba(62, 120, 204, 0.43) 60%, rgba(210, 199, 157, 0.47) 87%);
   font-family: 'Amatic SC', cursive;
   text-decoration: none;
 }
 
+// フッター
 footer{
   background-image: linear-gradient(150deg, rgba(3, 3, 3, 1) 9%, rgba(49, 49, 49, 1) 32%, rgba(112, 111, 111, 1) 55%, rgba(170, 169, 169, 1) 83%);
   font-family: 'Caveat', cursive;
 }
 
+// コピーライト
 .copyright {
   color: #DDDDDD;
   font-size: 30px;
@@ -30,6 +32,7 @@ footer{
   justify-content: center;
 }
 
+// プライバシーポリシー
 .privacy, .help {
   font-family: 'Caveat', cursive;
 }
@@ -43,6 +46,7 @@ footer{
   display: flex;
 }
 
+// ヘルプページ
 .help-text h6 {
   margin-top: 30px;
 }
@@ -51,7 +55,7 @@ footer{
   margin-left: 50px;
 }
 
-// トップページのボタン
+// トップページ
 .wrapper a{
   display: block;
   width: 250px;

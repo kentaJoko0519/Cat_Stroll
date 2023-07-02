@@ -25,14 +25,14 @@
           <strong>
             <%= @user.follower.count %>
           </strong>
-          <%= link_to "フォロー中",user_following_path(@user) %>
+          <p>フォロー中</p>
         </div>
       <!--フォロワー-->
         <div class="col-md-2 d-flex flex-column">
           <strong>
             <%= @user.followed.count %>
           </strong>
-          <%= link_to "フォロワー",user_follower_path(@user) %>
+          <p>フォロワー</p>
         </div>
         <div class="col-md-2 d-flex flex-column">
           <strong>

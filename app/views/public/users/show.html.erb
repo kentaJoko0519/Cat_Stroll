@@ -49,11 +49,11 @@
 
   <!--自己紹介-->
   <div class="row mt-4">
-    <div class="col-md-5" style="margin-left:22%;">
-      <h6>
+    <div class="col-md-12" style="margin: 0 auto;">
+      <h6 class="text-center">
         <strong>自己紹介</strong>
       </h6>
-      <div class="border border-dark" style="height:200px; width:650px; padding:10px; overflow: scroll; overflow-x: hidden;">
+      <div class="border border-dark" style="height:200px; width:650px; margin: 0 auto; padding:10px; overflow: scroll; overflow-x: hidden;">
         <% if @user.introduction.present? %>
          <%= @user.introduction %>
         <% else %>
