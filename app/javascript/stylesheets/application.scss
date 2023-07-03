@@ -27,6 +27,9 @@ header{
   display: flex;
   justify-content: center;
   font-family: 'M PLUS Rounded 1c', sans-serif;
+  border: 1px solid #111111;
+  border-radius: 15px;
+  align-items: center;
 }
 
 // フッター
@@ -586,7 +589,7 @@ button.gradient:hover {
   width: 150px;
   height: 30px;
   margin: 0 auto;
-  background-color: #BBBBBB;
+  background-color: #EEEEEE;
   border: 1px solid #111111;
   border-radius: 15px;
   align-items: center;
@@ -597,7 +600,65 @@ button.gradient:hover {
 }
 
 .unset-follow-button:hover {
-  color: #EEEEEE;
+  color: #111111;
+  text-decoration: none;
+}
+
+// フォロー中一覧
+.following-list {
+  margin: 0 auto;
+  height: 650px;
+  padding: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid #111111;
+  border-radius: 8px;
+}
+
+.following-list td {
+  vertical-align: middle;
+}
+
+// フォロワー一覧
+.follower-list {
+  margin: 0 auto;
+  height: 500px;
+  padding: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid #111111;
+  border-radius: 8px;
+}
+
+.follower-list td {
+  vertical-align: middle;
+}
+
+  // フォローしていないユーザーをフォローするとき
+.follow-in {
+  border: 1px solid #111111;
+  border-radius: 15px;
+  color: #DDDDDD;
+  background-color: #3366FF;
+  padding: 3px 12px;
+}
+
+.follow-in:hover {
+  color: #DDDDDD;
+  text-decoration: none;
+}
+
+  // フォローしているユーザーのフォローを外すとき
+.follow-out{
+  border: 1px solid #111111;
+  border-radius: 15px;
+  color: #111111;
+  background-color: #EEEEEE;
+  padding: 3px 12px;
+}
+
+.follow-out:hover {
+  color: #111111;
   text-decoration: none;
 }
 

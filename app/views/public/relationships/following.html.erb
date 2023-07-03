@@ -11,11 +11,11 @@
   </div>
       
   <div class="row mt-3">
-    <div class="col-md-8 border border-dark" style="margin-left:20%; height:500px; padding:10px; overflow: scroll; overflow-x: hidden;">
-      <table class="table table-border table-sm">
+    <div class="col-md-6 following-list">
+      <table class="table table-border table-hover table-sm">
         <tbody>
           <% @following_users.each do |following_user| %>
-            <tr>
+            <tr data-href="/users/<%= following_user.id %>">
               <td class="col-md-2">
                 <%= image_tag following_user.get_profile_image(70,70) %>
               </td>
@@ -26,7 +26,6 @@
                   <%= following_user.first_name %><%= following_user.last_name %>
                 <% end %>
               </td>
-              <td class="col-md-2"><%= link_to "詳細", user_path(following_user.id)%></td>
             </tr>
           <% end %>
         </tbody>
@@ -34,6 +33,15 @@
 
     </div>
   </div>
+  
+  <script>
+    $('tr[data-href]').click(function (e) {
+      if (!$(e.target).is('a')) {
+        window.location = $(e.target).closest('tr').data('href');
+      };
+    });
+  </script>
+  
 </div>
 
 
