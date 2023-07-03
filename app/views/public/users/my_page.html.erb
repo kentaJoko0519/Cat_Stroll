@@ -3,10 +3,10 @@
   <div class="row mt-3">
     <div class="col-md-10 mt-1" style="margin:0 auto;">
       <div class="d-flex">
-        <h5><strong>登録情報</strong></h5>
+        <h5><strong>プロフィール</strong></h5>
 
         <div style="margin-left:65%;">
-          <%= link_to "ブックマーク", post_favorite_path(@user),class: "bookmark-button text-center p-2 ", style: "text-decoration: none; color: #fff;" %>
+          <%= link_to "ブックマーク", post_favorite_path(@user),class: "bookmark-button text-center" %>
         </div>
         
       </div>
@@ -76,7 +76,7 @@
       <h6 class="text-center">
         <strong>自己紹介</strong>
       </h6>
-      <div class="border border-dark" style="height:200px; width:600px; padding:10px; margin:0 auto; overflow: scroll; overflow-x: hidden;;">
+      <div class="mypage-introduction">
         <% if @user.introduction.present? %>
          <%= @user.introduction %>
         <% else %>
@@ -87,14 +87,14 @@
   </div>
 
   <div class="mt-1 d-flex justify-content-center">
-    <%= link_to "edit",edit_user_path(@user),class: "edit-btn-hover color-edit d-flex justify-content-center align-items-center", style: "color:#fff; text-decoration: none;" %>
+    <%= link_to "edit",edit_user_path(@user),class: "edit-btn-hover color-edit mypage-button" %>
   </div>
 
   <!--過去投稿一覧-->
   <%= render 'posted', posts: @posts %>
 
   <div class="mt-1 d-flex justify-content-center">
-    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "delete-btn-hover color-delete d-flex justify-content-center align-items-center", style: "color:#fff; text-decoration: none;" %>
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "delete-btn-hover color-delete mypage-button" %>
   </div>
 
 </div>

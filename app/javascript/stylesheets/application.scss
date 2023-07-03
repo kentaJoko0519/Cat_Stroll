@@ -193,10 +193,12 @@ button.gradient:hover {
   position: relative;
   transition-timing-function: cubic-bezier(.86, .01, .15, .99);
   transition-duration: 0.4s;
+  margin-left: 65%
 }
 
 .add-bookmark a {
   color: #fff;
+  text-decoration: none;
 }
 
 .add-bookmark:before {
@@ -220,10 +222,12 @@ button.gradient:hover {
   background: #B384FF;
   transform: perspective(1px) translateZ(0);
   transition: 0.4s cubic-bezier(.86, .01, .15, .99);
+  margin-left: 55%;
 }
 
 .remove-bookmark a {
   color: #fff;
+  text-decoration: none;
 }
 
 .remove-bookmark:before {
@@ -243,22 +247,8 @@ button.gradient:hover {
   color:#111;
 }
 
-// マイページのブックマークリンク
-.bookmark-button{
-  width: 200px;
-  height: 30px;
-  padding: 3 7px;
-  background-color: #34495e;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
 
-.bookmark-button:hover{
-  border-radius: 20px;
-}
-
-// マイページの編集リンク,編集アップデート,ログアウトリンク
+// マイページの 編集リンク,編集アップデート,ログアウトリンク
 .new-post-btn-hover, .edit-btn-hover, .delete-btn-hover, .update-btn-hover {
   width: 200px;
   font-size: 16px;
@@ -414,7 +404,9 @@ button.gradient:hover {
   padding: 5px;
 }
 
-.post_list {
+// 『POST』
+  // 投稿一覧
+.post-list {
   border: 1px solid #111111;
   width: 70%;
   height: 700px;
@@ -422,6 +414,138 @@ button.gradient:hover {
   margin-left: 15%;
   overflow: scroll;
   overflow-x: hidden;
+}
+
+.post-list tr {
+  min-height: 150px;
+}
+
+.post-list td {
+  vertical-align: middle;
+}
+
+  // 投稿詳細
+.post-show td:last-child {
+  margin-left: -25%;
+  vertical-align: middle;
+}
+    // 投稿文
+.post {
+  width: 600px;
+  height: 400px;
+  padding: 5px;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid #111111;
+  border-radius: 8px;
+}
+    // コメント
+.comment{
+  width: 600px;
+  height: 150px;
+  padding: 5px;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid #111111;
+  border-radius: 8px;
+}
+
+.input-comment {
+  width: 400px;
+  height: 50px;
+  padding: 5px;
+  border: 1px solid #111111;
+  border-radius: 8px;
+  margin-right: 30px;
+}
+
+.comment-user-name {
+  fonnt-size: 8px;
+  opacity: 0.7;
+}
+
+// 『USER』
+  // ユーザー一覧
+.user-list {
+  margin: 0 auto;
+  height: 600px;
+  padding: 10px;
+  margin-top: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid #111111;
+}
+
+.user-list td {
+  vertical-align: middle;
+  font-size:20px;
+}
+
+  // ユーザー詳細
+.user-introduction {
+  height: 200px;
+  width: 650px;
+  margin: 0 auto;
+  padding: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid #111111;
+  border-radius: 8px;
+}
+
+.user-posted {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid #111111;
+  border-radius: 8px;
+}
+
+.user-posted td {
+  vertical-align: middle;
+}
+
+// 『MY PAGE』
+  // マイページのブックマークリンク
+.bookmark-button{
+  width: 200px;
+  height: 30px;
+  padding: 3 7px;
+  background-color: #34495e;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  padding: 5px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.bookmark-button:hover{
+  border-radius: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+  // マイページ自己紹介
+.mypage-introduction {
+  height: 200px;
+  width: 600px;
+  padding: 10px;
+  margin: 0 auto;
+  overflow: scroll;
+  overflow-x: hidden;;
+  border: 1px solid #111111;
+}
+
+  // マイページの edit ＆ Logout のボタンベース
+.mypage-button {
+  color:#fff;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 // フォローするボタン

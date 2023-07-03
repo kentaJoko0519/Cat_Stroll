@@ -115,7 +115,7 @@
         })
       </script>
 
-      <div class="post_list">
+      <div class="post-list">
         <table class="table table-hover text-center">
           <tbody>
           <% @posts.each do |post| %>
@@ -142,6 +142,7 @@
       </div>
     </div>
     
+    <!--投稿一覧のtr部分をクリックしたとき、その投稿の詳細ページへと遷移するjs-->
     <script>
     $('tr[data-href]').click(function (e) {
       if (!$(e.target).is('a')) {

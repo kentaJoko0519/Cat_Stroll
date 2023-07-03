@@ -1,22 +1,15 @@
 <div class="container">
 
-  <!--見出し-->
-  <div class="row">
-    <div class="col-md-12 mt-3 text-center">
-      <h3><strong>投稿</strong></h3>
-    </div>
-  </div>
-
 　<!--投稿者-->
   <div class="row">
 
-    <div class="col-md-6">
-      <table class="table table-borderless table-sm">
+    <div class="col-md-6 post-show">
+      <table class="table table-sm">
         <tr>　<!--プロフィール画像-->
           <td class="text-center">
             <%= image_tag @user.get_profile_image(60,60) %>
           </td>
-          <td style="margin-left:-20%;">
+          <td>
             <h5>　<!--ユーザーネーム or 氏名-->
               <% if @user.user_name.present? %>
                 <%= link_to @user.user_name, user_path(@user.id) %>
@@ -75,11 +68,11 @@
       <!--編集、削除リンク-->
       <div class="mt-4 text-center">
         <% if @post.user_id == current_user.id %>
-          <!--編集リンクFont Awesome-->
+          <!--編集リンク & Font Awesome-->
           <%= link_to edit_post_path(@post.id), class: "mr-5" do %>
             <i class="fa-regular fa-pen-to-square" style="font-size:30px; color:#111;"></i>
           <% end %>
-          <!--削除リンクFont Awesome-->
+          <!--削除リンク & Font Awesome-->
           <%= link_to post_path(@post), method: :delete, class: "ml-5", "data-confirm" => "本当に削除しますか？" do %>
             <i class="far fa-trash-alt" style="font-size:30px; color:red;"></i>
           <% end %>
@@ -96,11 +89,11 @@
         </tr>
         <tr>
           <td>名称</td>
-          <td><strong><%= @post.name %></strong></td>　　<!--投稿した場所-->
+          <td><strong><%= @post.name %></strong></td>   <!--投稿した場所-->
         </tr>
         <tr class="border-bottom">
           <td>住所</td>
-          <td><%= @post.address %></td>　　<!--投稿場所の住所-->
+          <td><%= @post.address %></td>                 <!--投稿場所の住所-->
         </tr>
       </table>
 
@@ -113,68 +106,69 @@
       <% end %>
 
     </div>
-    <!--投稿文-->
+    
     <div class="col-md-6">
+      
       <!--ブックマーク機能-->
-      <div>
+      <div class="mb-2">
         <% if @post.bookmarked_by?(current_user) %>
-          <div class="remove-bookmark gradient" style="margin-left:55%;">
-            <%= link_to "ブックマークから外す", post_bookmarks_path(@post), method: :delete, style: "text-decoration: none;" %>
+          <div class="remove-bookmark gradient">
+            <%= link_to "ブックマークから外す", post_bookmarks_path(@post), method: :delete %>
           </div>
         <% else %>
-          <div class="add-bookmark gradient" style="margin-left:65%;">
-            <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post, style: "text-decoration: none;" %>
+          <div class="add-bookmark gradient">
+            <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %>
           </div>
         <% end %>
       </div>
-
+      
+      <!--投稿文-->
+      <h6 class="text-center">
+        <strong>投稿文</strong>
+      </h6>
       <div class="post">
-        <h6 class="text-center">
-          <strong>投稿文</strong>
-        </h6>
-
-        <div class="border border-dark border-5 rounded" style="width:600px; height:400px; padding:5px; overflow: scroll; overflow-x: hidden;">
-          <%= @post.introduction %>
-        </div>
+        <%= @post.introduction %>
       </div>
+
       <!--コメント欄-->
-      <div class="comment mt-2">
-        <h6 class="text-center">
-          <strong>コメント</strong>
-          <p>コメント件数：<%= @post.comments.count %>件</p>
-        </h6>
-        <div class="border border-dark border-5 rounded" style="width:600px; height:150px; padding:5px; overflow: scroll; overflow-x: hidden;">
-          <% @comments.each do |comment|%>
-            <table class="table table-borderless table-sm">
-              <tr>
-                <td class="col-md-4">
-                  <%= image_tag comment.user.get_profile_image(35,35) %>
-                  <% if comment.user.user_name.present? %>
-                    <%= link_to comment.user.user_name, user_path(comment.user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
-                  <% else %>
-                    <%= link_to comment.user.first_name + comment.user.last_name, user_path(comment.user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
-                  <% end %>
-                </td>
-                <td class="ml-5">
-                  <%= comment.sentence %>
-                </td>
-                <td>
-                  <% if comment.user == current_user %>
-                  <%= link_to "削除", comment_path(comment.id), method: :delete %>
-                  <% end %>
-                </td>
-              </tr>
-            </table>
-          <% end %>
-        </div>
-        <!--コメント入力欄-->
-        <div class="col-md-6 mt-2">
-          <%= form_with model: [@post , @comment], url: comments_path, method: :post do |f| %>
-            <%= f.text_area :sentence, rows: '5', placeholder: "コメントをここに", style: "width: 400px; height:50px; padding:5px;" %>
+      <h6 class="text-center mt-2">
+        <strong>コメント</strong>
+        <p>コメント件数：<%= @post.comments.count %>件</p>
+      </h6>
+      <div class="comment">
+        <% @comments.each do |comment|%>
+          <table class="table table-borderless table-sm">
+            <tr>
+              <td class="col-md-4">
+                <%= image_tag comment.user.get_profile_image(35,35) %>
+                <% if comment.user.user_name.present? %>
+                  <%= link_to comment.user.user_name, user_path(comment.user.id), class: "comment-user-name" %>
+                <% else %>
+                  <%= link_to comment.user.first_name + comment.user.last_name, user_path(comment.user.id), class: "comment-user-name" %>
+                <% end %>
+              </td>
+              <td class="ml-5">
+                <%= comment.sentence %>
+              </td>
+              <td>
+                <% if comment.user == current_user %>
+                <%= link_to "削除", comment_path(comment.id), method: :delete %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+      <!--コメント入力欄-->
+      
+      <div class="mt-2">
+        <%= form_with model: [@post , @comment], url: comments_path, method: :post do |f| %>
+          <div class="d-flex">
+            <%= f.text_area :sentence, rows: '5', placeholder: "コメントをここに", class: "input-comment" %>
             <%= f.hidden_field :post_id, :value => @post.id %>
-            <%= f.submit "送信する", class: "btn btn-success", style: "height:40px; width:90px;" %>
-          <% end %>
-        </div>
+            <%= f.submit "送信", class: "btn btn-success", style: "height:40px;" %>
+          </div>
+        <% end %>
       </div>
     </div>
 
