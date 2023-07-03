@@ -121,7 +121,7 @@
         </div>
       <% end %>
       
-      <div class="login_state mt-1">
+      <div class="login_state mt-2">
         <% if user_signed_in? %>
           <% if current_user.user_name.present? %>
             <%= current_user.user_name %>
@@ -130,7 +130,7 @@
           <% end %>
         <% elsif admin_signed_in? %>
         <% else %>
-          <p class="text-danger">
+          <p class="text-danger mt-3">
             ゲストログイン中
           </p>
         <% end %>
