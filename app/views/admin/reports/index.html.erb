@@ -20,9 +20,9 @@
         </thead>
         <% @reports.each do |report| %>
           <tbody>
-            <tr>
+            <tr data-href="/admin/reports/<%= report.id %>">
               <td>
-                <%= link_to report.id, admin_report_path(report.id) %>
+                <%= report.id %>
               </td>
               <td>
                 <% if report.reported.user_name.present? %>
@@ -47,6 +47,13 @@
       </table>
     </div>
   </div>
-
-
+  
+  <script>
+    $('tr[data-href]').click(function (e) {
+      if (!$(e.target).is('a')) {
+        window.location = $(e.target).closest('tr').data('href');
+      };
+    });
+  </script>
+  
 </div>
