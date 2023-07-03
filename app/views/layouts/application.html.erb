@@ -128,6 +128,7 @@
           <% else %>
             <%= current_user.first_name + current_user.last_name %>
           <% end %>
+        <% elsif admin_signed_in? %>
         <% else %>
           <p class="text-danger">
             ゲストログイン中

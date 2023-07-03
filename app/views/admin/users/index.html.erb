@@ -1,23 +1,22 @@
 <div class="container">
   
   <div class="row mt-5">
-    <div class="col-md-8 text-center border border-dark border-5 rounded"  style="width:650px; height:800px; margin: 0 auto; overflow: scroll; overflow-x: hidden;">
+    <div class="col-md-8 user-list text-center">
       <table class="table table-sm table-hover">
         <thead class="table-secondary">
           <tr>
             <td>プロフィール画像</td>
             <td>ユーザー名</td>
             <td>ステータス</td>
-            <td></td>
           </tr>
         </thead>
         <% @users.each do |user| %>
         <tbody>
-          <tr>
-            <td class="col-md-2">
+          <tr data-href="/admin/users/<%= user.id %>">
+            <td class="col-md-3">
               <%= image_tag user.get_profile_image(70,70) %>
             </td>
-            <td class="col-md-6" style="font-size:20px;">
+            <td class="col-md-5">
               <% if user.user_name.present? %>
                 <%= user.user_name%>
               <% else %>
@@ -31,14 +30,19 @@
                 <strong style="color:red;">退会</strong>
               <% end %>
             </td>
-            <td class="col-md-2">
-              <%= link_to "詳細", admin_user_path(user.id), style: "font-size:20px"  %>
-            </td>
           </tr>
         </tbody>
         <% end %>
       </table>
     </div>
   </div>
+  
+  <script>
+    $('tr[data-href]').click(function (e) {
+      if (!$(e.target).is('a')) {
+        window.location = $(e.target).closest('tr').data('href');
+      };
+    });
+  </script>
   
 </div>

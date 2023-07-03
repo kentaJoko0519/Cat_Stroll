@@ -72,11 +72,11 @@
         </tr>
         <tr>
           <td>名称</td>
-          <td><strong><%= @post.name %></strong></td>　　<!--投稿した場所-->
+          <td><strong><%= @post.name %></strong></td>     <!--投稿した場所-->
         </tr>
         <tr class="border-bottom">
           <td>住所</td>
-          <td><%= @post.address %></td>　　<!--投稿場所の住所-->
+          <td><%= @post.address %></td>                   <!--投稿場所の住所-->
         </tr>
       </table>
 
@@ -90,49 +90,44 @@
       
       <!--投稿削除-->
       <div class="mt-3 text-center">
-        <%= link_to "削除",admin_post_path(@post), method: :delete, class: "btn btn-danger", style: "margin-left:50px;", "data-confirm" => "本当に削除しますか？"%>
+        <%= link_to "削除",admin_post_path(@post), method: :delete, class: "btn btn-danger", style: "margin-left:50px;", "data-confirm" => "この投稿を削除しますか？"%>
       </div>
       
     </div>
 
     <div class="col-md-6">
       <!--投稿文-->
+      <h6 class="text-center">
+        <strong>投稿文</strong>
+      </h6>
       <div class="post">
-        <h6 class="text-center">
-          <strong>投稿文</strong>
-        </h6>
-        <div class="border border-dark border-5 rounded" style="width:600px; height:400px; padding:5px; overflow: scroll; overflow-x: hidden;">
-          <%= @post.introduction %>
-        </div>
+        <%= @post.introduction %>
       </div>
       
       <!--コメント欄-->
-      <div class="comment mt-2">
-        <h6 class="text-center">
-          <strong>コメント</strong>
-          <p>コメント件数：<%= @post.comments.count %>件</p>
-        </h6>
-        <div class="border border-dark border-5 rounded" style="width:600px; height:150px; padding:5px; overflow: scroll; overflow-x: hidden;">
-          <% @comments.each do |comment|%>
-            <table class="table table-borderless table-sm">
-              <tr>
-                <td class="col-md-4">
-                  <%= image_tag comment.user.get_profile_image(35,35) %>
-                  <% if comment.user.user_name.present? %>
-                    <%= link_to comment.user.user_name, user_path(comment.user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
-                  <% else %>
-                    <%= link_to comment.user.first_name + comment.user.last_name, user_path(comment.user.id), style: "fonnt-size: 8px; opacity:0.7;" %>
-                  <% end %>
-                </td>
-                <td class="ml-5">
-                  <%= comment.sentence %>
-                </td>
-              </tr>
-            </table>
-          <% end %>
-        </div>
+      <h6 class="text-center mt-2">
+        <strong>コメント</strong>
+        <p>コメント件数：<%= @post.comments.count %>件</p>
+      </h6>
+      <div class="comment">
+        <% @comments.each do |comment|%>
+          <table class="table table-borderless table-sm">
+            <tr>
+              <td class="col-md-4">
+                <%= image_tag comment.user.get_profile_image(35,35) %>
+                <% if comment.user.user_name.present? %>
+                  <%= link_to comment.user.user_name, user_path(comment.user.id), class: "comment-user-name" %>
+                <% else %>
+                  <%= link_to comment.user.first_name + comment.user.last_name, user_path(comment.user.id), class: "comment-user-name" %>
+                <% end %>
+              </td>
+              <td class="ml-5">
+                <%= comment.sentence %>
+              </td>
+            </tr>
+          </table>
+        <% end %>
       </div>
-    </div>
 
   </div>
 </div>
