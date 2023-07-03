@@ -101,8 +101,7 @@
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
   <!--Main-->
     <main style="margin-bottom:50px;">
       
@@ -121,6 +120,20 @@
           <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
       <% end %>
+      
+      <div class="login_state mt-1">
+        <% if user_signed_in? %>
+          <% if current_user.user_name.present? %>
+            <%= current_user.user_name %>
+          <% else %>
+            <%= current_user.first_name + current_user.last_name %>
+          <% end %>
+        <% else %>
+          <p class="text-danger">
+            ゲストログイン中
+          </p>
+        <% end %>
+      </div>
       
       <%= yield %>
     </main>

@@ -3,7 +3,7 @@ class Public::PostsController < ApplicationController
 # ユーザー側  投稿
 
   # indexアクション以外は新規登録orログインしないとアクションが実行されない
-  before_action :authenticate_user!, only: [:new, :show, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   
   # 新規投稿
   def new
