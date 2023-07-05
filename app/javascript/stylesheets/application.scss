@@ -673,3 +673,18 @@ button.gradient:hover {
   overflow-x: hidden;
   border: 1px solid #111111;
 }
+
+@media screen and (max-width:576px) {
+
+  div.flex{
+    display: block;
+  }
+
+  // フッター
+  footer{
+    height: 275px;
+    margin-top: 72px;
+  }
+
+
+}
