@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row text-center">
-    <div class="col-md-12 mt-4">
+    <div class="col-md-12" style="margin-top: 100px;">
       <h5><strong>本当に退会しますか？</strong></h5>
         <p class="mt-5">
           退会すると、登録情報や<br>
           これまでの投稿が閲覧できなくなります。<br>
           退会する場合は、「退会する」をクリックしてください。
         </p>
-        <div class="mt-5">
-          <%= link_to "退会しない", my_page_path, class: "btn btn-primary",style: "margin-right:100px;" %>
-          <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-danger" %>
+        <div style="margin: 85px auto;">
+          <%= link_to "退会しない", my_page_path, class: "btn btn-primary",style: "margin-right:160px;" %>
+          <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-danger",style: "margin-right:15px;" %>
         </div>
     </div>
   </div>

@@ -6,6 +6,7 @@
     <script src="https://kit.fontawesome.com/1b0978deee.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!--ナビゲーション-->
@@ -101,6 +102,10 @@
           </div>
         </div>
       </div>
+      
+      <!--ヘッダーの猫-->
+      <div class="header-cat"></div>
+      
     </header>
   <!--Main-->
     <main style="margin-bottom:50px;">
@@ -137,9 +142,11 @@
       </div>
       
       <%= yield %>
+      
     </main>
   <!--Footer-->
-    <footer class="border-top border-dark m-0" style="height:275px; padding: 100px;">
+    <footer class="border-top border-dark m-0">
+      
       <!--プライバシーポリシー、HELP、コピーライト-->
       <div class="d-flex justify-content-center">
         <div class="privacy">
@@ -152,6 +159,10 @@
       <p class="copyright">
         ©️ 2023 Kenta Joko
       </p>
+      
+      <!--フッターの猫-->
+      <div class="footer-cat"></div>
+      
     </footer>
   </body>
 </html>

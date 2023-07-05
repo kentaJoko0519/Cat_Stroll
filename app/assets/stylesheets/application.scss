@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+ 
+.header-cat {
+  background-image: image-url("cat_morning.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 138px;
+  width: 148px;
+  position: absolute;
+  top: 2%;
+  left: 84%;
+}
+
+.footer-cat {
+  background-image: image-url("sit_cat.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 141px;
+  width: 141px;
+  position: relative;
+  bottom: 350px;
+  right: 94px;
+}
