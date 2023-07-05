@@ -37,3 +37,20 @@
   bottom: 350px;
   right: 94px;
 }
+
+@media screen and (max-width:576px) {
+  
+  .header-cat {
+    height: 85px;
+    width: 89px;
+    top: 10%;
+  }
+  
+  .footer-cat {
+    height: 85px;
+    width: 86px;
+    bottom: 303px;
+  }
+  
+  
+}
