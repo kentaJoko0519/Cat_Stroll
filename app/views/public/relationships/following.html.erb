@@ -9,17 +9,17 @@
       <%= @following_users.count %>人
     </div>
   </div>
-      
-  <div class="row mt-3">
+
+  <div class="row mt-3 text-center">
     <div class="col-md-6 following-list">
       <table class="table table-border table-hover table-sm">
         <tbody>
           <% @following_users.each do |following_user| %>
             <tr data-href="/users/<%= following_user.id %>">
-              <td class="col-md-2">
+              <td class="col-md-2 col-sm-4">
                 <%= image_tag following_user.get_profile_image(70,70) %>
               </td>
-              <td class="col-md-4">
+              <td class="col-md-4 col-sm-8">
                 <% if following_user.user_name.present? %>
                   <%= following_user.user_name%><!--ユーザーネーム-->
                 <% else %>
@@ -33,7 +33,7 @@
 
     </div>
   </div>
-  
+
   <script>
     $('tr[data-href]').click(function (e) {
       if (!$(e.target).is('a')) {
@@ -41,7 +41,7 @@
       };
     });
   </script>
-  
+
 </div>
 
 

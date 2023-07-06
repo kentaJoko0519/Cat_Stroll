@@ -6,10 +6,10 @@
           <tbody>
             <% users.each do |user| %>
               <tr data-href="/users/<%= user.id %>">
-                <td class="col-md-2">
+                <td class="col-md-2 col-sm-4">
                   <%= image_tag user.get_profile_image(70,70) %><!--プロフィール画像-->
                 </td>
-                <td class="col-md-4">
+                <td class="col-md-4 col-sm-8">
                   <% if user.user_name.present? %>
                     <%= user.user_name%><!--ユーザーネーム-->
                   <% else %>
