@@ -425,6 +425,12 @@ button.gradient:hover {
 }
 
 // 『POST』
+  // 新規投稿
+.new-post-introduction {
+  width: 500px;
+  height: 300px;
+}
+
   // 投稿一覧
 .post-list {
   border: 1px solid #111111;
@@ -530,9 +536,9 @@ button.gradient:hover {
 // 『MY PAGE』
   // マイページのブックマークリンク
 .bookmark-button{
-  width: 200px;
-  height: 30px;
-  padding: 3 7px;
+  width: 120px;
+  height: 31px;
+  margin-left: 66%;
   background-color: #34495e;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -606,8 +612,8 @@ button.gradient:hover {
   text-decoration: none;
 }
 
-// フォロー中一覧
-.following-list {
+// フォロー中一覧,フォロワー一覧
+.following-list, .follower-list {
   margin: 0 auto;
   height: 650px;
   padding: 10px;
@@ -617,22 +623,7 @@ button.gradient:hover {
   border-radius: 8px;
 }
 
-.following-list td {
-  vertical-align: middle;
-}
-
-// フォロワー一覧
-.follower-list {
-  margin: 0 auto;
-  height: 500px;
-  padding: 10px;
-  overflow: scroll;
-  overflow-x: hidden;
-  border: 1px solid #111111;
-  border-radius: 8px;
-}
-
-.follower-list td {
+.following-list td, .follower-list td {
   vertical-align: middle;
 }
 
@@ -664,6 +655,13 @@ button.gradient:hover {
   text-decoration: none;
 }
 
+.report-reason {
+  width: 600px;
+  height: 300px;
+  margin: 0 auto;
+}
+  
+
 // 管理者側
   // 『POST』
 .report-list {
@@ -676,15 +674,54 @@ button.gradient:hover {
 
 @media screen and (max-width:576px) {
 
-  div.flex{
-    display: block;
-  }
-
   // フッター
   footer{
     height: 275px;
     margin-top: 72px;
   }
-
-
+  
+  .new-post-introduction {
+    width: 100%;
+  }
+  
+  
+  .post-list {
+    width: 90%;
+    height: 800px;
+    padding: 10px;
+    margin: 0 auto;
+  }
+  
+  .post {
+    width: 93%;
+    height: 300px;
+    margin: 0 auto;
+  }
+  
+  .comment {
+    width: 100%;
+  }
+  
+  .user-introduction {
+    height: 175px;
+    width: 100%;
+  }
+  
+  .user-posted {
+    height: 500px;
+    width: 100%;
+  }
+  
+  .bookmark-button{
+    margin-left: 53%;
+  }
+  
+  .mypage-introduction {
+    width: 100%;
+  }
+  
+  .report-reason {
+    width: 100%;
+  }
+  
 }

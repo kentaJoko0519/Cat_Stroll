@@ -7,7 +7,8 @@
   </div>
 <!--投稿する場所の情報-->
   <div class="row text-center">
-    <div class="col-md-8" style="margin-left:14%;">
+    <div class="col-md-8" style="margin: 0 auto">
+      <%= form_with model: @post, url: posts_path, method: :post do |f| %>
       <table class="table">
         <tr>
           <td>名称</td>
@@ -17,28 +18,25 @@
           <td>住所</td>
           <td><%= params[:address] %></td>
         </tr>
-      </table>
-      
       <!--投稿文と画像のフォーム-->
-      <%= form_with model: @post, url: posts_path, method: :post do |f| %>
-        <table class="table">
-          <tr>
-            <td>投稿文</td>
-            <td><%= f.text_area :introduction,placeholder: "タグを追加する場合は全角ハッシュタグで投稿してください", style: "width: 500px; height:300px;" %></td>
-          </tr>
-          <tr>
-            <td>画像(５枚まで選択可)</td>
-            <td><%= f.file_field :images, placeholder: "画像", accept: "image/*", multiple: true %></td>
-          </tr>
-        </table>
-          <!--hidden_fuieldでマップから送られた情報をcreateアクションに-->
-        　<%= f.hidden_field :user_id %>
-          <%= f.hidden_field :name, :value => params[:name] %>
-          <%= f.hidden_field :address, :value => params[:address] %>
-          <%= f.hidden_field :latitude, :value => params[:latitude] %>
-          <%= f.hidden_field :longitude, :value => params[:longitude] %>
+        <tr>
+          <td>投稿文</td>
+          <td><%= f.text_area :introduction,placeholder: "タグを追加する場合は全角ハッシュタグで投稿してください", class: "new-post-introduction" %></td>
+        </tr>
+        <tr>
+          <td>画像(５枚まで選択可)</td>
+          <td><%= f.file_field :images, placeholder: "画像", accept: "image/*", multiple: true %></td>
+        </tr>
+      </table>
+      <!--hidden_fuieldでマップから送られた情報をcreateアクションに-->
+      　<%= f.hidden_field :user_id %>
+        <%= f.hidden_field :name, :value => params[:name] %>
+        <%= f.hidden_field :address, :value => params[:address] %>
+        <%= f.hidden_field :latitude, :value => params[:latitude] %>
+        <%= f.hidden_field :longitude, :value => params[:longitude] %>
           
-        <%= f.submit "投稿する", class: "new-post-btn-hover color-new-post", style: "margin-left:80px;" %>
+        <%= f.submit "投稿する", class: "new-post-btn-hover color-new-post", style: "margin: 0 auto;" %>
+        
       <% end %>
     </div>
   </div>
