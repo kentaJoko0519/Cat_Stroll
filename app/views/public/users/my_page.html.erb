@@ -1,77 +1,71 @@
 <div class="container">
 
   <div class="row mt-3">
-    <div class="col-md-10 mt-1" style="margin:0 auto;">
-      <div class="d-flex">
-        <h5><strong>プロフィール</strong></h5>
-        <%= link_to "ブックマーク", post_favorite_path(@user),class: "bookmark-button text-center" %>
+    <div class="col-12 col-md-10 mx-auto mt-1">
+
+      <%= image_tag @user.get_profile_image(300,300), class: 'd-block mx-auto' %>
+
+      <div class="row my-3">
+        <div class="col-12 col-md-4 text-center">
+          <h5>氏名</h5>
+          <div>
+            <%= "#{@user.first_name} #{@user.last_name}" %>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 text-center mt-5 mt-md-0">
+          <h5>ユーザーネーム</h5>
+          <div>
+            <% if @user.user_name.present? %>
+              <%= @user.user_name %>
+            <% else %>
+              <small class="text-black-50">※ユーザーネームは設定されていません</small>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 text-center mt-5 mb-4 mt-md-0">
+          <h5>メールアドレス</h5>
+          <div>
+            <%= @user.email %>
+          </div>
+        </div>
       </div>
-      
-      <table class="table text-center mt-1">
-        <thead>
-          <tr>
-            <th>プロフィール画像</th>
-            <th>氏名</th>
-            <th>ユーザーネーム</th>
-            <th>メールアドレス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <%= image_tag @user.get_profile_image(90,90) %>
-            </td>
-            <td>
-              <%= @user.first_name %>  <%= @user.last_name %>
-            </td>
-            <td>
-              <% if @user.user_name.present? %>
-                <%= @user.user_name %>
-              <% else %>
-                <p style="opacity:0.5">※ユーザーネームは設定されていません</p>
-              <% end %>
-            </td>
-            <td>
-              <%= @user.email %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
     </div>
   </div>
-
+  
   <div class="row">
-    <div class="col-md-8 text-center d-flex justify-content-center mb-3" style="margin: 0 auto;">
-      <!--投稿数-->
-      <div class="col-md-2 d-flex flex-column">
-        <strong>
-          <%= @posts.count %>
-        </strong>
-        投稿数
-      </div>
-      <!--フォロー中-->
-      <div class="col-md-2 d-flex flex-column">
-        <strong>
-          <%= @user.follower.count %>
-        </strong>
-        <%= link_to "フォロー中",user_following_path(@user) %>
-      </div>
-      <!--フォロワー-->
-      <div class="col-md-2 d-flex flex-column">
-        <strong>
-          <%= @user.followed.count %>
-        </strong>
-        <%= link_to "フォロワー",user_follower_path(@user) %>
+    <div class="col-12 col-md-6 mx-auto mb-5">
+      <div class="row">
+        <div class="col-4 col-md-4 text-center">
+          <strong>
+            <%= @posts.count %>
+          </strong>
+          <small class="d-block">投稿数</small>
+        </div>
+        <div class="col-4 col-md-4 text-center">
+          <%= link_to user_following_path(@user) do %>
+            <strong class="text-dark">
+              <%= @user.follower.count %>
+            </strong>
+            <small class="d-block text-dark">フォロー中</small>
+          <% end %>
+        </div>
+        <div class="col-4 col-md-4 text-center">
+          <%= link_to user_follower_path(@user) do %>
+            <strong class="text-dark">
+              <%= @user.followed.count %>
+            </strong>
+            <small class="d-block text-dark">フォロワー</small>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      <h6 class="text-center">
+      <h4 class="text-center">
         <strong>自己紹介</strong>
-      </h6>
+      </h4>
       <div class="mypage-introduction">
         <% if @user.introduction.present? %>
          <%= @user.introduction %>
@@ -84,6 +78,10 @@
 
   <div class="mt-1 d-flex justify-content-center">
     <%= link_to "edit",edit_user_path(@user),class: "edit-btn-hover color-edit mypage-button" %>
+  </div>
+  
+  <div class="text-center mt-5">
+    <%= link_to "ブックマーク", post_favorite_path(@user),class: "bookmark-button" %>
   </div>
 
   <!--過去投稿一覧-->

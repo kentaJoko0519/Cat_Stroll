@@ -4,18 +4,25 @@
     <div class="col-md-12 text-center">
       <!--Google Mapのスタイル-->
       <style>
-          #map { height: 400px; width: 60%;}
+          #map { height: 400px; width: 100%;}
+          @media screen and (max-width: 767.98px) {
+            #map { height: 250px; }
+          }
       </style>
 
       <!--地図検索-->
-      <div style="margin-top: 20px; margin-bottom: 10px;">
+      <div class="col-12 col-md-12 my-3 mt-5">
         <i class="fas fa-search-location fa-lg"></i>
-        <input id="address" type="textbox" style="margin-left: 10px; width:400px;">
+        <input id="address" class="search-box" type="textbox">
         <input type="button" value="検索" onclick="codeAddress()">
       </div>
 
       <!--Google Map-->
-      <div id="map" class="d-inline-flex justify-content-center"></div>
+      <div class="row">
+        <div class="col-12 col-md-8 mx-auto">
+          <div id="map" class="d-inline-flex justify-content-center"></div>
+        </div>
+      </div>
 
       <!--地図のjs-->
       <script>
@@ -94,15 +101,15 @@
   </div>
 <!--ーーーーーーーーーーーーーーーーーーーーーーーーー（一覧画面）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
   <div class="row">
-    <div class="col-md-12 mt-5">
+    <div class="col-12 col-md-12 mt-5">
     <!--検索-->
       <div class=" mb-2">
         <%= form_with url: posts_path, method: :get, local: true do |f| %>
           <div class="d-flex justify-content-center">
             <i class="fas fa-search fa-lg mt-2 ml-2"></i>
             <%= f.text_field :search, class: "ml-2 mr-2 form-control w-50 border border-dark", value: params[:search], id: "searchBox" %>
-            <%= f.submit 'search', class: "btn btn-primary" %>
-            <span id="clearSearch" class="ml-2 btn btn-secondary">クリア</span>
+            <%= f.submit 'search', class: "search-button btn btn-primary" %>
+            <small id="clearSearch" class="clear-button ml-2 btn btn-secondary">クリア</small>
           </div>
         <% end %>
       </div>
@@ -116,6 +123,37 @@
       </script>
 
       <div class="post-list">
+
+        <div class="row">
+          <div class="col-12 col-md-12 d-flex flex-wrap">
+            <% @posts.each do |post| %>
+              <div class="col-10 col-md-3 m-4 text-center border border-dark ">
+                <%= link_to post_path(post.id) do %>
+                  <div class="text-dark">
+                    <% if post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
+                      <%= post.user.user_name %>            <!--ユーザーネームを表示-->
+                    <% else %>                              <!--設定されていなければ、氏名を表示-->
+                      <%= post.user.first_name + post.user.last_name %>
+                    <% end %>
+                  </div>
+                  <div class="m-2">
+                    <% if post.images.attached? %>
+                      <%= image_tag post.get_image(post.images[0], 120,120) %>
+                    <% else %>
+                      <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
+                    <% end %>
+                  </div>
+                  <div class="text-dark">
+                    <%= post.name %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+
+        <div class="table-responsive-md">
         <table class="table table-hover text-center">
           <tbody>
           <% @posts.each do |post| %>
@@ -139,9 +177,10 @@
           <% end %>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
-    
+
     <!--投稿一覧のtr部分をクリックしたとき、その投稿の詳細ページへと遷移するjs-->
     <script>
       $('tr[data-href]').click(function (e) {

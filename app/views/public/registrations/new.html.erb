@@ -6,51 +6,63 @@
       <h3><strong>新規登録</strong></h3>
     </div>
 
-    <div class="col-md-10 mt-4" style="margin-left:8%;">
+    <div class="col-md-10 mx-auto mt-4">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
-      <table class="table table-borderless">
-        <tr>
-          <td>名前</td>
-          <td>
-            <div class="d-flex">
-              <div style="margin-left:1%;">
-                ( 姓 )<%= f.text_field :first_name %>
-              </div>
-              <div style="margin-left:11%;">
-                ( 名 )<%= f.text_field :last_name %>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>フリガナ</td>
-          <td>
-            <div class="d-flex">
-              (セイ)<%= f.text_field :first_name_kana %>
-              <div style="margin-left:10%;">
-                (メイ)<%= f.text_field :last_name_kana %>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width:70%" %>
-          </td>
-        </tr>
-        <tr>
-          <td>パスワード(６文字以上)</td>
-          <td><%= f.password_field :password, autocomplete: "new-password", style: "width:70%" %></td>
-        </tr>
-        <tr>
-          <td>パスワード(確認用)</td>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width:70%" %></td>
-        </tr>
-      </table>
 
-      <div class="col-md-12 text-center">
+      <div class="form-group">
+        <%= f.label :name, '名前' %>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <%= f.label :first_name, '(姓)' %>
+            <%= f.text_field :first_name, class: 'form-control' %>
+          </div>
+          <div class="col-12 col-md-6 mt-3 mt-md-0">
+            <%= f.label :last_name, '(名)' %>
+            <%= f.text_field :last_name, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :name_kana, 'フリガナ' %>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <%= f.label :first_name_kana, '(セイ)' %>
+            <%= f.text_field :first_name_kana, class: 'form-control' %>
+          </div>
+          <div class="col-12 col-md-6 mt-3 mt-md-0">
+            <%= f.label :last_name_kana, '(メイ)' %>
+            <%= f.text_field :last_name_kana, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <%= f.label :password, 'パスワード' %>
+            <small class="text-black-50">(６文字以上)</small>
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+          <div class="col-12 col-md-6 mt-3 mt-md-0">
+            <%= f.label :password_confirmation, 'パスワード' %>
+            <small class="text-black-50">(確認用)</small>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
         <button class="registration_button clip-path">
           新規登録
         </button>
@@ -63,7 +75,7 @@
     <div class="col-md-12 mt-5" style="margin-left:10px;">
       <p>
         既に新規登録されている方は、<br>
-        <%= link_to"こちら" ,new_user_session_path %>からログインしてください。
+        <%= link_to"こちら", new_user_session_path %>からログインしてください。
       </p>
     </div>
   </div>
