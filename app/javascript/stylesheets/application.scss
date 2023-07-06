@@ -43,7 +43,6 @@ footer{
 // コピーライト
 .copyright {
   color: #DDDDDD;
-  font-size: 30px;
   display: flex;
   justify-content: center;
 }
@@ -329,6 +328,12 @@ button.gradient:hover {
   border: solid 1px #CCC;
 }
 
+@media screen and (max-width: 767.98px) {
+  .tab {
+    width: 100%;
+  }
+}
+
 /*タブがactiveのときのデザイン*/
 .tab-active {
   color: #FFF;
@@ -432,6 +437,17 @@ button.gradient:hover {
 }
 
   // 投稿一覧
+.search-box {
+  margin-left: 10px;
+  width: 57%;
+}  
+
+@media screen and (max-width: 767.98px) {
+  .search-box {
+    width: 72%;
+  }  
+}
+  
 .post-list {
   border: 1px solid #111111;
   width: 70%;
@@ -538,7 +554,6 @@ button.gradient:hover {
 .bookmark-button{
   width: 120px;
   height: 31px;
-  margin-left: 66%;
   background-color: #34495e;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -660,7 +675,7 @@ button.gradient:hover {
   height: 300px;
   margin: 0 auto;
 }
-  
+
 
 // 管理者側
   // 『POST』
@@ -679,49 +694,58 @@ button.gradient:hover {
     height: 275px;
     margin-top: 72px;
   }
-  
+
   .new-post-introduction {
     width: 100%;
   }
   
+  .search-button {
+    width: 52px;
+    height: 37px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+  }
   
+  .clear-button {
+    width: 56px;
+    font-size: 10px;
+    padding: 10px;
+  }
+
   .post-list {
     width: 90%;
     height: 800px;
     padding: 10px;
     margin: 0 auto;
   }
-  
+
   .post {
     width: 93%;
     height: 300px;
     margin: 0 auto;
   }
-  
+
   .comment {
     width: 100%;
   }
-  
+
   .user-introduction {
     height: 175px;
     width: 100%;
   }
-  
+
   .user-posted {
     height: 500px;
     width: 100%;
   }
-  
-  .bookmark-button{
-    margin-left: 53%;
-  }
-  
+
   .mypage-introduction {
     width: 100%;
   }
-  
+
   .report-reason {
     width: 100%;
   }
-  
+
 }

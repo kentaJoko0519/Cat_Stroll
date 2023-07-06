@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
+
 .header-cat {
   background-image: image-url("cat_morning.png");
   background-position: center;
@@ -23,7 +23,7 @@
   width: 148px;
   position: absolute;
   top: 2%;
-  left: 84%;
+  right: 2%;
 }
 
 .footer-cat {
@@ -34,23 +34,23 @@
   height: 141px;
   width: 141px;
   position: relative;
-  bottom: 350px;
+  bottom: 325px;
   right: 94px;
 }
 
 @media screen and (max-width:576px) {
-  
+
   .header-cat {
     height: 85px;
     width: 89px;
-    top: 10%;
+    top: 0;
   }
-  
+
   .footer-cat {
     height: 85px;
     width: 86px;
-    bottom: 303px;
+    bottom: 310px;
   }
-  
-  
+
+
 }

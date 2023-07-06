@@ -1,16 +1,16 @@
 
 <div class="container">
-  
+
   <div class="row text-center">
-    <div class="col-md-12 mt-3">
-      <i class="fas fa-users fa-lg"></i>
+    <div class="col-md-12 my-3">
+      <i class="fas fa-users fa-3x"></i>
     </div>
   </div>
-  
+
   <!--タブ部分-->
   <div>
     <div>
-      <ul class="tab-list list-unstyled d-flex text-center" style="margin-left:16%;">
+      <ul class="tab-list list-unstyled d-block d-md-flex text-center justify-content-center">
         <li class="tab tab-active">
           ユーザー
         </li>
@@ -24,7 +24,7 @@
       <!--タブで選択された要素部分-->
       <div class="tabbox-contents">
         <div class="tabbox box-show">
-          <%= render 'list', users: @users %>    
+          <%= render 'list', users: @users %>
         </div>
         <div class="tabbox">
           <%= render 'list', users: @follower_users %>
@@ -35,6 +35,6 @@
       </div>
     </div>
   </div>
-      
+
 </div>
 
