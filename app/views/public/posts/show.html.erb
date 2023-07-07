@@ -86,15 +86,15 @@
       <!--投稿情報-->
       <table class="table table-border">
         <tr>
-          <td>投稿日</td>
+          <td class="col-3">投稿日</td>
           <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
         </tr>
         <tr>
-          <td>名称</td>
+          <td class="col-3">名称</td>
           <td><strong><%= @post.name %></strong></td>   <!--投稿した場所-->
         </tr>
         <tr class="border-bottom">
-          <td>住所</td>
+          <td class="col-3">住所</td>
           <td><%= @post.address %></td>                 <!--投稿場所の住所-->
         </tr>
       </table>
@@ -139,26 +139,30 @@
       </h6>
       <div class="comment">
         <% @comments.each do |comment|%>
-          <table class="table table-borderless table-sm">
-            <tr>
-              <td class="col-md-4">
+          <div class="border border-dark m-1">
+            <div class="row mt-2">
+              <div class="col-1">
                 <%= image_tag comment.user.get_profile_image(35,35) %>
+              </div>
+              <div class="col-7">
                 <% if comment.user.user_name.present? %>
                   <%= link_to comment.user.user_name, user_path(comment.user.id), class: "comment-user-name" %>
                 <% else %>
                   <%= link_to comment.user.first_name + comment.user.last_name, user_path(comment.user.id), class: "comment-user-name" %>
                 <% end %>
-              </td>
-              <td class="ml-5">
-                <%= comment.sentence %>
-              </td>
-              <td>
+              </div>
+              <div class="col-3">
                 <% if comment.user == current_user %>
-                <%= link_to "削除", comment_path(comment.id), method: :delete %>
+                  <%= link_to "削除", comment_path(comment.id), method: :delete %>
                 <% end %>
-              </td>
-            </tr>
-          </table>
+              </div>
+            </div>
+            <div class="row tb-2 m-2">
+              <div class="col-12 text-wrap">
+                <%= comment.sentence %>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
       <!--コメント入力欄-->
@@ -168,7 +172,7 @@
           <div class="d-flex">
             <%= f.text_area :sentence, rows: '5', placeholder: "コメントをここに", class: "input-comment" %>
             <%= f.hidden_field :post_id, :value => @post.id %>
-            <%= f.submit "送信", class: "btn btn-success", style: "height:40px;" %>
+            <%= f.submit "送信", class: "btn btn-success mt-1", style: "height:40px;" %>
           </div>
         <% end %>
       </div>
