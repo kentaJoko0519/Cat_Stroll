@@ -262,6 +262,15 @@ button.gradient:hover {
   color:#111;
 }
 
+@media screen and (max-width: 767.98px) {
+  .add-bookmark, .remove-bookmark {
+    margin: 35px;
+    display: flex;
+    justify-content: center;
+  }
+  
+}
+
 
 // マイページの 編集リンク,編集アップデート,ログアウトリンク
 .new-post-btn-hover, .edit-btn-hover, .delete-btn-hover, .update-btn-hover {
@@ -506,6 +515,19 @@ button.gradient:hover {
   opacity: 0.7;
 }
 
+  // 投稿編集
+.edit-introduction {
+  width: 500px;
+  height: 300px;
+}
+
+@media screen and (max-width: 767.98px) {
+  .edit-introduction {
+    height: 235px;
+    width: 100%;
+  }
+}
+
 // 『USER』
   // ユーザー一覧
 .user-list {
@@ -550,6 +572,14 @@ button.gradient:hover {
 }
 
 // 『MY PAGE』
+
+.mypage-info{
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 78%;
+  color: #DDDDDD;
+  background-color: #444444;
+}
   // マイページのブックマークリンク
 .bookmark-button{
   width: 120px;

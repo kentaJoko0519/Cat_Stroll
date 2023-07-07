@@ -7,9 +7,13 @@
           これまでの投稿が閲覧できなくなります。<br>
           退会する場合は、「退会する」をクリックしてください。
         </p>
-        <div style="margin: 85px auto;">
-          <%= link_to "退会しない", my_page_path, class: "btn btn-primary",style: "margin-right:160px;" %>
-          <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-danger",style: "margin-right:15px;" %>
+        <div class="row my-5 d-flex justify-content-center">
+          <div class="col-6 col-md-3">
+            <%= link_to "退会しない", my_page_path, class: "btn btn-primary" %>
+          </div>
+          <div class="col-6 col-md-3">
+            <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-danger" %>
+          </div>
         </div>
     </div>
   </div>
