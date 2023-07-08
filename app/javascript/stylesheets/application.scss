@@ -36,15 +36,15 @@ header{
 footer{
   background-image: linear-gradient(150deg, rgba(3, 3, 3, 1) 9%, rgba(49, 49, 49, 1) 32%, rgba(112, 111, 111, 1) 55%, rgba(170, 169, 169, 1) 83%);
   font-family: 'Caveat', cursive;
+  font-size: 27px;
   height: 275px;
-  padding: 100px;
+  padding: 100px 0;
+  position: relative;
 }
 
 // コピーライト
 .copyright {
   color: #DDDDDD;
-  display: flex;
-  justify-content: center;
 }
 
 // プライバシーポリシー
@@ -57,7 +57,7 @@ footer{
   color: #DDDDDD;
   font-family: 'Caveat', cursive;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 27px;
   display: flex;
 }
 
@@ -268,7 +268,7 @@ button.gradient:hover {
     display: flex;
     justify-content: center;
   }
-  
+
 }
 
 
@@ -449,14 +449,14 @@ button.gradient:hover {
 .search-box {
   margin-left: 10px;
   width: 57%;
-}  
+}
 
 @media screen and (max-width: 767.98px) {
   .search-box {
     width: 72%;
-  }  
+  }
 }
-  
+
 .post-list {
   border: 1px solid #111111;
   width: 70%;
@@ -576,7 +576,7 @@ button.gradient:hover {
 .mypage-info{
   border: 1px solid white;
   border-radius: 15px;
-  width: 78%;
+  width: 100%;
   color: #DDDDDD;
   background-color: #444444;
 }
@@ -602,7 +602,7 @@ button.gradient:hover {
   // マイページ自己紹介
 .mypage-introduction {
   height: 200px;
-  width: 600px;
+  width: 80%;
   padding: 10px;
   margin: 0 auto;
   overflow: scroll;
@@ -723,12 +723,17 @@ button.gradient:hover {
   footer{
     height: 275px;
     margin-top: 72px;
+    font-size: 18px;
+  }
+  
+  .privacy a, .help a {
+    font-size: 18px;
   }
 
   .new-post-introduction {
     width: 100%;
   }
-  
+
   .search-button {
     width: 52px;
     height: 37px;
@@ -736,7 +741,7 @@ button.gradient:hover {
     display: flex;
     justify-content: center;
   }
-  
+
   .clear-button {
     width: 56px;
     font-size: 10px;
@@ -768,6 +773,10 @@ button.gradient:hover {
   .user-posted {
     height: 500px;
     width: 100%;
+  }
+  
+  .mypage-info {
+    width: 66%;
   }
 
   .mypage-introduction {
