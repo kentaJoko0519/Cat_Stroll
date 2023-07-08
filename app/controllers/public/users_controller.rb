@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
-  
+
 # ユーザー側  ユーザー
-  
+
   # 新規登録orログインしないとアクションが実行されない
   before_action :authenticate_user!
 
@@ -19,7 +19,7 @@ class Public::UsersController < ApplicationController
   end
 
 # 退会確認
-  def unsubscribe 
+  def unsubscribe
     @user=current_user                                    # @user にログインしているユーザーを取得
   end
 
@@ -54,9 +54,12 @@ class Public::UsersController < ApplicationController
 
   def update
     @user=current_user           # @user→ログインしているユーザーの情報
-    @user.update(user_params)    # 登録情報のアップデート
-    flash[:notice] = "更新しました"
-    redirect_to my_page_path     # マイページにリダイレクト
+    if @user.update(user_params)    # 登録情報のアップデート
+      flash[:notice] = "更新しました"
+      redirect_to my_page_path     # マイページにリダイレクト
+    else
+      render :edit
+    end
   end
 
   private

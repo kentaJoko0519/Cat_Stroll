@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   # フリガナには全角カタカナしか保存できないようにする
   validates :first_name_kana, :last_name_kana, format: {with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,message: "全角カタカナで入力して下さい"}
+  validates :user_name, length: { minimum: 3, maximum: 14 }
   
 # post
   has_many :posts, dependent: :destroy
