@@ -33,9 +33,8 @@
   background-size: cover;
   height: 141px;
   width: 141px;
-  position: relative;
-  bottom: 325px;
-  right: 94px;
+  position: absolute;
+  top: -43%;
 }
 
 @media screen and (max-width:576px) {
@@ -48,9 +47,8 @@
 
   .footer-cat {
     height: 85px;
-    width: 86px;
-    bottom: 310px;
+    width: 89px;
+    top: -26%;
   }
-
 
 }

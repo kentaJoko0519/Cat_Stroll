@@ -8,33 +8,35 @@
   
   <div class="post-list">
     <div class="row">
-      <div class="col-12 col-md-12 d-flex flex-wrap">
+      <div class="col-12 col-md-12 d-flex justify-content-start flex-wrap px-0">
         <% @posts.each do |post| %>
-          <div class="col-10 col-md-3 m-4 text-center border border-dark ">
-            <%= link_to post_path(post.id) do %>
-              <div class="text-dark">
-                <% if post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
-                  <%= post.user.user_name %>            <!--ユーザーネームを表示-->
-                <% else %>                              <!--設定されていなければ、氏名を表示-->
-                  <%= post.user.first_name + post.user.last_name %>
-                <% end %>
-              </div>
-              <div class="m-2">
-                <% if post.images.attached? %>
-                  <%= image_tag post.get_image(post.images[0], 120,120) %>
-                <% else %>
-                  <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
-                <% end %>
-              </div>
-              <div class="text-dark">
-                <%= post.name %>
-              </div>
-            <% end %>
+          <div class="col-9 col-md-6 col-lg-4 p-3 mx-md-0 mx-lg-0 mx-auto text-center">
+            <div class="border border-dark h-100">
+              <%= link_to post_path(post.id) do %>
+                <div class="text-dark text-truncate">
+                  <% if post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
+                    <%= post.user.user_name %>            <!--ユーザーネームを表示-->
+                  <% else %>                              <!--設定されていなければ、氏名を表示-->
+                    <%= post.user.first_name + post.user.last_name %>
+                  <% end %>
+                </div>
+                <div class="m-2">
+                  <% if post.images.attached? %>
+                    <%= image_tag post.get_image(post.images[0], 120,120) %>
+                  <% else %>
+                    <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
+                  <% end %>
+                </div>
+                <div class="text-dark">
+                  <%= post.name %>
+                </div>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
-  </div>
+  </div>  
   
   <script>
     $('tr[data-href]').click(function (e) {
