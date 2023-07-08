@@ -547,13 +547,13 @@ button.gradient:hover {
 
 .user-list td {
   vertical-align: middle;
-  font-size:20px;
+  font-size: 20px;
 }
 
   // ユーザー詳細
 .user-introduction {
-  height: 200px;
-  width: 650px;
+  height: 250px;
+  width: 70%;
   margin: 0 auto;
   padding: 10px;
   overflow: scroll;
@@ -775,7 +775,6 @@ button.gradient:hover {
   }
 
   .user-introduction {
-    height: 175px;
     width: 100%;
   }
 

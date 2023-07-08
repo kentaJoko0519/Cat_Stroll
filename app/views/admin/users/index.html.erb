@@ -3,27 +3,20 @@
   <div class="row mt-5">
     <div class="col-md-8 user-list text-center">
       <table class="table table-sm table-hover">
-        <thead class="table-secondary">
-          <tr>
-            <td>プロフィール画像</td>
-            <td>ユーザー名</td>
-            <td>ステータス</td>
-          </tr>
-        </thead>
         <% @users.each do |user| %>
         <tbody>
           <tr data-href="/admin/users/<%= user.id %>">
-            <td class="col-md-3">
+            <td class="col-1 col-md-3">
               <%= image_tag user.get_profile_image(70,70) %>
             </td>
-            <td class="col-md-5">
+            <td class="col-5 col-md-5">
               <% if user.user_name.present? %>
                 <%= user.user_name%>
               <% else %>
                 <%= user.first_name %><%= user.last_name %>
               <% end %>
             </td>
-            <td>
+            <td class="col-2 col-md-2">
               <% if user.is_deleted == false %>
                 <strong style="color:blue;">有効</strong>
               <% else %>

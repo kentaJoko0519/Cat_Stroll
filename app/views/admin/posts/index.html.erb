@@ -1,15 +1,15 @@
 <div class="container">
 
   <!--検索-->
-  <div class="row mt-5">
-    <div class="col-md-12 text-center" style="margin-left:10%;">
-      <div class="ml-5 mb-2">
+  <div class="row">
+    <div class="col-12 col-md-12 mt-5">
+      <div class="mb-2">
         <%= form_with url: admin_posts_path, method: :get, local: true do |f| %>
-          <div class="d-flex">
+          <div class="d-flex justify-content-center">
             <i class="fas fa-search fa-lg mt-2 ml-2"></i>
             <%= f.text_field :search, class: "ml-2 mr-2 form-control w-50 border border-dark", value: params[:search], id: "searchBox" %>
-            <%= f.submit 'search', class: "btn btn-primary" %>
-            <span id="clearSearch" class="ml-2 btn btn-secondary">クリア</span>
+            <%= f.submit 'search', class: "search-button btn btn-primary" %>
+            <small id="clearSearch" class="clear-button ml-2 btn btn-secondary">クリア</small>
           </div>
         <% end %>
       </div>
@@ -22,53 +22,37 @@
         })
       </script>
     </div>
+    
+    <div class="post-list">
+      <div class="row">
+        <div class="col-12 col-md-12 d-flex justify-content-start flex-wrap px-0">
+          <% @posts.each do |post| %>
+            <div class="col-9 col-md-6 col-lg-4 p-3 mx-md-0 mx-lg-0 mx-auto text-center">
+              <div class="border border-dark h-100">
+                <%= link_to admin_post_path(post.id) do %>
+                  <div class="text-dark text-truncate">
+                    <% if post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
+                      <%= post.user.user_name %>            <!--ユーザーネームを表示-->
+                    <% else %>                              <!--設定されていなければ、氏名を表示-->
+                      <%= post.user.first_name + post.user.last_name %>
+                    <% end %>
+                  </div>
+                  <div class="m-2">
+                    <% if post.images.attached? %>
+                      <%= image_tag post.get_image(post.images[0], 120,120) %>
+                    <% else %>
+                      <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
+                    <% end %>
+                  </div>
+                  <div class="text-dark">
+                    <%= post.name %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>  
   </div>
-
-  <div class="row text-center">
-    <div class="col-md-8 mt-2 post-list">
-      <table class="table table-hover">
-        <thead>
-          <tr class="table-secondary">
-            <th>投稿ID</th>
-            <th>投稿画像</th>
-            <th>投稿場所</th>
-            <th>投稿者ID</th>
-            <th>投稿者</th>
-          </tr>
-        </thead>
-        <% @posts.each do |post| %>
-        <tbody>
-          <tr data-href="/admin/posts/<%= post.id %>">
-            <td><%= post.id %></td>
-            <td>
-              <% if post.images.attached? %>
-                <%= image_tag post.get_image(post.images[0], 90,70) %>
-              <% else %>
-                <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
-              <% end %>
-            </td>
-            <td><%= post.name %></td>                     <!--投稿場所-->
-            <td><%= post.user_id %></td>
-            <td>
-              <% if post.user.user_name.present? %>       <!--ユーザーネームが設定されているか？-->
-                <%= post.user.user_name %>                <!--ユーザーネームを表示-->
-              <% else %>                                  <!--設定されていなければ、氏名を表示-->
-                <%= post.user.first_name + post.user.last_name %>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
-    </div>
-  </div>
-  
-  <script>
-    $('tr[data-href]').click(function (e) {
-      if (!$(e.target).is('a')) {
-        window.location = $(e.target).closest('tr').data('href');
-      };
-    });
-  </script>
-  
 </div>
