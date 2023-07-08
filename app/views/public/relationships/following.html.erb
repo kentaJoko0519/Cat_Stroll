@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row text-center mt-3">
+  <div class="row text-center mt-5">
     <div class="col-md-12">
       <h3>
         <strong>
@@ -16,10 +16,10 @@
         <tbody>
           <% @following_users.each do |following_user| %>
             <tr data-href="/users/<%= following_user.id %>">
-              <td class="col-md-2 col-sm-4">
+              <td class="col-1 col-md-1 col-sm-4">
                 <%= image_tag following_user.get_profile_image(70,70) %>
               </td>
-              <td class="col-md-4 col-sm-8">
+              <td class="col-5 col-md-5 col-sm-8">
                 <% if following_user.user_name.present? %>
                   <%= following_user.user_name%><!--ユーザーネーム-->
                 <% else %>

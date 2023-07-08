@@ -10,7 +10,7 @@
     <div class="col-md-8" style="margin: 0 auto">
       <%= form_with model: @post, url: posts_path, method: :post do |f| %>
 
-        <div class="row">
+        <div class="row d-flex justify-content-center">
           <div class="col-12 d-flex mx-auto mt-5 mb-3">
             <div class="col-3 text-center lead font-weight-bold">名称</div>
             <div class="col-7 lead"><%= params[:name] %></div>
@@ -19,17 +19,21 @@
             <div class="col-3 text-center lead font-weight-bold">住所</div>
             <div class="col-9 lead"><%= params[:address] %></div>
           </div>
-          <div class="col-12 text-center mt-5 lead font-weight-bold">投稿文</div>
+          <div class="col-12 text-center mt-4 lead font-weight-bold">投稿文</div>
           <div class="col-12 text-center mx-auto">
             <%= f.text_area :introduction,placeholder: "タグを追加する場合は全角ハッシュタグで投稿してください", class: "new-post-introduction" %>
           </div>
-
-          <p class="col-12 col-md-3 text-left d-flex mx-auto mt-5 lead font-weight-bold">画像(複数選択可)</p>
-          <div class="col-10 col-md-6 mb-5">
+        </div>
+          
+        <div class="row mt-5 d-flex justify-content-center mx-auto">
+          <div class="col-12 col-md-6 col-lg-6">
+            <p class="lead font-weight-bold">画像(５枚まで選択可)</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
             <%= f.file_field :images, placeholder: "画像", accept: "image/*", multiple: true %>
           </div>
         </div>
-
+          
         <!--hidden_fuieldでマップから送られた情報をcreateアクションに-->
       　<%= f.hidden_field :user_id %>
         <%= f.hidden_field :name, :value => params[:name] %>

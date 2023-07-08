@@ -29,6 +29,9 @@ ja:
               blank: "入力必須項目です" 
             password_confirmation:
               confirmation: "パスワードが一致していません" 
+            user_name:
+              too_long: "14文字以内にしてください"
+              too_short: "3文字以上にしてください"
         report:
           attributes:
             reason:
