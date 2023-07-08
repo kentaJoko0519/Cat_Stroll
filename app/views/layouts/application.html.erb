@@ -134,6 +134,9 @@
             <%= current_user.first_name + current_user.last_name %>
           <% end %>
         <% elsif admin_signed_in? %>
+          <p class="text-danger mt-3">
+            管理者ログイン中
+          </p>
         <% else %>
           <p class="text-danger mt-3">
             ゲストログイン中

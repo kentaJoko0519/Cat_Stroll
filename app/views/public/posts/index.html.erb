@@ -103,7 +103,7 @@
   <div class="row">
     <div class="col-12 col-md-12 mt-5">
     <!--検索-->
-      <div class=" mb-2">
+      <div class="mb-2">
         <%= form_with url: posts_path, method: :get, local: true do |f| %>
           <div class="d-flex justify-content-center">
             <i class="fas fa-search fa-lg mt-2 ml-2"></i>
@@ -154,15 +154,5 @@
         </div>
       </div>  
     </div>
-
-    <!--投稿一覧のtr部分をクリックしたとき、その投稿の詳細ページへと遷移するjs-->
-    <script>
-      $('tr[data-href]').click(function (e) {
-        if (!$(e.target).is('a')) {
-          window.location = $(e.target).closest('tr').data('href');
-        };
-      });
-    </script>
-
   </div>
 </div>

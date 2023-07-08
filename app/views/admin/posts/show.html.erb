@@ -1,133 +1,151 @@
 <div class="container">
-  <!--見出し-->
-  <div class="row">
-    <div class="col-md-12 mt-3 text-center">
-      <h5>
-        <strong>
-          <% if @user.user_name.present? %>
-            <%= link_to @user.user_name, admin_user_path(@user.id) %>
-          <% else %>
-            <%= link_to @user.first_name + @user.last_name, admin_user_path(@user.id) %>
-          <% end %>
-          さんの投稿
-        </strong>
-      </h5>
-    </div>
-  </div>
 
 　<!--投稿者-->
   <div class="row">
 
-    <div class="col-md-6">
-      <!--投稿画像-->
-      <% if @post.images.attached? %>
-      <!--カルーセル-->
-        <div id="carousel" class="carousel slide" data-ride="carousel">
-          <!-- カルーセルインジケーター -->
-          <ol class="carousel-indicators">
-            <% @post.images.each_with_index do |image, idx| %>
-              <% if idx == 0 %>
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-              <% else %>
-                <li data-target="#carousel" data-slide-to="<%= idx %>"></li>
+    <div class="col-md-12 post-show">
+      <div class="col-md-8 col-lg-6 text-center mx-auto">
+        <table class="table table-sm">
+          <tr>　<!--プロフィール画像-->
+            <td class="text-center">
+              <%= image_tag @user.get_profile_image(60,60) %>
+            </td>
+            <td>
+              <h5>　<!--ユーザーネーム or 氏名-->
+                <% if @user.user_name.present? %>
+                  <%= link_to @user.user_name, admin_user_path(@user.id) %>
+                <% else %>
+                  <%= link_to @user.first_name + @user.last_name, admin_user_path(@user.id) %>
+                <% end %>
+              </h5>
+            </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="col-md-9 col-lg-6 text-center mx-auto">
+        <!--投稿画像-->
+        <% if @post.images.attached? %>
+        <!--カルーセル-->
+          <div id="carousel" class="carousel slide" data-ride="carousel">
+            <!-- カルーセルインジケーター -->
+            <ol class="carousel-indicators">
+              <% @post.images.each_with_index do |image, idx| %>
+                <% if idx == 0 %>
+                  <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <% else %>
+                  <li data-target="#carousel" data-slide-to="<%= idx %>"></li>
+                <% end %>
               <% end %>
-            <% end %>
-          </ol>
-          <!-- 画像 -->
-          <div class="carousel-inner text-center">
-            <% @post.images.each_with_index do |image, idx| %>
-              <% if idx == 0 %>
-                <div class="carousel-item active">
-                  <%= image_tag @post.get_image(image, 600,400), style: 'width: 80%; height: 300px; object-fit: cover;' %>
-                </div>
-              <% else %>
-                <div class="carousel-item">
-                  <%= image_tag @post.get_image(image, 600,400), style: 'width: 80%; height: 300px; object-fit: cover;' %>
-                </div>
+            </ol>
+            <!-- 画像 -->
+            <div class="carousel-inner text-center">
+              <% @post.images.each_with_index do |image, idx| %>
+                <% if idx == 0 %>
+                  <div class="carousel-item active">
+                    <%= image_tag @post.get_image(image, 600,400), style: 'width: 80%; height: 300px; object-fit: cover;' %>
+                  </div>
+                <% else %>
+                  <div class="carousel-item">
+                    <%= image_tag @post.get_image(image, 600,400), style: 'width: 80%; height: 300px; object-fit: cover;' %>
+                  </div>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
+            <!-- カルーセルコントローラー -->
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-          <!-- カルーセルコントローラー -->
-          <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      <% else %>
-        <div class="d-flex justify-content-center">
-          <%= image_tag asset_path('no_image.jpg'),width: 200, height: 170 %>
-        </div>
-      <!--end-->
-      <% end %>
+        <% else %>
+          <div class="d-flex justify-content-center">
+            <%= image_tag asset_path('no_image.jpg'),width: 200, height: 170 %>
+          </div>
+        <% end %>
+      </div>
 
       <!--投稿情報-->
-      <table class="table table-border mt-2">
-        <tr>
-          <td>投稿日</td>
-          <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
-        </tr>
-        <tr>
-          <td>名称</td>
-          <td><strong><%= @post.name %></strong></td>     <!--投稿した場所-->
-        </tr>
-        <tr class="border-bottom">
-          <td>住所</td>
-          <td><%= @post.address %></td>                   <!--投稿場所の住所-->
-        </tr>
-      </table>
-
-      <!--タグのリンク一覧表示(リンク先はそのタグが検索された状態の一覧画面)-->
-      <% if @post.tags.present? %>
-        <p class="d-inline"><strong>タグ：</strong></p>
-        <% @post.tags.each do |post| %>
-          <%= link_to post.name, admin_posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
+      <div class="col-md-9 col-lg-8 mt-5 text-center mx-auto">
+        <table class="table table-border">
+          <tr>
+            <td class="col-3">投稿日</td>
+            <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
+          </tr>
+          <tr>
+            <td class="col-3">名称</td>
+            <td><strong><%= @post.name %></strong></td>   <!--投稿した場所-->
+          </tr>
+          <tr class="border-bottom">
+            <td class="col-3">住所</td>
+            <td><%= @post.address %></td>                 <!--投稿場所の住所-->
+          </tr>
+        </table>
+      
+        <!--タグのリンク一覧表示(リンク先はそのタグが検索された状態の一覧画面)-->
+        <% if @post.tags.present? %>
+          <p class="d-inline"><strong>タグ：</strong></p>
+          <% @post.tags.each do |post| %>
+            <%= link_to post.name, admin_posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
+          <% end %>
         <% end %>
-      <% end %>
-      
-      <!--投稿削除-->
-      <div class="mt-3 text-center">
-        <%= link_to "削除",admin_post_path(@post), method: :delete, class: "btn btn-danger", style: "margin-left:50px;", "data-confirm" => "この投稿を削除しますか？"%>
-      </div>
-      
+      </div>    
     </div>
-
-    <div class="col-md-6">
-      <!--投稿文-->
-      <h6 class="text-center">
-        <strong>投稿文</strong>
-      </h6>
-      <div class="post">
-        <%= @post.introduction %>
+  </div>  
+    
+  <div class="row">  
+    <div class="col-md-12 mt-4">
+      <div class="col-12 col-md-9 col-lg-8 text-center mx-auto">
+        
+        <!--投稿文-->
+        <h6 class="text-center">
+          <strong>投稿文</strong>
+        </h6>
+        <div class="post">
+          <%= @post.introduction %>
+        </div>
+  
+        <!--コメント欄-->
+        <h6 class="text-center mt-4">
+          <strong>コメント</strong>
+          <p>コメント件数：<%= @post.comments.count %>件</p>
+        </h6>
+        <div class="comment">
+          <% @comments.each do |comment|%>
+            <div class="border border-dark mx-3 my-4">
+              <div class="row mt-2">
+                <div class="col-1">
+                  <%= image_tag comment.user.get_profile_image(35,35) %>
+                </div>
+                <div class="col-7">
+                  <% if comment.user.user_name.present? %>
+                    <%= link_to comment.user.user_name, admin_user_path(comment.user.id), class: "comment-user-name" %>
+                  <% else %>
+                    <%= link_to comment.user.first_name + comment.user.last_name, admin_user_path(comment.user.id), class: "comment-user-name" %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row tb-2 m-2">
+                <div class="col-12 text-break">
+                  <%= comment.sentence %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-      
-      <!--コメント欄-->
-      <h6 class="text-center mt-2">
-        <strong>コメント</strong>
-        <p>コメント件数：<%= @post.comments.count %>件</p>
-      </h6>
-      <div class="comment">
-        <% @comments.each do |comment|%>
-          <table class="table table-borderless table-sm">
-            <tr>
-              <td class="col-md-4">
-                <%= image_tag comment.user.get_profile_image(35,35) %>
-                <% if comment.user.user_name.present? %>
-                  <%= link_to comment.user.user_name, user_path(comment.user.id), class: "comment-user-name" %>
-                <% else %>
-                  <%= link_to comment.user.first_name + comment.user.last_name, user_path(comment.user.id), class: "comment-user-name" %>
-                <% end %>
-              </td>
-              <td class="ml-5">
-                <%= comment.sentence %>
-              </td>
-            </tr>
-          </table>
-        <% end %>
-      </div>
-
+    </div>
   </div>
+  
+  <div class="row">
+    <div class="col-12 mt-5 text-center">
+      <!--投稿削除-->
+      <%= link_to "削除",admin_post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "この投稿を削除しますか？"%>
+    </div>
+  </div>
+  
 </div>
