@@ -54,8 +54,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :posts, only: [:index, :show, :destroy]
   # users
     resources :users, only: [:show, :edit, :update]
-  # tags
-    resources :tags, only: [:index, :create, :destroy]
   # reports
     resources :reports, only: [:index, :show, :update]
   end
