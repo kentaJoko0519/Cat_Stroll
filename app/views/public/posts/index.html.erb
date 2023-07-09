@@ -121,6 +121,9 @@
       <script>
         $('#clearSearch').on('click', (e) => {
           $('#searchBox').val("")
+          var url = new URL(window.location.href);
+          url.searchParams.delete("search");
+          window.history.pushState({}, '', url.toString());
         })
       </script>
       

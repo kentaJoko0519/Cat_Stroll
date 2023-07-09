@@ -22,7 +22,7 @@
           </tr>
         </table>
       </div>
-      
+
       <div class="col-md-9 col-lg-6 text-center mx-auto">
         <!--投稿画像-->
         <% if @post.images.attached? %>
@@ -67,7 +67,7 @@
             <%= image_tag asset_path('no_image.jpg'),width: 200, height: 170 %>
           </div>
         <% end %>
-  
+
         <!--編集、削除リンク-->
         <div class="mt-4 text-center">
           <% if user_signed_in? %>
@@ -81,7 +81,7 @@
                 <i class="far fa-trash-alt" style="font-size:30px; color:red;"></i>
               <% end %>
             <% else %>
-            <% end %>  
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -102,7 +102,7 @@
             <td><%= @post.address %></td>
           </tr>
         </table>
-      
+
         <!--タグのリンク一覧表示(リンク先はそのタグが検索された状態の一覧画面)-->
         <% if @post.tags.present? %>
           <p class="d-inline"><strong>タグ：</strong></p>
@@ -110,11 +110,11 @@
             <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
           <% end %>
         <% end %>
-      </div>    
+      </div>
     </div>
-  </div>  
-    
-  <div class="row">  
+  </div>
+
+  <div class="row">
     <div class="col-md-12">
       <div class="col-12 col-md-9 col-lg-8 text-center mx-auto">
         <!--ブックマーク機能-->
@@ -129,7 +129,7 @@
             </div>
           <% end %>
         </div>
-        
+
         <!--投稿文-->
         <h6 class="text-center">
           <strong>投稿文</strong>
@@ -137,7 +137,7 @@
         <div class="post">
           <%= @post.introduction %>
         </div>
-  
+
         <!--コメント欄-->
         <h6 class="text-center mt-2">
           <strong>コメント</strong>
@@ -172,7 +172,7 @@
           <% end %>
         </div>
         <!--コメント入力欄-->
-        
+
         <div class="mt-2" style="margin-bottom: 70px;">
           <%= form_with model: [@post , @comment], url: comments_path, method: :post do |f| %>
             <div class="d-flex">
