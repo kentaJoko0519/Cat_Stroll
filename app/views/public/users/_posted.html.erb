@@ -14,9 +14,9 @@
             <div class="border border-dark h-100">
               <%= link_to post_path(post.id) do %>
                 <div class="text-dark text-truncate">
-                  <% if post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
-                    <%= post.user.user_name %>            <!--ユーザーネームを表示-->
-                  <% else %>                              <!--設定されていなければ、氏名を表示-->
+                  <% if post.user.user_name.present? %>
+                    <%= post.user.user_name %>
+                  <% else %>
                     <%= post.user.first_name + post.user.last_name %>
                   <% end %>
                 </div>

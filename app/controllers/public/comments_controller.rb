@@ -1,7 +1,7 @@
 class Public::CommentsController < ApplicationController
-# 新規登録orログインしないとアクションが実行されない
+  
+# ユーザー側  コメント
   before_action :authenticate_user!
-
 
   def create
     @comment = Comment.new(comment_params)
@@ -11,7 +11,6 @@ class Public::CommentsController < ApplicationController
     else
       redirect_back(fallback_location: root_path)
     end
-
   end
 
   def destroy

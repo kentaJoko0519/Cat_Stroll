@@ -1,27 +1,24 @@
 class Admin::UsersController < ApplicationController
-  before_action :authenticate_admin!
 # 管理者側  ユーザー  
+  before_action :authenticate_admin!
   
-  # ユーザー一覧
   def index
-    @users = User.all                         # ユーザーの情報を全取得
+    @users = User.all
   end
   
-  # ユーザー詳細 
   def show
-    @user=User.find(params[:id])               # UserモデルのIDを取得して詳細ページを表示
-    @posts=@user.posts                         # @postにユーザーが過去に投稿したものを取得
+    @user=User.find(params[:id])
+    @posts=@user.posts
   end
   
-  # ユーザー情報編集
   def edit
-    @user=User.find(params[:id])               # UserモデルのIDを取得してユーザー情報編集ページを表示
+    @user=User.find(params[:id])
   end
 
   def update
-    @user=User.find(params[:id])               # UserモデルのIDを取得
-    @user.update(user_params)                  # user_params の情報をアップデート(ユーザーの退会ステータスも編集可能)
-    redirect_to admin_user_path(@user.id)      # ユーザー詳細ページへリダイレクト
+    @user=User.find(params[:id])
+    @user.update(user_params)
+    redirect_to admin_user_path(@user.id)
   end
   
   private

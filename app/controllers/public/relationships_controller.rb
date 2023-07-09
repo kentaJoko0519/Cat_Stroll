@@ -1,8 +1,6 @@
 class Public::RelationshipsController < ApplicationController
-  # 新規登録orログインしないとアクションが実行されない
-  before_action :authenticate_user!
-  
 # ユーザー側  フォロー  
+  before_action :authenticate_user!
   
   # フォローする
   def create
@@ -13,18 +11,18 @@ class Public::RelationshipsController < ApplicationController
   # フォローを外す
   def destroy
     current_user.unfollow(params[:user_id])     # current_user で 選択したユーザー(user_id)に対してunfollowメソッドを実行
-    redirect_to request.referer                 # 同じ画面に戻る
+    redirect_to request.referer
   end
   
 # フォロー中
   def following
-    @user = User.find(params[:user_id])         # Userモデルの user_id を取得
-    @following_users = @user.following_user     # @following_users にはフォローしている user_id を取得
+    @user = User.find(params[:user_id])
+    @following_users = @user.following_user
   end
   
 # フォロワー
   def follower
-    @user = User.find(params[:user_id])         # Userモデルの user_id を取得
-    @follower_users = @user.follower_user       # @follower_users にはフォローしている user_id を取得
+    @user = User.find(params[:user_id])
+    @follower_users = @user.follower_user
   end
 end

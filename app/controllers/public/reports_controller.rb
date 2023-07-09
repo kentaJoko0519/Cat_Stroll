@@ -1,27 +1,24 @@
 class Public::ReportsController < ApplicationController
-  # 新規登録orログインしないとアクションが実行されない
+# ユーザー側  通報  
   before_action :authenticate_user!
   
-# ユーザー側  通報
-  
-  # 通報
   def new
-    @report = Report.new                       # 空のインスタンスを生成
-    @user = User.find(params[:user_id])        # どのユーザーに対する通報なのかparamsで取得する
+    @report = Report.new
+    @user = User.find(params[:user_id])
   end
 
   def create
-    @user = User.find(params[:user_id])        # どのユーザーに対する通報なのかparamsで取得する
-    @report = Report.new(report_params)        # ストロングパラメータを通す
+    @user = User.find(params[:user_id])
+    @report = Report.new(report_params)
     @report.user_id = current_user.id          # user_id にcurrent_user.idを入れる
     @report.reporter_id = current_user.id      # 通報者(reporter_id)にcurrent_user.idを入れる
     @report.reported_id = @user.id             # 通報される人(reported_id)に上で取得した@user.idを入れる
-    if @report.save                            # もし、保存されたなら
+    if @report.save
       flash[:notice] = "このユーザーを通報しました"
-      redirect_to user_path(@user)             # ユーザー詳細ページにリダイレクト
+      redirect_to user_path(@user)
     else
       flash.now[:alert] = "通報に失敗しました"
-      render :new                              # 保存されなければ、通報ページに render
+      render :new
     end  
   end
   

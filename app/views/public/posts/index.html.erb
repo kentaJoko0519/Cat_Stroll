@@ -1,3 +1,5 @@
+<!--『POST』-->
+
 <div class="container">
   <div class="row">
 <!--ーーーーーーーーーーーーーーーーーーーーーーーーーー（Google Map）ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
@@ -54,7 +56,7 @@
                 marker.setMap(null); // マーカーの初期化
               }
 
-              // マーカーを表示する
+              // マーカー表示
               marker = new google.maps.Marker({
                 position: results[0].geometry.location,
                 map: map
@@ -66,7 +68,8 @@
                         '<h5>' + inputAddress + '</h5>' +
                         '<h6 class="mt-4">' +
                         results[0].formatted_address.split('、')[1] +
-                        '</h6>' +   // '、'より前には不要な(日本、)文字列があるので分割して2つ目の配列を取得
+                        '</h6>' +
+                        // '、'より前には不要な(日本、)文字列があるので分割して2つ目の配列を取得
                         //️　以下、「投稿するボタンを押すことで」新規投稿画面にデータ（name,latitude,longitude,address）を送る
                         '<br><a href="<%= new_post_url %>' +
                         '?name=' +
@@ -117,11 +120,11 @@
       <!--検索ボックスの中をクリアに-->
       <script>
         $('#clearSearch').on('click', (e) => {
-          //console.log(e.target)
           $('#searchBox').val("")
         })
       </script>
-
+      
+      <!--投稿一覧-->
       <div class="post-list">
         <div class="row">
           <div class="col-12 col-md-12 d-flex justify-content-start flex-wrap px-0">
@@ -130,9 +133,9 @@
                 <div class="border border-dark h-100">
                   <%= link_to post_path(post.id) do %>
                     <div class="text-dark text-truncate">
-                      <% if post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
-                        <%= post.user.user_name %>            <!--ユーザーネームを表示-->
-                      <% else %>                              <!--設定されていなければ、氏名を表示-->
+                      <% if post.user.user_name.present? %>
+                        <%= post.user.user_name %>
+                      <% else %>
                         <%= post.user.first_name + post.user.last_name %>
                       <% end %>
                     </div>

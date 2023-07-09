@@ -1,31 +1,25 @@
 class Public::UsersController < ApplicationController
-
 # ユーザー側  ユーザー
-
-  # 新規登録orログインしないとアクションが実行されない
   before_action :authenticate_user!
 
-# ユーザー一覧
   def index
     @users=User.where(is_deleted: false)                  # ユーザーの退会ステータスが false(有効)のユーザーを取得
     @following_users = current_user.following_user        # タブで切り替えれるように部分テンプレートの設定
     @follower_users = current_user.follower_user          # タブで切り替えれるように部分テンプレートの設定
   end
 
-# ユーザー詳細
   def show
-    @user=User.find(params[:id])                          # UserモデルのIDを取得して詳細ページを表示
-    @posts=@user.posts                                    # @posts にはユーザーが過去投稿したものを取得
+    @user=User.find(params[:id])
+    @posts=@user.posts
   end
 
-# 退会確認
   def unsubscribe
-    @user=current_user                                    # @user にログインしているユーザーを取得
+    @user=current_user
   end
 
 # 退会処理
   def withdraw
-    @user=current_user                                      # @user にログインしているユーザーを取得
+    @user=current_user
     reports = Report.where(reported_id: current_user.id)    # 退会するユーザーが既に通報されているユーザの際に使用する
     @user.update(is_deleted: true)                          # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     reports.each do |report|                                # 通報されたユーザーの通報が複数ある場合
@@ -41,22 +35,20 @@ class Public::UsersController < ApplicationController
     redirect_to root_path                                   # 投稿一覧ページにリダイレクト
   end
 
-# マイページ
   def my_page
-    @user=current_user           # @user→ログインしているユーザーの情報
-    @posts=@user.posts           # @posts にはユーザーが過去投稿したものを取得
+    @user=current_user
+    @posts=@user.posts
   end
 
-# 登録情報編集
   def edit
-    @user=current_user           # @user→ログインしているユーザーの情報
+    @user=current_user
   end
 
   def update
-    @user=current_user           # @user→ログインしているユーザーの情報
-    if @user.update(user_params)    # 登録情報のアップデート
+    @user=current_user
+    if @user.update(user_params)
       flash[:notice] = "更新しました"
-      redirect_to my_page_path     # マイページにリダイレクト
+      redirect_to my_page_path
     else
       render :edit
     end
