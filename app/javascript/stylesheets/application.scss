@@ -538,6 +538,7 @@ button.gradient:hover {
 .user-list {
   margin: 0 auto;
   height: 600px;
+  width: 95%;
   padding: 10px;
   margin-top: 10px;
   overflow: scroll;
@@ -547,7 +548,7 @@ button.gradient:hover {
 
 .user-list td {
   vertical-align: middle;
-  font-size: 20px;
+  font-size: 17px;
 }
 
   // ユーザー詳細
@@ -591,8 +592,8 @@ button.gradient:hover {
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  padding: 14px 65px;
-  font-size: 20px;
+  padding: 10px 50px;
+  font-size: 17px;
   text-decoration: none;
   color: #fff;
 }
@@ -716,11 +717,17 @@ button.gradient:hover {
 // 管理者側
   // 『POST』
 .report-list {
-  margin-left: 15%;
+  width: 100%;
   height: 540px;
   overflow: scroll;
   overflow-x: hidden;
   border: 1px solid #111111;
+}
+
+@media screen and (max-width:500px) {
+  .report-list {
+    font-size: 7px;
+  }
 }
 
 @media screen and (max-width:576px) {

@@ -83,7 +83,7 @@
         <% @posts.each do |post| %>
           <div class="col-9 col-md-6 col-lg-4 p-3 mx-md-0 mx-lg-0 mx-auto text-center">
             <div class="border border-dark h-100">
-              <%= link_to post_path(post.id) do %>
+              <%= link_to admin_post_path(post.id) do %>
                 <div class="text-dark text-truncate">
                   <% if post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
                     <%= post.user.user_name %>            <!--ユーザーネームを表示-->
@@ -109,13 +109,6 @@
     </div>
   </div>  
   
-  <script>
-    $('tr[data-href]').click(function (e) {
-      if (!$(e.target).is('a')) {
-        window.location = $(e.target).closest('tr').data('href');
-      };
-    });
-  </script>
   <!--ユーザーのステータス-->
   <div class="row text-center">
     <div class="col-md-12 mt-5">
