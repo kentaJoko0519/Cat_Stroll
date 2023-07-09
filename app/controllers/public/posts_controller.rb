@@ -1,9 +1,9 @@
 class Public::PostsController < ApplicationController
-  
+
 # ユーザー側  投稿
   # index,showアクション以外は新規登録orログインしないとアクションが実行されない
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  
+
   def new
     @post = Post.new
   end
@@ -14,33 +14,37 @@ class Public::PostsController < ApplicationController
     if @post.save
       flash[:notice] = "投稿完了"
       redirect_to post_path(@post.id)
-    else 
+    else
       render :new
-    end  
+    end
   end
-  
+
   def index
     @posts = Post.all
     # 検索機能
-    if user_signed_in?
-      if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
-        # 投稿のタグから探す
-        tag_posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%")
-        # 投稿者を探す
-        posts = @posts.joins(:user).where('posts.name like ?', "%#{params[:search]}%").or(
-                # ↓ address を検索に入れることにより、地名で検索できるようにする
-                @posts.joins(:user).where('posts.address like ?', "%#{params[:search]}%")).or(
-                @posts.joins(:user).where('users.first_name like ?', "%#{params[:search]}%")).or(
-                @posts.joins(:user).where('users.last_name like ?', "%#{params[:search]}%")).or(
-                @posts.joins(:user).where('users.user_name like ?', "%#{params[:search]}%"))
-        # tag_posts と posts で重複しないように uniq を設定
-        @posts = (tag_posts + posts).uniq
-      end
-    else
+    # if user_signed_in?
+    if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
+      # 投稿のタグから探す
+      tag_posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%")
+      # 投稿者を探す
+      posts = @posts.joins(:user).where('posts.name like ?', "%#{params[:search]}%").or(
+              # ↓ address を検索に入れることにより、地名で検索できるようにする
+              @posts.joins(:user).where('posts.address like ?', "%#{params[:search]}%")).or(
+              @posts.joins(:user).where('users.first_name like ?', "%#{params[:search]}%")).or(
+              @posts.joins(:user).where('users.last_name like ?', "%#{params[:search]}%")).or(
+              @posts.joins(:user).where('users.user_name like ?', "%#{params[:search]}%"))
+      # tag_posts と posts で重複しないように uniq を設定
+      @posts = (tag_posts + posts).uniq
+    end
+    
+    # 検索結果がなかった場合
+    if params[:search].present? && @posts.count == 0
+      flash[:alert] = "検索結果がありません"
       render :index
-    end  
+    end
+    flash[:alert] = nil
   end
-  
+
   def show
     @post = Post.find(params[:id])
     @post.split_text
@@ -61,7 +65,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post.id)
     else
       render :edit
-    end  
+    end
   end
 
   def destroy
