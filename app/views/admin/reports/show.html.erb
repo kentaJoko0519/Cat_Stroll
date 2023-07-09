@@ -43,7 +43,7 @@
   </div>
   
   <div class="row mt-2">
-    <div class="col-md-6" style="margin: 0 auto;">
+    <div class="col-md-6 mx-auto">
       <div class="text-center">
         通報者：
         <% if @report.reporter.user_name.present? %>
@@ -56,7 +56,7 @@
         <h5>
           <strong>通報理由</strong>
         </h5>
-        <div class="border border-dark" style="width:100%; height:400px; padding:10px; overflow: scroll; overflow-x: hidden;">
+        <div class="admin-report-reason">
           <%= @report.reason %>
         </div>
       </div>
