@@ -128,11 +128,7 @@
       
       <div class="login_state mt-2">
         <% if user_signed_in? %>
-          <% if current_user.user_name.present? %>
-            <%= current_user.user_name %>
-          <% else %>
-            <%= current_user.first_name + current_user.last_name %>
-          <% end %>
+          <%= current_user.user_name %>
         <% elsif admin_signed_in? %>
           <p class="text-danger mt-3">
             管理者ログイン中

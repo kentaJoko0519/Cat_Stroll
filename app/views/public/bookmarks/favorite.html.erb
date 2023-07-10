@@ -15,11 +15,7 @@
             <div class="border border-dark h-100">
               <%= link_to post_path(bookmark.post.id) do %>
                 <div class="text-dark text-truncate">
-                  <% if bookmark.post.user.user_name.present? %>   <!--ユーザーネームが設定されているか？-->
-                    <%= bookmark.post.user.user_name %>            <!--ユーザーネームを表示-->
-                  <% else %>                              <!--設定されていなければ、氏名を表示-->
-                    <%= bookmark.post.user.first_name + bookmark.post.user.last_name %>
-                  <% end %>
+                  <%= bookmark.post.user.user_name %>            <!--ユーザーネームを表示-->
                 </div>
                 <div class="m-2">
                   <% if bookmark.post.images.attached? %>

@@ -20,11 +20,7 @@
                 <%= image_tag following_user.get_profile_image(70,70) %>
               </td>
               <td class="col-5 col-md-5 col-sm-8">
-                <% if following_user.user_name.present? %>
-                  <%= following_user.user_name%><!--ユーザーネーム-->
-                <% else %>
-                  <%= following_user.first_name %><%= following_user.last_name %>
-                <% end %>
+                <%= following_user.user_name%><!--ユーザーネーム-->
               </td>
             </tr>
           <% end %>

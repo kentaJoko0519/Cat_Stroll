@@ -11,12 +11,8 @@
               <%= image_tag @user.get_profile_image(60,60) %>
             </td>
             <td>
-              <h5>　<!--ユーザーネーム or 氏名-->
-                <% if @user.user_name.present? %>
-                  <%= link_to @user.user_name, admin_user_path(@user.id) %>
-                <% else %>
-                  <%= link_to @user.first_name + @user.last_name, admin_user_path(@user.id) %>
-                <% end %>
+              <h5>　<!--ユーザーネーム-->
+                <%= link_to @user.user_name, admin_user_path(@user.id) %>
               </h5>
             </td>
           </tr>

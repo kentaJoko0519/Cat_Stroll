@@ -15,11 +15,7 @@
         <div class="col-12 col-md-4 text-center mt-5 mt-md-0">
           <h5 class="mypage-info mx-auto">ユーザーネーム</h5>
           <div>
-            <% if @user.user_name.present? %>
-              <%= @user.user_name %>
-            <% else %>
-              <small class="text-black-50">※ユーザーネームは設定されていません</small>
-            <% end %>
+            <%= @user.user_name %>
           </div>
         </div>
         <div class="col-12 col-md-4 text-center mt-5 mb-4 mt-md-0">

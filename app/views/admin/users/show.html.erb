@@ -5,11 +5,7 @@
       <%= image_tag @user.get_profile_image(100,100) %>
       <h3>
         <strong>
-          <% if @user.user_name.present? %>
-            <%= @user.user_name%>
-          <% else %>
-            <%= @user.first_name + @user.last_name %>
-          <% end %>
+          <%= @user.user_name%>
         </strong>
       </h3>
     </div>
@@ -85,11 +81,7 @@
             <div class="border border-dark h-100">
               <%= link_to admin_post_path(post.id) do %>
                 <div class="text-dark text-truncate">
-                  <% if post.user.user_name.present? %>
-                    <%= post.user.user_name %>
-                  <% else %>
-                    <%= post.user.first_name + post.user.last_name %>
-                  <% end %>
+                  <%= post.user.user_name %>
                 </div>
                 <div class="m-2">
                   <% if post.images.attached? %>

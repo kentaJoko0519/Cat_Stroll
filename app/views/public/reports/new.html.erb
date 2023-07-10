@@ -12,11 +12,7 @@
       
       <p style="font-size:20px;">
         通報するユーザー：
-        <% if @user.user_name.present? %>
-          <%= link_to @user.user_name, user_path(@user.id) %>
-        <% else %>
-          <%= link_to @user.first_name + @user.last_name, user_path(@user.id) %>
-        <% end %>
+        <%= link_to @user.user_name, user_path(@user.id) %>
       </p>  
           
       <p>※通報理由を具体的に記載してください</p>

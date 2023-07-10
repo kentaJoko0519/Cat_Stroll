@@ -10,6 +10,8 @@ class Post < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 # comment
   has_many :comments, dependent: :destroy
+  
+  validates :introduction, presence: true, length: { minimum: 3 }
 
   before_validation :split_text
   after_save :save_tags
