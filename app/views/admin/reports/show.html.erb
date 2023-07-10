@@ -22,11 +22,7 @@
         <tr>
           <td>通報されたユーザー</td>
           <td>
-            <% if @report.reported.user_name.present? %>
-              <%= link_to @report.reported.user_name, edit_admin_user_path(@report.reported.id) %>
-            <% else %>
-              <%= link_to @report.reported.first_name + @report.reported.last_name, edit_admin_user_path(@report.reported.id) %>
-            <% end %>
+            <%= link_to @report.reported.user_name, edit_admin_user_path(@report.reported.id) %>
           </td>
         </tr>
         <tr>
@@ -46,11 +42,7 @@
     <div class="col-md-6 mx-auto">
       <div class="text-center">
         通報者：
-        <% if @report.reporter.user_name.present? %>
-          <%= link_to @report.reporter.user_name, admin_user_path(@report.reporter.id) %>
-        <% else %>
-          <%= link_to @report.reporter.first_name + @report.reporter.last_name, admin_user_path(@report.reporter.id) %>
-        <% end %>
+        <%= link_to @report.reporter.user_name, admin_user_path(@report.reporter.id) %>
       </div>
       <div>
         <h5>

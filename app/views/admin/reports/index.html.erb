@@ -25,11 +25,7 @@
                 <%= report.id %>
               </td>
               <td>
-                <% if report.reported.user_name.present? %>
-                  <%= report.reported.user_name %>
-                <% else %>
-                  <%= report.reported.first_name + report.reported.last_name %>
-                <% end %>
+                <%= report.reported.user_name %>
               </td>
               <td>
                 <%= report.status_i18n %>

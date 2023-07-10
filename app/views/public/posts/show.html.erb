@@ -11,12 +11,8 @@
               <%= image_tag @user.get_profile_image(60,60) %>
             </td>
             <td>
-              <h5>　<!--ユーザーネーム or 氏名-->
-                <% if @user.user_name.present? %>
-                  <%= link_to @user.user_name, user_path(@user.id) %>
-                <% else %>
-                  <%= link_to @user.first_name + @user.last_name, user_path(@user.id) %>
-                <% end %>
+              <h5>　<!--ユーザーネーム-->
+                <%= link_to @user.user_name, user_path(@user.id) %>
               </h5>
             </td>
           </tr>
@@ -64,12 +60,12 @@
           </div>
         <% else %>
           <div class="d-flex justify-content-center">
-            <%= image_tag asset_path('no_image.jpg'),width: 200, height: 170 %>
+            <%= image_tag asset_path('no_image.jpg'),width: 200, height: 190 %>
           </div>
         <% end %>
 
         <!--編集、削除リンク-->
-        <div class="mt-4 text-center">
+        <div class="my-4 text-center">
           <% if user_signed_in? %>
             <% if @post.user_id == current_user.id %>
               <!--編集リンク & Font Awesome-->
@@ -116,7 +112,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="col-12 col-md-9 col-lg-8 text-center mx-auto">
+      <div class="col-12 col-md-9 col-lg-8 mt-5 text-center mx-auto">
         <!--ブックマーク機能-->
         <div class="mb-2 d-flex justify-content-center">
           <% if @post.bookmarked_by?(current_user) %>
@@ -131,7 +127,7 @@
         </div>
 
         <!--投稿文-->
-        <h6 class="text-center">
+        <h6 class="mt-5 text-center">
           <strong>投稿文</strong>
         </h6>
         <div class="post">
@@ -151,11 +147,7 @@
                   <%= image_tag comment.user.get_profile_image(35,35) %>
                 </div>
                 <div class="col-7">
-                  <% if comment.user.user_name.present? %>
-                    <%= link_to comment.user.user_name, user_path(comment.user.id), class: "comment-user-name" %>
-                  <% else %>
-                    <%= link_to comment.user.first_name + comment.user.last_name, user_path(comment.user.id), class: "comment-user-name" %>
-                  <% end %>
+                  <%= link_to comment.user.user_name, user_path(comment.user.id), class: "comment-user-name" %>
                 </div>
                 <div class="col-3">
                   <% if comment.user == current_user %>

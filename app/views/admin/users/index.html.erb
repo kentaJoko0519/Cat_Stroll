@@ -10,11 +10,7 @@
               <%= image_tag user.get_profile_image(70,70) %>
             </td>
             <td class="col-5 col-md-5">
-              <% if user.user_name.present? %>
-                <%= user.user_name%>
-              <% else %>
-                <%= user.first_name %><%= user.last_name %>
-              <% end %>
+              <%= user.user_name%>
             </td>
             <td class="col-2 col-md-2">
               <% if user.is_deleted == false %>

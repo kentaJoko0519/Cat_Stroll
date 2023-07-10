@@ -10,11 +10,7 @@
                   <%= image_tag user.get_profile_image(70,70) %><!--プロフィール画像-->
                 </td>
                 <td class="col-md-4 col-sm-8">
-                  <% if user.user_name.present? %>
-                    <%= user.user_name%><!--ユーザーネーム-->
-                  <% else %>
-                    <%= user.first_name %><%= user.last_name %>
-                  <% end %>
+                  <%= user.user_name%><!--ユーザーネーム-->
                 </td>
               </tr>
             <% end %>

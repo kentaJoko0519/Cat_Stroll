@@ -4,11 +4,7 @@
     <div class="col-md-12 mt-4">
       <%= image_tag @user.get_profile_image(100,100) %>
       <h3><strong>
-        <% if @user.user_name.present? %>
-          <%= @user.user_name%><!--ユーザーネーム-->
-        <% else %>
-          <%= @user.first_name + @user.last_name %>
-        <% end %>
+        <%= @user.user_name%>
       </strong></h3>
 
       <!--フォローする or しない-->
