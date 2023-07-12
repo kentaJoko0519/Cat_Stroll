@@ -30,8 +30,6 @@ class Public::PostsController < ApplicationController
       posts = @posts.joins(:user).where('posts.name like ?', "%#{params[:search]}%").or(
               # ↓ address を検索に入れることにより、地名で検索できるようにする
               @posts.joins(:user).where('posts.address like ?', "%#{params[:search]}%")).or(
-              @posts.joins(:user).where('users.first_name like ?', "%#{params[:search]}%")).or(
-              @posts.joins(:user).where('users.last_name like ?', "%#{params[:search]}%")).or(
               @posts.joins(:user).where('users.user_name like ?', "%#{params[:search]}%"))
       # tag_posts と posts で重複しないように uniq を設定
       @posts = (tag_posts + posts).uniq
