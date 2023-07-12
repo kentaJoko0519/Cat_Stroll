@@ -496,6 +496,7 @@ button.gradient:hover {
   border-radius: 8px;
 }
     // コメント
+      // 枠
 .comment{
   width: 100%;
   height: 600px;
@@ -505,7 +506,7 @@ button.gradient:hover {
   border: 1px solid #111111;
   border-radius: 8px;
 }
-
+      // コメント入力欄
 .input-comment {
   width: 100%;
   height: 50px;
@@ -514,10 +515,64 @@ button.gradient:hover {
   border-radius: 8px;
   margin-right: 10px;
 }
-
+  // コメントしたユーザー
 .comment-user-name {
-  fonnt-size: 8px;
+  color: #222222;
+  font-size: 20px;
   opacity: 0.7;
+}
+
+.comment-user-name a:hover {
+  color: #222222;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 440px) {
+  .comment-user-name {
+    padding: 5px;
+    display: flex;
+    align-itens: center;
+    font-size: 13px;
+    opacity: 0.7;
+  }
+}
+  // コメント削除ボタン
+.comment-delete {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 50px;
+  color: white;
+  background-color: #FF3300;
+  border: 1px solid #222222;
+  border-radius: 5px;
+}
+  // ホバー時
+.comment-delete:hover {
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (max-width: 440px) {
+  .comment-delete {
+    font-size: 12px;
+    width: 38px;
+  }
+}
+  // コメントの文章
+.comment-sentence {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  display: flex;
+  justify-content: start;
+  text-align: start;
+  font-size: 25px;
+}
+
+@media screen and (max-width: 576px) {
+  .comment-sentence {
+    font-size: 18px;
+  }
 }
 
   // 投稿編集
@@ -555,6 +610,7 @@ button.gradient:hover {
 .user-introduction {
   height: 250px;
   width: 70%;
+  font-size: 20px;
   margin: 0 auto;
   padding: 10px;
   overflow: scroll;
@@ -747,7 +803,7 @@ button.gradient:hover {
     margin-top: 72px;
     font-size: 18px;
   }
-  
+
   .privacy a, .help a {
     font-size: 18px;
   }
@@ -792,13 +848,14 @@ button.gradient:hover {
 
   .user-introduction {
     width: 100%;
+    font-size: 15px;
   }
 
   .user-posted {
     height: 500px;
     width: 100%;
   }
-  
+
   .mypage-info {
     width: 66%;
   }
