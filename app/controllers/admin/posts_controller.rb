@@ -31,6 +31,7 @@ class Admin::PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
+    @post.split_text
     @user = @post.user
     # コメント機能
     @comments = @post.comments          #投稿詳細に関連付けてあるコメントを全て取得

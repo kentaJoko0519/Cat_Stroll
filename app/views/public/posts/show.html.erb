@@ -10,7 +10,7 @@
             <td class="text-center">
               <%= image_tag @user.get_profile_image(60,60) %>
             </td>
-            <td>
+            <td class="post-user-name py-4">
               <h5>　<!--ユーザーネーム-->
                 <%= link_to @user.user_name, user_path(@user.id) %>
               </h5>
