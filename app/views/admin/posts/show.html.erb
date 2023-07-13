@@ -10,7 +10,7 @@
             <td class="text-center">
               <%= image_tag @user.get_profile_image(60,60) %>
             </td>
-            <td>
+            <td class="post-user-name py-4">
               <h5>　<!--ユーザーネーム-->
                 <%= link_to @user.user_name, admin_user_path(@user.id) %>
               </h5>
@@ -18,7 +18,7 @@
           </tr>
         </table>
       </div>
-      
+
       <div class="col-md-9 col-lg-6 text-center mx-auto">
         <!--投稿画像-->
         <% if @post.images.attached? %>
@@ -81,7 +81,7 @@
             <td><%= @post.address %></td>                 <!--投稿場所の住所-->
           </tr>
         </table>
-      
+
         <!--タグのリンク一覧表示(リンク先はそのタグが検索された状態の一覧画面)-->
         <% if @post.tags.present? %>
           <p class="d-inline"><strong>タグ：</strong></p>
@@ -89,14 +89,14 @@
             <%= link_to post.name, admin_posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
           <% end %>
         <% end %>
-      </div>    
+      </div>
     </div>
-  </div>  
-    
-  <div class="row">  
+  </div>
+
+  <div class="row">
     <div class="col-md-12 mt-4">
       <div class="col-12 col-md-9 col-lg-8 text-center mx-auto">
-        
+
         <!--投稿文-->
         <h6 class="text-center">
           <strong>投稿文</strong>
@@ -104,9 +104,9 @@
         <div class="post">
           <%= @post.introduction %>
         </div>
-  
+
         <!--コメント欄-->
-        <h6 class="text-center mt-4">
+        <h6 class="text-center mt-3">
           <strong>コメント</strong>
           <p>コメント件数：<%= @post.comments.count %>件</p>
         </h6>
@@ -114,19 +114,17 @@
           <% @comments.each do |comment|%>
             <div class="border border-dark mx-3 my-4">
               <div class="row mt-2">
-                <div class="col-1">
-                  <%= image_tag comment.user.get_profile_image(35,35) %>
-                </div>
-                <div class="col-7">
-                  <% if comment.user.user_name.present? %>
-                    <%= link_to comment.user.user_name, admin_user_path(comment.user.id), class: "comment-user-name" %>
-                  <% else %>
-                    <%= link_to comment.user.first_name + comment.user.last_name, admin_user_path(comment.user.id), class: "comment-user-name" %>
-                  <% end %>
-                </div>
+                <%= link_to admin_user_path(comment.user.id) do %>
+                  <div class="col-1 m-1">
+                    <%= image_tag comment.user.get_profile_image(35,35) %>
+                  </div>
+                  <div class="col-7 d-flex justify-content-start">
+                    <%= link_to comment.user.user_name, user_path(comment.user.id), class: "comment-user-name" %>
+                  </div>
+                <% end %>
               </div>
               <div class="row tb-2 m-2">
-                <div class="col-12 text-break">
+                <div class="col-12 comment-sentence mx-1">
                   <%= comment.sentence %>
                 </div>
               </div>
@@ -136,12 +134,12 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-12 mt-5 text-center">
       <!--投稿削除-->
       <%= link_to "削除",admin_post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "この投稿を削除しますか？"%>
     </div>
   </div>
-  
+
 </div>

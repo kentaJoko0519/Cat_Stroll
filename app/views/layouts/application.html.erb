@@ -43,19 +43,18 @@
   </head>
 
   <body>
-      <!--Header-->
-    <header class="border-bottom border-dark m-0" style="height:5%;">
+  <!--Header-->
+    <header>
       <div class="container">
 
         <!--トップロゴ-->
-        <div class="row logo" style="width:100%; margin:0 auto;">
+        <div class="row mx-auto">
           <div class="col-md-12 col-sm-12 text-center mt-1">
-            <%= link_to "Cat Walk", root_path, class: "logo", style: "font-size:50px; color:#333333; font-weight:bold;" %>
+            <%= link_to "Cat Walk", root_path, class: "logo" %>
           </div>
         </div>
 
         <div class="row">
-          <!--ナビリスト-->
           <div class="col-md-12 mb-2">
             <!--adminのログイン中のHeader-->
             <nav>
@@ -107,6 +106,7 @@
       <div class="header-cat"></div>
       
     </header>
+    
   <!--Main-->
     <main style="margin-bottom:50px;">
       
@@ -126,6 +126,7 @@
         </div>
       <% end %>
       
+      <!--ログイン状態の確認-->
       <div class="login_state mt-2">
         <% if user_signed_in? %>
           <%= current_user.user_name %>
@@ -146,15 +147,17 @@
   <!--Footer-->
     <footer class="border-top border-dark">
       
-      <!--プライバシーポリシー、HELP、コピーライト-->
       <div class="d-flex justify-content-center">
+        <!--プライバシーポリシー-->
         <div class="privacy">
           <%= link_to "Privacy Policy", privacy_path %>
         </div>
+        <!--ヘルプ-->
         <div class="help">
           <%= link_to "Help", help_path %>
         </div>
       </div>
+      <!--コピーライト-->
       <p class="copyright text-center">
         ©️ 2023 Kenta Joko
       </p>

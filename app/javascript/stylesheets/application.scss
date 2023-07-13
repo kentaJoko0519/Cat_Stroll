@@ -11,14 +11,28 @@
 *:after{
   box-sizing: border-box;
 }
-
+// ーーーーーーーーーーーーーーーーーーーーapplication.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 // ヘッダー
 header{
   background-image: linear-gradient(150deg, rgba(57, 74, 245, 0.85) 10%, rgba(46, 110, 219, 0.58) 34%, rgba(62, 120, 204, 0.43) 60%, rgba(210, 199, 157, 0.47) 87%);
   font-family: 'Amatic SC', cursive;
   text-decoration: none;
+  height: 5%;
+  margin: 0;
+  border-bottom: 2px solid #111111;
+}
+// ロゴ『CAT WALK』
+.logo {
+  width: 100%;
+  font-size: 50px;
+  color:#333333;
+  font-weight: bold;
 }
 
+.logo:hover {
+  color:#333333;
+}
+// ログイン状態の確認
 .login_state {
   width: 300px;
   height: 30px;
@@ -61,7 +75,20 @@ footer{
   display: flex;
 }
 
-// ヘルプページ
+@media screen and (max-width: 576px) {
+  // フッター
+  footer{
+    height: 275px;
+    margin-top: 72px;
+    font-size: 18px;
+  }
+
+  .privacy a, .help a {
+    font-size: 18px;
+  }
+}
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーhelp.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 .help-text h6 {
   margin-top: 30px;
 }
@@ -70,7 +97,8 @@ footer{
   margin-left: 50px;
 }
 
-// トップページ
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーtop.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// 『はじめる』、『ログイン』ボタン
 .wrapper a{
   display: block;
   width: 250px;
@@ -121,7 +149,7 @@ footer{
 }
 
 
-// 新規登録、ログイン、ブックマーク　ボタンのベース
+// ーーーーーーーーーーーーーーーーーーーー新規登録、ログイン、ブックマーク(追加、外す)のボタンのベースーーーーーーーーーーーーーーーーーーーーーーーーーー
 .registration_button,.session_button,.add-bookmark,.remove-bookmark {
   font-size: 20px;
   padding: 5px 20px;
@@ -194,7 +222,7 @@ footer{
   box-shadow: 0 0 0 10px rgba(250, 250, 250, 0.1)
 }
 
-// ブックマーク gradient
+// ブックマークの gradient
 button.gradient:hover {
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.6);
   transform: translateY(-5px);
@@ -235,6 +263,7 @@ button.gradient:hover {
   display: flex;
   justify-content: center;
   width: 50%;
+  margin: 30px 0;
 }
 
 // ブックマークから外すリンク
@@ -273,12 +302,10 @@ button.gradient:hover {
     display: flex;
     justify-content: center;
   }
-
 }
 
-
-// マイページの 編集リンク,編集アップデート,ログアウトリンク
-.new-post-btn-hover, .edit-btn-hover, .delete-btn-hover, .update-btn-hover {
+// 新規投稿時のボタン、マイページの編集リンク,編集アップデート,ログアウトリンク
+.new-post-btn-hover, .edit-btn-hover, .update-btn-hover, .delete-btn-hover {
   width: 200px;
   font-size: 16px;
   font-weight: 600;
@@ -296,7 +323,7 @@ button.gradient:hover {
   transition: all .4s ease-in-out;
 }
 
-.new-post-btn-hover:hover, .edit-btn-hover:hover, .delete-btn-hover:hover, .update-btn-hover:hover {
+.new-post-btn-hover:hover, .edit-btn-hover:hover, .update-btn-hover:hover, .delete-btn-hover:hover {
   background-position: 100% 0;
   moz-transition: all .4s ease-in-out;
   -o-transition: all .4s ease-in-out;
@@ -308,65 +335,31 @@ button.gradient:hover {
   outline: none;
 }
 
+// 新規投稿ボタン
 .new-post-btn-hover.color-new-post {
     background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
     box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
 }
 
+// マイページ編集ボタン
 .edit-btn-hover.color-edit {
-  // 編集ボタン
   background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
   box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
   color:#fff;
   text-decoration: none;
 }
 
-  // マイページアップデートボタン
+// マイページのアップデートボタン
 .update-btn-hover.color-update {
   background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
   box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
 }
 
+// ログアウトボタン
 .delete-btn-hover.color-delete {
-  // 削除ボタン
   background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
   color:#fff;
   text-decoration: none;
-}
-
-// ユーザー一覧のタブ
-.tab {
-  width: 27%;
-  padding: 10px;
-  cursor: pointer;
-  border: solid 1px #CCC;
-}
-
-@media screen and (max-width: 767.98px) {
-  .tab {
-    width: 100%;
-  }
-}
-
-/*タブがactiveのときのデザイン*/
-.tab-active {
-  color: #FFF;
-  background: #19b5d1;
-  transition: all 0.2s ease-in-out;
-}
-/*タブの中身、最初は非表示*/
-.tabbox {
-  display: none;
-  padding: 15px;
-}
-/*box-showクラスのものだけ表示*/
-.box-show {
-  display: block;
-}
-/*hover時のアクション*/
-.tab:hover{
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-  transform: translateY(-1px);
 }
 
 // 退会ボタン
@@ -438,19 +431,64 @@ button.gradient:hover {
   top: 50%;
 }
 
+// ーーーーーーーーーーーーーーーーーーーーーーーーpublic/user/index.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// ユーザー一覧のタブ
+.tab {
+  width: 27%;
+  padding: 10px;
+  cursor: pointer;
+  border: solid 1px #CCC;
+}
+
+@media screen and (max-width: 767.98px) {
+  .tab {
+    width: 100%;
+  }
+}
+
+/*タブがactiveのときのデザイン*/
+.tab-active {
+  color: #FFF;
+  background: #19b5d1;
+  transition: all 0.2s ease-in-out;
+}
+/*タブの中身、最初は非表示*/
+.tabbox {
+  display: none;
+  padding: 15px;
+}
+/*box-showクラスのものだけ表示*/
+.box-show {
+  display: block;
+}
+/*hover時のアクション*/
+.tab:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーpublic/posts/new.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 // 新規投稿で投稿画像が５枚より多い時のエラー
 #post_images {
   padding: 5px;
 }
 
-// 『POST』
-  // 新規投稿
+
+// 新規投稿
 .new-post-introduction {
   width: 500px;
   height: 300px;
 }
 
-  // 投稿一覧
+@media screen and (max-width: 576px) {
+  .new-post-introduction {
+    width: 100%;
+    height: 450px;
+  }
+}
+
+// ーーーーーーーーーーーーーーーーーーーーーーpublic/posts/index.html.erbーーーーadmin/posts/index.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 .search-box {
   margin-left: 10px;
   width: 57%;
@@ -472,20 +510,38 @@ button.gradient:hover {
   overflow-x: hidden;
 }
 
-.post-list tr {
-  min-height: 150px;
+@media screen and (max-width: 576px) {
+.search-button {
+    width: 52px;
+    height: 37px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .clear-button {
+    width: 56px;
+    font-size: 10px;
+    padding: 10px;
+  }
+
+  .post-list {
+    width: 90%;
+    height: 800px;
+    padding: 10px;
+    margin: 0 auto;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
 }
 
-.post-list td {
-  vertical-align: middle;
+// ーーーーーーーーーーーーーーーーーーーーーーーーpublic/posts/show.html.erbーーーーーadmin/posts/show.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+.post-user-name {
+  text-align: left;
 }
 
-  // 投稿詳細
-.post-show td:last-child {
-  margin-left: -25%;
-  vertical-align: middle;
-}
-    // 投稿文
+// 投稿文
 .post {
   width: 100%;
   height: 400px;
@@ -494,9 +550,10 @@ button.gradient:hover {
   overflow-x: hidden;
   border: 1px solid #111111;
   border-radius: 8px;
+  text-align: start;
 }
-    // コメント
-      // 枠
+// コメント
+// 枠
 .comment{
   width: 100%;
   height: 600px;
@@ -506,7 +563,7 @@ button.gradient:hover {
   border: 1px solid #111111;
   border-radius: 8px;
 }
-      // コメント入力欄
+// コメント入力欄
 .input-comment {
   width: 100%;
   height: 50px;
@@ -515,7 +572,7 @@ button.gradient:hover {
   border-radius: 8px;
   margin-right: 10px;
 }
-  // コメントしたユーザー
+// コメントしたユーザー
 .comment-user-name {
   color: #222222;
   font-size: 20px;
@@ -536,7 +593,8 @@ button.gradient:hover {
     opacity: 0.7;
   }
 }
-  // コメント削除ボタン
+
+// コメント削除ボタン
 .comment-delete {
   display: flex;
   justify-content: center;
@@ -547,7 +605,7 @@ button.gradient:hover {
   border: 1px solid #222222;
   border-radius: 5px;
 }
-  // ホバー時
+
 .comment-delete:hover {
   text-decoration: none;
   color: white;
@@ -559,7 +617,8 @@ button.gradient:hover {
     width: 38px;
   }
 }
-  // コメントの文章
+
+// コメントの文章
 .comment-sentence {
   word-break: break-word;
   overflow-wrap: break-word;
@@ -570,12 +629,22 @@ button.gradient:hover {
 }
 
 @media screen and (max-width: 576px) {
+  .post {
+    width: 93%;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .comment {
+    width: 100%;
+  }
+  
   .comment-sentence {
     font-size: 18px;
   }
 }
 
-  // 投稿編集
+// ーーーーーーーーーーーーーーーーーーーーーーーーpublic/posts/edit.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 .edit-introduction {
   width: 500px;
   height: 300px;
@@ -588,8 +657,8 @@ button.gradient:hover {
   }
 }
 
-// 『USER』
-  // ユーザー一覧
+// ーーーーーーーーーーーーーーーーーーーーーーーーpublic/users/_list.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// ユーザー一覧
 .user-list {
   margin: 0 auto;
   height: 600px;
@@ -606,7 +675,8 @@ button.gradient:hover {
   font-size: 17px;
 }
 
-  // ユーザー詳細
+// ーーーーーーーーーーーーーーーーーーーーーpublic/users/show.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// ユーザー詳細
 .user-introduction {
   height: 250px;
   width: 70%;
@@ -617,65 +687,6 @@ button.gradient:hover {
   overflow-x: hidden;
   border: 1px solid #111111;
   border-radius: 8px;
-}
-
-.user-posted {
-  width: 800px;
-  height: 600px;
-  margin: 0 auto;
-  overflow: scroll;
-  overflow-x: hidden;
-  border: 1px solid #111111;
-  border-radius: 8px;
-}
-
-.user-posted td {
-  vertical-align: middle;
-}
-
-// 『MY PAGE』
-
-.mypage-info{
-  border: 1px solid white;
-  border-radius: 15px;
-  width: 100%;
-  color: #DDDDDD;
-  background-color: #444444;
-}
-  // マイページのブックマークリンク
-.bookmark-button{
-  background-color: #34495e;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  padding: 10px 50px;
-  font-size: 17px;
-  text-decoration: none;
-  color: #fff;
-}
-
-.bookmark-button:hover{
-  border-radius: 25px;
-  text-decoration: none;
-  color: #fff;
-}
-
-  // マイページ自己紹介
-.mypage-introduction {
-  height: 200px;
-  width: 80%;
-  padding: 10px;
-  margin: 0 auto;
-  overflow: scroll;
-  overflow-x: hidden;;
-  border: 1px solid #111111;
-}
-
-  // マイページの edit ＆ Logout のボタンベース
-.mypage-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 // フォローするボタン
@@ -718,6 +729,69 @@ button.gradient:hover {
   text-decoration: none;
 }
 
+@media screen and (max-width: 576px) {
+  .user-introduction {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーpublic/users/my_page.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// マイページの情報
+.mypage-info{
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 100%;
+  color: #DDDDDD;
+  background-color: #444444;
+}
+// マイページのブックマークリンク
+.bookmark-button{
+  background-color: #34495e;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  padding: 10px 50px;
+  font-size: 17px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.bookmark-button:hover{
+  border-radius: 25px;
+  text-decoration: none;
+  color: #fff;
+}
+
+// マイページ自己紹介
+.mypage-introduction {
+  height: 200px;
+  width: 80%;
+  padding: 10px;
+  margin: 0 auto;
+  overflow: scroll;
+  overflow-x: hidden;;
+  border: 1px solid #111111;
+}
+
+// マイページの edit ＆ Logout のボタンベース
+.mypage-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 576px) {
+  .mypage-info {
+    width: 66%;
+  }
+
+  .mypage-introduction {
+    width: 100%;
+  }
+}
+
+// ーーーーーーーーーーーーーーーーーーーrelationships/follower.html.erb  ,following.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 // フォロー中一覧,フォロワー一覧
 .following-list, .follower-list {
   margin: 0 auto;
@@ -735,6 +809,7 @@ button.gradient:hover {
   vertical-align: middle;
 }
 
+// ーーーーーーーーーーーーーーーーーーーrelationships/follower.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   // フォローしていないユーザーをフォローするとき
 .follow-in {
   border: 1px solid #111111;
@@ -769,17 +844,30 @@ button.gradient:hover {
   margin: 0 auto;
 }
 
+// ーーーーーーーーーーーーーーーーーーーpublic/reports/show.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+@media screen and (max-width: 576px) {
+  .report-reason {
+    width: 100%;
+  }
+}
 
 // 管理者側
-  // 『POST』
+// ーーーーーーーーーーーーーーーーーーーadmin/reports/index.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 .report-list {
-  width: 100%;
+  width: 90%;
   height: 540px;
   overflow: scroll;
   overflow-x: hidden;
   border: 1px solid #111111;
 }
 
+@media screen and (max-width: 500px) {
+  .report-list {
+    font-size: 7px;
+  }
+}
+
+// ーーーーーーーーーーーーーーーーーーーadmin/reports/show.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 .admin-report-reason {
   width: 100%;
   height: 400px;
@@ -787,85 +875,4 @@ button.gradient:hover {
   overflow: scroll;
   overflow-x: hidden;
   border: 1px solid #111111;
-}
-
-@media screen and (max-width:500px) {
-  .report-list {
-    font-size: 7px;
-  }
-}
-
-@media screen and (max-width:576px) {
-
-  // フッター
-  footer{
-    height: 275px;
-    margin-top: 72px;
-    font-size: 18px;
-  }
-
-  .privacy a, .help a {
-    font-size: 18px;
-  }
-
-  .new-post-introduction {
-    width: 100%;
-    height: 450px;
-  }
-
-  .search-button {
-    width: 52px;
-    height: 37px;
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .clear-button {
-    width: 56px;
-    font-size: 10px;
-    padding: 10px;
-  }
-
-  .post-list {
-    width: 90%;
-    height: 800px;
-    padding: 10px;
-    margin: 0 auto;
-    overflow: scroll;
-    overflow-x: hidden;
-  }
-
-  .post {
-    width: 93%;
-    height: 300px;
-    margin: 0 auto;
-  }
-
-  .comment {
-    width: 100%;
-  }
-
-  .user-introduction {
-    width: 100%;
-    font-size: 15px;
-  }
-
-  .user-posted {
-    height: 500px;
-    width: 100%;
-  }
-
-  .mypage-info {
-    width: 66%;
-  }
-
-  .mypage-introduction {
-    width: 100%;
-  }
-
-  .report-reason {
-    width: 100%;
-  }
-
 }
