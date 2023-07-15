@@ -37,7 +37,7 @@ ja:
             introduction:
               blanktranslation: ""
               blank: ""
-              too_short: "投稿文は３文字以上にしてください"
+              too_short: "投稿文は3文字以上にしてください。"
         report:
           attributes:
             reason:

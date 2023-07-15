@@ -6,16 +6,20 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    # session[:locate_params]=
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+
     if @post.save
       flash[:notice] = "投稿完了"
       redirect_to post_path(@post.id)
     else
-      render :new
+      @messages = @post.errors.messages
+      flash[:alert] = @messages[:introduction].join("") +  @messages[:images].join("")
+      redirect_to request.referer
     end
   end
 
@@ -34,7 +38,7 @@ class Public::PostsController < ApplicationController
       # tag_posts と posts で重複しないように uniq を設定
       @posts = (tag_posts + posts).uniq
     end
-    
+
     # 検索結果がなかった場合
     if params[:search].present? && @posts.count == 0
       flash[:alert] = "検索結果がありません"
