@@ -101,15 +101,15 @@
           </div>
         </div>
       </div>
-      
+
       <!--ヘッダーの猫-->
       <div class="header-cat"></div>
-      
+
     </header>
-    
+
   <!--Main-->
     <main style="margin-bottom:50px;">
-      
+
       <!--成功フラッシュメッセージ-->
       <% if flash[:notice].present? %>
         <div class="alert alert-success text-center">
@@ -117,15 +117,15 @@
           <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
       <% end %>
-      
+
       <!--失敗フラッシュメッセージ-->
       <% if flash[:alert].present? %>
         <div class="alert alert-danger text-center">
-          <%= flash[:alert] %>
+          <%= flash[:alert].html_safe %>
           <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
       <% end %>
-      
+
       <!--ログイン状態の確認-->
       <div class="login_state mt-2">
         <% if user_signed_in? %>
@@ -140,13 +140,13 @@
           </p>
         <% end %>
       </div>
-      
+
       <%= yield %>
-      
+
     </main>
   <!--Footer-->
     <footer class="border-top border-dark">
-      
+
       <div class="d-flex justify-content-center">
         <!--プライバシーポリシー-->
         <div class="privacy">
@@ -161,10 +161,10 @@
       <p class="copyright text-center">
         ©️ 2023 Kenta Joko
       </p>
-      
+
       <!--フッターの猫-->
       <div class="footer-cat"></div>
-      
+
     </footer>
   </body>
 </html>
