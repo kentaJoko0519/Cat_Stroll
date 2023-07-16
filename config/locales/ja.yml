@@ -32,6 +32,7 @@ ja:
             user_name:
               too_long: "14文字以内にしてください"
               too_short: "3文字以上にしてください"
+              taken: "このユーザーネームは既に使われています"
         post:
           attributes:
             introduction:
