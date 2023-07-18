@@ -229,6 +229,16 @@ button.gradient:hover {
 }
 
 // ブックマークに追加のリンク
+.bookmark-link {
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .remove-bookmark:hover {
+    color: #111;
+  }
+}
+
 .add-bookmark {
   -webkit-transform: perspective(1px) translateZ(0);
   background: #08aa61;
@@ -238,10 +248,6 @@ button.gradient:hover {
   transition-duration: 0.4s;
 }
 
-.add-bookmark a {
-  color: #fff;
-  text-decoration: none;
-}
 
 .add-bookmark:before {
   background: linear-gradient(to bottom, #88daa1, #08aa61);
@@ -253,10 +259,6 @@ button.gradient:hover {
 .add-bookmark:hover:before {
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
-}
-
-.add-bookmark a:hover{
-  color:#111;
 }
 
 .remove-bookmark, .add-bookmark {
@@ -273,17 +275,13 @@ button.gradient:hover {
   transition: 0.4s cubic-bezier(.86, .01, .15, .99);
 }
 
-.remove-bookmark a {
-  color: #fff;
-  text-decoration: none;
-}
-
 .remove-bookmark:before {
   background: linear-gradient(to right, #B384FF, #EAD9FF, #B384FF);
   transform: scaleX(0);
   opacity: 0;
   transform-origin: 50% 50%;
   transition: 0.4s cubic-bezier(.86, .01, .15, .99);
+  color: #111;
 }
 
 .remove-bookmark:hover:before {
@@ -291,9 +289,7 @@ button.gradient:hover {
   opacity: 1;
 }
 
-.remove-bookmark a:hover{
-  color:#111;
-}
+
 
 @media screen and (max-width: 767.98px) {
   .add-bookmark, .remove-bookmark {
