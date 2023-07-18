@@ -116,13 +116,9 @@
         <!--ブックマーク機能-->
         <div class="mb-2 d-flex justify-content-center">
           <% if @post.bookmarked_by?(current_user) %>
-            <div class="remove-bookmark gradient">
-              <%= link_to "ブックマークから外す", post_bookmarks_path(@post), method: :delete %>
-            </div>
+            <%= link_to "ブックマークから外す", post_bookmarks_path(@post), method: :delete, class: "remove-bookmark gradient" %>
           <% else %>
-            <div class="add-bookmark gradient">
-              <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %>
-            </div>
+            <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post, class: "add-bookmark gradient" %>
           <% end %>
         </div>
 
