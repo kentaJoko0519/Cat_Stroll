@@ -6,7 +6,7 @@
       </h3>
     </div>  
   </div>
-
+  <!--ブックマーク一覧-->
   <div class="post-list">
     <div class="row">
       <div class="col-12 col-md-12 d-flex justify-content-start flex-wrap px-0">
@@ -15,7 +15,7 @@
             <div class="border border-dark h-100">
               <%= link_to post_path(bookmark.post.id) do %>
                 <div class="text-dark text-truncate">
-                  <%= bookmark.post.user.user_name %>            <!--ユーザーネームを表示-->
+                  <%= bookmark.post.user.user_name %>
                 </div>
                 <div class="m-2">
                   <% if bookmark.post.images.attached? %>
