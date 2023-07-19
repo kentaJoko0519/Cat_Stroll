@@ -11,27 +11,68 @@
   <div>
     <div>
       <ul class="tab-list list-unstyled d-block d-md-flex text-center justify-content-center">
-        <li class="tab tab-active">
-          ユーザー
-        </li>
-        <li class="tab">
-          フォロワー
-        </li>
-        <li class="tab">
-          フォロー中
-        </li>
+        <% if @select == "user" %>
+          <li id="user" class="tab tab-active">
+            ユーザー
+          </li>
+        <% else %>
+          <li id="user" class="tab">
+            ユーザー
+          </li>
+        <% end %>
+        
+        <% if @select == "follower" %>
+          <li id="follower" class="tab tab-active">
+            フォロワー
+          </li>
+        <% else %>
+          <li id="follower" class="tab">
+            フォロワー
+          </li>
+        <% end %>
+        
+        <% if @select == "folloing" %>
+          <li id="folloing" class="tab tab-active">
+            フォロー中
+          </li>
+        <% else %>
+          <li id="folloing" class="tab">
+            フォロー中
+          </li>
+        <% end %>
       </ul>
       <!--タブで選択された要素部分-->
       <div class="tabbox-contents">
-        <div class="tabbox box-show">
-          <%= render 'list', users: @users %>
-        </div>
-        <div class="tabbox">
-          <%= render 'list', users: @follower_users %>
-        </div>
-        <div class="tabbox">
-          <%= render 'list', users: @following_users %>
-        </div>
+        <!--ユーザー全体-->
+        <% if @select == "user" %>
+          <div class="tabbox box-show">
+            <%= render 'list', users: @users %>
+          </div>
+        <% else %>
+          <div class="tabbox">
+            <%= render 'list', users: @users %>
+          </div>
+        <% end %>
+        <!--フォロワー-->
+        <% if @select == "follower" %>
+          <div class="tabbox box-show">
+            <%= render 'list', users: @follower_users %>
+          </div>
+        <% else %>
+          <div class="tabbox">
+            <%= render 'list', users: @follower_users %>
+          </div>
+        <% end %>
+        <!--フォロー中-->
+        <% if @select == "folloing" %>
+          <div class="tabbox box-show">
+            <%= render 'list', users: @following_users %>
+          </div>
+        <% else %>
+          <div class="tabbox">
+            <%= render 'list', users: @following_users %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

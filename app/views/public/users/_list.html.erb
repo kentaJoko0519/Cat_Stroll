@@ -1,5 +1,22 @@
   <!--users/index.html.erb-->
   <div class="row">
+
+    <div class="col-12 col-md-12 mt-3">
+    <!--検索-->
+      <div class="mb-2">
+        <%= form_with url: users_path, method: :get, local: true do |f| %>
+          <div class="d-flex justify-content-center">
+            <i class="fas fa-search fa-lg mt-2 ml-2"></i>
+            <%= f.text_field :search, class: "ml-2 mr-2 form-control w-50 border border-dark searchBox", value: params[:search] %>
+            <%= f.hidden_field :select, value: 'user', id: "select" %>
+            <%= f.submit 'search', { class: "search-button btn btn-primary", id: "submit" } %>
+            <small class="clearSearch clear-button ml-2 btn btn-secondary">クリア</small>
+          </div>
+        <% end %>
+      </div>
+      
+    </div>
+
     <div class="col-md-8 text-center mx-auto">
       <div class="user-list">
         <table class="table table-hover table-sm">

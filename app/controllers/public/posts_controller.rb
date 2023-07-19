@@ -26,7 +26,6 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
     # 検索機能
-    # if user_signed_in?
     if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
       # 投稿のタグから探す
       tag_posts = @posts.joins(:tags).distinct.where('tags.name like ?', "%#{params[:search]}%")

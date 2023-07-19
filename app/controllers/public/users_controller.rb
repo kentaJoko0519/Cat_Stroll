@@ -6,6 +6,25 @@ class Public::UsersController < ApplicationController
     @users=User.where(is_deleted: false)                  # ユーザーの退会ステータスが false(有効)のユーザーを取得
     @following_users = current_user.following_user        # タブで切り替えれるように部分テンプレートの設定
     @follower_users = current_user.follower_user          # タブで切り替えれるように部分テンプレートの設定
+    # 検索機能
+    if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
+      users = @users.where('users.user_name like ?', "%#{params[:search]}%")
+      following_users = @following_users.where('users.user_name like ?', "%#{params[:search]}%")
+      follower_users = @follower_users.where('users.user_name like ?', "%#{params[:search]}%")
+      #重複しないように uniq を設定
+      @users = users.uniq
+      @following_users = following_users.uniq
+      @follower_users = follower_users.uniq
+    end
+    if params[:select].present?
+      @select = params[:select]
+    end  
+    # 検索結果がなかった場合
+    if params[:search].present? && @users.count == 0
+      flash[:alert] = "検索結果がありません"
+      render :index
+    end
+    flash[:alert] = nil
   end
 
   def show
