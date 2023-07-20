@@ -94,22 +94,22 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12 mt-4">
+    <div class="col-md-12 mt-5">
       <div class="col-12 col-md-9 col-lg-8 text-center mx-auto">
 
         <!--投稿文-->
-        <h6 class="text-center">
+        <div class="subtitle text-center">
           <strong>投稿文</strong>
-        </h6>
+        </div>
         <div class="post">
           <%= @post.introduction %>
         </div>
 
         <!--コメント欄-->
-        <h6 class="text-center mt-3">
+        <div class="subtitle text-center mt-3">
           <strong>コメント</strong>
           <p>コメント件数：<%= @post.comments.count %>件</p>
-        </h6>
+        </div>
         <div class="comment">
           <% @comments.each do |comment|%>
             <div class="border border-dark mx-3 my-4">
