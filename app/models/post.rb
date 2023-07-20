@@ -10,8 +10,10 @@ class Post < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 # comment
   has_many :comments, dependent: :destroy
-  
+
   validates :introduction, presence: true, length: { minimum: 3 }
+
+  scope :with_out_is_deleted, -> {includes(:user).where(user: {is_deleted: false})}
 
   before_validation :split_text
   after_save :save_tags
@@ -69,13 +71,13 @@ class Post < ApplicationRecord
   def get_image(image, width, height)
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
-  private 
-  
+
+  private
+
   def image_length
     if images.length > 5
       errors.add(:images, "　投稿画像は5枚以内にしてください。")
     end
   end
-  
+
 end

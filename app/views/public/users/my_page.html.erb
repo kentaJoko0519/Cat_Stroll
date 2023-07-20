@@ -27,7 +27,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-12 col-md-6 mx-auto mb-5">
       <div class="row">
@@ -40,7 +40,7 @@
         <div class="col-4 col-md-4 text-center">
           <%= link_to user_following_path(@user) do %>
             <strong class="text-dark">
-              <%= @user.follower.count %>
+              <%= @user.following_user.with_out_is_deleted.count %>
             </strong>
             <small class="d-block text-dark">フォロー中</small>
           <% end %>
@@ -48,7 +48,7 @@
         <div class="col-4 col-md-4 text-center">
           <%= link_to user_follower_path(@user) do %>
             <strong class="text-dark">
-              <%= @user.followed.count %>
+              <%= @user.follower_user.with_out_is_deleted.count %>
             </strong>
             <small class="d-block text-dark">フォロワー</small>
           <% end %>
@@ -75,7 +75,7 @@
   <div class="mt-1 d-flex justify-content-center">
     <%= link_to "edit",edit_user_path(@user),class: "edit-btn-hover color-edit mypage-button" %>
   </div>
-  
+
   <div class="text-center mt-4">
     <%= link_to "ブックマーク", post_favorite_path(@user),class: "bookmark-button" %>
   </div>

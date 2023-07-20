@@ -6,7 +6,7 @@
           フォロー中のユーザー
         </strong>
       </h3>
-      <%= @following_users.count %>人
+      <%= @following_users.with_out_is_deleted.count %>人
     </div>
   </div>
 
@@ -14,7 +14,7 @@
     <div class="col-md-6 following-list">
       <table class="table table-border table-hover table-sm">
         <tbody>
-          <% @following_users.each do |following_user| %>
+          <% @following_users.with_out_is_deleted.each do |following_user| %>
             <tr data-href="/users/<%= following_user.id %>">
               <td class="col-1 col-md-1 col-sm-4">
                 <%= image_tag following_user.get_profile_image(70,70) %>

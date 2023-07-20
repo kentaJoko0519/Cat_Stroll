@@ -133,10 +133,10 @@
         <!--コメント欄-->
         <div class="subtitle text-center mt-3">
           <strong>コメント</strong>
-          <p>コメント件数：<%= @post.comments.count %>件</p>
+          <p>コメント件数：<%= @post.comments.with_out_is_deleted.count %>件</p>
         </div>
         <div class="comment">
-          <% @comments.each do |comment|%>
+          <% @comments.with_out_is_deleted.each do |comment|%>
             <div class="border border-dark mx-3 my-4">
               <div class="row mt-2">
                 <%= link_to user_path(comment.user.id) do %>

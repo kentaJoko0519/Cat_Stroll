@@ -449,7 +449,7 @@ button.gradient:hover {
 /*タブがactiveのときのデザイン*/
 .tab-active {
   color: #FFF;
-  background: #19b5d1;
+  background-image: linear-gradient(185deg, rgba(94, 172, 255, 0.63) 15%, rgba(71, 130, 245, 0.63) 41%, rgba(36, 94, 239, 0.63) 68%, rgba(0, 59, 255, 0.63) 95%);
   transition: all 0.2s ease-in-out;
 }
 /*タブの中身、最初は非表示*/

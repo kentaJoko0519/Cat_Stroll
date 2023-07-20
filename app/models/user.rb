@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # フリガナには全角カタカナしか保存できないようにする
   validates :first_name_kana, :last_name_kana, format: {with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,message: "全角カタカナで入力して下さい"}
   validates :user_name, length: { minimum: 3, maximum: 14 }, uniqueness: true
-  
+
 # post
   has_many :posts, dependent: :destroy
 # bookmark
@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
   has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
+
+  scope :with_out_is_deleted, -> {where(is_deleted: false)}
 
   # ユーザーをフォローする、controllerで使用
   def follow(user_id)

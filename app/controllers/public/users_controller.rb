@@ -18,7 +18,7 @@ class Public::UsersController < ApplicationController
     end
     if params[:select].present?
       @select = params[:select]
-    end  
+    end
     # 検索結果がなかった場合
     if params[:search].present? && @users.count == 0
       flash[:alert] = "検索結果がありません"
@@ -28,7 +28,7 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-    @user=User.find(params[:id])
+    @user=User.with_out_is_deleted.find(params[:id])
     @posts=@user.posts
   end
 
