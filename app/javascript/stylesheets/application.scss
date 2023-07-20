@@ -541,7 +541,7 @@ button.gradient:hover {
 .post {
   width: 100%;
   height: 400px;
-  padding: 5px;
+  padding: 10px 15px;
   overflow: scroll;
   overflow-x: hidden;
   border: 1px solid #111111;
@@ -629,12 +629,13 @@ button.gradient:hover {
     width: 93%;
     height: 300px;
     margin: 0 auto;
+    padding: 5px;
   }
 
   .comment {
     width: 100%;
   }
-  
+
   .comment-sentence {
     font-size: 18px;
   }
@@ -644,6 +645,7 @@ button.gradient:hover {
 .edit-introduction {
   width: 500px;
   height: 300px;
+  padding: 10px 20px;
 }
 
 @media screen and (max-width: 767.98px) {
