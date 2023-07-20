@@ -1,6 +1,28 @@
 <div class="container">
-  
+
   <div class="row mt-5">
+
+    <div class="col-12 col-md-12 mt-5">
+      <div class="mb-2">
+        <%= form_with url: admin_root_path, method: :get, local: true do |f| %>
+          <div class="d-flex justify-content-center">
+            <i class="fas fa-search fa-lg mt-2 ml-2"></i>
+            <%= f.text_field :search, class: "ml-2 mr-2 form-control w-50 border border-dark", value: params[:search], id: "searchBox" %>
+            <%= f.submit 'search', class: "search-button btn btn-primary" %>
+            <small id="clearSearch" class="clear-button ml-2 btn btn-secondary">クリア</small>
+          </div>
+        <% end %>
+      </div>
+
+      <!--検索ボックスの中をクリアに-->
+      <script>
+        $('#clearSearch').on('click', (e) => {
+          //console.log(e.target)
+          $('#searchBox').val("")
+        })
+      </script>
+    </div>
+
     <div class="col-md-8 user-list text-center">
       <table class="table table-sm table-hover">
         <% @users.each do |user| %>
@@ -33,5 +55,5 @@
       };
     });
   </script>
-  
+
 </div>

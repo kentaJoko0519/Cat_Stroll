@@ -1,11 +1,11 @@
 class Admin::ReportsController < ApplicationController
-# 管理者側  通報 
+# 管理者側  通報
   before_action :authenticate_admin!
-  
+
   def index
     @reports = Report.all
   end
-  
+
   def show
     @report = Report.find(params[:id])
   end
@@ -18,13 +18,14 @@ class Admin::ReportsController < ApplicationController
       @report.update(status: 2)                # 取得したIDの status(対応ステータス) を "2" にアップデート
       # enum status ＝ waiting(対応待ち) → 0    keep(保留中) → 1    finish(対応済み) → 2
     end
+    flash[:notice] = "ステータス変更完了"
     redirect_to admin_reports_path
   end
-  
+
   private
 
   def report_params
     params.require(:report).permit(:status)
   end
-  
+
 end

@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
   end
 
 # 退会処理
-  def withdraw
+  def withdraw #[ToDo]
     @user=current_user
     reports = Report.where(reported_id: current_user.id)    # 退会するユーザーが既に通報されているユーザの際に使用する
     @user.update(is_deleted: true)                          # is_deletedカラムをtrueに変更することにより削除フラグを立てる
