@@ -30,7 +30,7 @@
         <div class="col-4 col-md-4 text-center">
           <%= link_to user_following_path(@user) do %>
             <strong class="text-dark">
-              <%= @user.follower.joins(:follower).merge(User.with_out_is_deleted).size %>
+              <%= @user.follower.joins(:follower).merge(User.with_out_is_deleted).count %>
             </strong>
             <small class="d-block text-dark">フォロー中</small>
           <% end %>
@@ -38,7 +38,7 @@
         <div class="col-4 col-md-4 text-center">
           <%= link_to user_follower_path(@user) do %>
             <strong class="text-dark">
-              <%= @user.follower.joins(:follower).merge(User.with_out_is_deleted).size %>
+              <%= @user.followed.joins(:followed).merge(User.with_out_is_deleted).count %>
             </strong>
             <small class="d-block text-dark">フォロワー</small>
           <% end %>
