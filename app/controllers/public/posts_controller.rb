@@ -33,11 +33,10 @@ class Public::PostsController < ApplicationController
       posts = @posts.joins(:user).where('posts.name like ?', "%#{params[:search]}%").or(
               # ↓ address を検索に入れることにより、地名で検索できるようにする
               @posts.joins(:user).where('posts.address like ?', "%#{params[:search]}%")).or(
-              @posts.joins(:user).where('users.user_name like ?', "%#{params[:search]}%"))
+              @posts.joins(:user).where('user_name like ?', "%#{params[:search]}%"))
       # tag_posts と posts で重複しないように uniq を設定
       @posts = (tag_posts + posts).uniq
     end
-
     # 検索結果がなかった場合
     if params[:search].present? && @posts.count == 0
       flash[:alert] = "検索結果がありません"
