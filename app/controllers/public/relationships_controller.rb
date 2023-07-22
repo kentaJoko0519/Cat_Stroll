@@ -14,13 +14,13 @@ class Public::RelationshipsController < ApplicationController
     redirect_to request.referer
   end
 
-# フォロー中
+# フォロー中(一覧)
   def following
     @user = User.find(params[:user_id])
     @following_users = @user.following_user
   end
 
-# フォロワー
+# フォロワー(一覧)
   def follower
     @user = User.find(params[:user_id])
     @follower_users = @user.follower_user

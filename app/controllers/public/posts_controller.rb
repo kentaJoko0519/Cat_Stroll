@@ -6,13 +6,11 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # session[:locate_params]=
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
     if @post.save
       flash[:notice] = "投稿完了"
       redirect_to post_path(@post.id)
@@ -51,7 +49,7 @@ class Public::PostsController < ApplicationController
     @user = @post.user
     # コメント機能
     @comments = @post.comments                #投稿詳細に関連付けてあるコメントを全取得
-    @comment = Comment.new                    # コメントの空のインスタンスを生成
+    @comment = Comment.new
   end
 
   def edit

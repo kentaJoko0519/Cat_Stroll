@@ -26,11 +26,11 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   
+  
   # ログインした後、投稿一覧画面に遷移する
   def after_sign_in_path_for(_resource)
     posts_path
   end
-  
   
   protected
     # 退会しているかを判断するメソッド

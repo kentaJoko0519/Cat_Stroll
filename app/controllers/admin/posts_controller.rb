@@ -20,7 +20,6 @@ class Admin::PostsController < ApplicationController
         @posts = (tag_posts + posts).uniq
       end
     end
-    
     # 検索結果がなかった場合
     if params[:search].present? && @posts.count == 0
       flash[:alert] = "検索結果がありません"

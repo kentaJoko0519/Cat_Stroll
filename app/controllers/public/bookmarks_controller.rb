@@ -20,7 +20,7 @@ class Public::BookmarksController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     bookmark = @post.bookmarks.find_by(user_id: current_user.id)
-    if bookmark.present?                                             # ブックマークに追加してあるかの確認(２度押しのエラーを回避するため)
+    if bookmark.present?                                           # ブックマークに追加してあるかの確認(２度押しのエラーを回避するため)
         bookmark.destroy
         flash[:alert] = "ブックマークを外しました"
         redirect_to request.referer
