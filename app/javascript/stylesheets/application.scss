@@ -604,6 +604,7 @@ button.gradient:hover {
 // コメント削除ボタン
 .comment-delete {
   display: flex;
+  justify-content: center;
   margin: 0 auto;
   width: 50px;
   color: white;
