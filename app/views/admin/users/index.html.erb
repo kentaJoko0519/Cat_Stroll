@@ -27,14 +27,14 @@
       <table class="table table-sm table-hover">
         <% @users.each do |user| %>
         <tbody>
-          <tr data-href="/admin/users/<%= user.id %>">
-            <td class="col-1 col-xs-1 col-md-3">
+          <tr class="row" data-href="/admin/users/<%= user.id %>">
+            <td class="col-3 col-xs-3 col-md-3">
               <%= image_tag user.get_profile_image(70,70) %>
             </td>
-            <td class="col-5 col-xs-5 col-md-5">
+            <td class="col-6 col-xs-6 col-md-6 d-flex align-items-center justify-content-center">
               <%= user.user_name%>
             </td>
-            <td class="col-2 col-xs-2 col-md-2">
+            <td class="col-3 col-xs-3 col-md-3 d-flex align-items-center justify-content-center">
               <% if user.is_deleted == false %>
                 <strong style="color:blue;">有効</strong>
               <% else %>
