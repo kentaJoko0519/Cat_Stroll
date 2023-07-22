@@ -22,11 +22,11 @@
         <table class="table table-hover table-sm">
           <tbody>
             <% users.each do |user| %>
-              <tr data-href="/users/<%= user.id %>">
-                <td class="col-md-2 col-sm-4">
+              <tr class="row" data-href="/users/<%= user.id %>">
+                <td class="col-4 col-xs-4 col-md-2">
                   <%= image_tag user.get_profile_image(70,70) %><!--プロフィール画像-->
                 </td>
-                <td class="col-md-4 col-sm-8">
+                <td class="col-8 col-xs-8 col-md-4 d-flex align-items-center justify-content-center">
                   <%= user.user_name%><!--ユーザーネーム-->
                 </td>
               </tr>
