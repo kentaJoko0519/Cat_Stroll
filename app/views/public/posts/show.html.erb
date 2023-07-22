@@ -85,17 +85,17 @@
       <!--投稿情報-->
       <div class="col-md-9 col-lg-8 text-center mx-auto">
         <table class="table table-border">
-          <tr>
+          <tr class="row">
             <td class="col-3">投稿日</td>
-            <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
+            <td class="col-9"><%= @post.created_at.strftime("%Y/%m/%d") %></td>
           </tr>
-          <tr>
+          <tr class="row">
             <td class="col-3">名称</td>
-            <td><strong><%= @post.name %></strong></td>
+            <td class="col-9"><strong><%= @post.name %></strong></td>
           </tr>
-          <tr class="border-bottom">
+          <tr class="row border-bottom">
             <td class="col-3">住所</td>
-            <td><%= @post.address %></td>
+            <td class="col-9"><%= @post.address %></td>
           </tr>
         </table>
 
