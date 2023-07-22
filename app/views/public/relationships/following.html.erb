@@ -21,11 +21,11 @@
       <table class="table table-border table-hover table-sm">
         <tbody>
           <% @following_users.with_out_is_deleted.each do |following_user| %>
-            <tr data-href="/users/<%= following_user.id %>">
-              <td class="col-1 col-md-1 col-sm-4">
+            <tr class="row" data-href="/users/<%= following_user.id %>">
+              <td class="col-4">
                 <%= image_tag following_user.get_profile_image(70,70) %>
               </td>
-              <td class="col-5 col-md-5 col-sm-8">
+              <td class="col-8 d-flex align-items-center justify-content-center">
                 <%= following_user.user_name%><!--ユーザーネーム-->
               </td>
             </tr>
