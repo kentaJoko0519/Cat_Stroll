@@ -22,13 +22,13 @@
         <tbody>
           <% @follower_users.with_out_is_deleted.each do |follower_user| %>
             <tr class="row" data-href="/users/<%= follower_user.id %>">
-              <td class="col-2">
+              <td class="col-1">
                 <%= image_tag follower_user.get_profile_image(70,70) %>
               </td>
-              <td class="col-6 d-flex align-items-center justify-content-center">
+              <td class="col-5 d-flex align-items-center justify-content-center">
                 <%= follower_user.user_name%><!--ユーザーネーム-->
               </td>
-              <td  class="col-4 d-flex align-items-center justify-content-center">
+              <td  class="col-6 d-flex align-items-center justify-content-center">
                 <% if current_user != follower_user %>
                   <% if current_user.following?(follower_user) %>
                     <!--フォローしていないユーザーをフォローするとき-->
