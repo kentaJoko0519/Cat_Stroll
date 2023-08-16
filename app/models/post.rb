@@ -53,7 +53,7 @@ class Post < ApplicationRecord
 
   # 編集する際にフォームにタグを表示させる
   def append_tags
-    unless self.introduction == ""
+    if self.introduction.present? && self.tags.present?
       recorded_tags = "\r\n#" + self.tags.pluck(:name).join(' #')
       self.introduction = self.introduction + recorded_tags
     end
