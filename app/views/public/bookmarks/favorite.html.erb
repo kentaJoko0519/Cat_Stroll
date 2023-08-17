@@ -4,35 +4,16 @@
       <h3 class="text-center">
         <strong>ブックマーク</strong>
       </h3>
-    </div>  
+    </div>
   </div>
   <!--ブックマーク一覧-->
   <div class="post-list">
     <div class="row">
       <div class="col-12 col-md-12 d-flex justify-content-start flex-wrap px-0">
         <% @bookmarks.each do |bookmark| %>
-          <div class="col-9 col-md-6 col-lg-4 p-3 mx-md-0 mx-lg-0 mx-auto text-center">
-            <div class="post-box">
-              <%= link_to post_path(bookmark.post.id) do %>
-                <div class="text-dark text-truncate">
-                  <%= bookmark.post.user.user_name %>
-                </div>
-                <div class="m-2">
-                  <% if bookmark.post.images.attached? %>
-                    <%= image_tag bookmark.post.get_image(bookmark.post.images[0], 120,120) %>
-                  <% else %>
-                    <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
-                  <% end %>
-                </div>
-                <div class="text-dark">
-                  <%= bookmark.post.name %>
-                </div>
-              <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
+          <%= render 'public/users/post', post: bookmark.post %>
+        <% end %>
       </div>
-    </div>  
+    </div>
   </div>
 </div>

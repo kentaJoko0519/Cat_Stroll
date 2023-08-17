@@ -1,11 +1,11 @@
 class Public::BookmarksController < ApplicationController
-  
+
 # ユーザー側  ブックマーク
   before_action :authenticate_user!
   def favorite
     @bookmarks = Bookmark.where(user_id: current_user.id)
   end
-  
+
   def create
     @post = Post.find(params[:post_id])
     bookmark = @post.bookmarks.new(user_id: current_user.id)
@@ -28,5 +28,5 @@ class Public::BookmarksController < ApplicationController
         redirect_to request.referer
     end
   end
-  
+
 end

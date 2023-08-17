@@ -81,7 +81,20 @@
   </div>
 
   <!--過去投稿一覧-->
-  <%= render 'posted', posts: @posts %>
+  <div class="row">
+    <div class="subtitle col-12 text-center mt-5">
+      <strong>投稿</strong>
+    </div>
+  </div>
+  <div class="post-list">
+    <div class="row">
+      <div class="col-12 col-md-12 d-flex justify-content-start flex-wrap px-0">
+        <% @posts.each do |post| %>
+          <%= render 'public/users/post', post: post %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
   <div class="mt-1 d-flex justify-content-center">
     <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "delete-btn-hover color-delete mypage-button" %>
