@@ -64,7 +64,20 @@
   </div>
 
   <!--過去投稿一覧-->
-  <%= render 'posted', posts: @posts %>
+  <div class="row">
+    <div class="subtitle col-12 text-center mt-5">
+      <strong>投稿</strong>
+    </div>
+  </div>
+  <div class="post-list">
+    <div class="row">
+      <div class="col-12 col-md-12 d-flex justify-content-start flex-wrap px-0">
+        <% @posts.each do |post| %>
+          <%= render 'public/users/post', post: post %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
   <!--ユーザーの通報-->
   <div class="row text-center">
