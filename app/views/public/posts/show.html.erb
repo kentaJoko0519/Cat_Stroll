@@ -160,6 +160,9 @@
               </div>
             </div>
           <% end %>
+          <div class="d-flex justify-content-center mt-2">
+            <%= paginate @comments.with_out_is_deleted %>
+          </div>
         </div>
         <!--コメント入力欄-->
 

@@ -3,9 +3,9 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users=User.where(is_deleted: false)                  # ユーザーの退会ステータスが false(有効)のユーザーを取得
-    @following_users = current_user.following_user        # タブで切り替えれるように部分テンプレートの設定
-    @follower_users = current_user.follower_user          # タブで切り替えれるように部分テンプレートの設定
+    @users=User.where(is_deleted: false).page(params[:page]).per(10)                  # ユーザーの退会ステータスが false(有効)のユーザーを取得
+    @following_users = current_user.following_user.page(params[:page]).per(10)        # タブで切り替えれるように部分テンプレートの設定
+    @follower_users = current_user.follower_user.page(params[:page]).per(10)          # タブで切り替えれるように部分テンプレートの設定
     # 検索機能
     if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
       users = @users.where('users.user_name like ?', "%#{params[:search]}%")
@@ -29,7 +29,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user=User.with_out_is_deleted.find(params[:id])
-    @posts=@user.posts
+    @posts=@user.posts.page(params[:page])
   end
 
   def unsubscribe
@@ -56,7 +56,7 @@ class Public::UsersController < ApplicationController
 
   def my_page
     @user=current_user
-    @posts=@user.posts
+    @posts=@user.posts.page(params[:page])
   end
 
   def edit

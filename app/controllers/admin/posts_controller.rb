@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page])
     # 検索機能
     if admin_signed_in?
       if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
@@ -33,7 +33,7 @@ class Admin::PostsController < ApplicationController
     @post.split_text
     @user = @post.user
     # コメント機能
-    @comments = @post.comments          #投稿詳細に関連付けてあるコメントを全て取得
+    @comments = @post.comments.page(params[:page])          #投稿詳細に関連付けてあるコメントを全て取得
   end
 
   def destroy

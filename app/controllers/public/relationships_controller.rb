@@ -17,12 +17,12 @@ class Public::RelationshipsController < ApplicationController
   # フォロー中(一覧)
   def following
     @user = User.find(params[:user_id])
-    @following_users = @user.following_user
+    @following_users = @user.following_user.page(params[:page]).per(10)
   end
 
   # フォロワー(一覧)
   def follower
     @user = User.find(params[:user_id])
-    @follower_users = @user.follower_user
+    @follower_users = @user.follower_user.page(params[:page]).per(10)
   end
 end

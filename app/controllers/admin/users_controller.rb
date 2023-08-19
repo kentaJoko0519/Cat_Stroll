@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(10)
     # 検索機能
     if admin_signed_in?
       if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
@@ -25,7 +25,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user=User.find(params[:id])
-    @posts=@user.posts
+    @posts=@user.posts.page(params[:page])
   end
 
   def edit

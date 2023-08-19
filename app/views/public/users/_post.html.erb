@@ -1,19 +1,37 @@
 <div class="col-9 col-md-6 col-lg-4 p-3 mx-md-0 mx-lg-0 mx-auto text-center">
   <div class="post-box">
-    <%= link_to post_path(post.id) do %>
-      <div class="text-dark text-truncate">
-        <%= post.user.user_name %>
-      </div>
-      <div class="m-2">
-        <% if post.images.attached? %>
-          <%= image_tag post.get_image(post.images[0], 120,120) %>
-        <% else %>
-          <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
-        <% end %>
-      </div>
-      <div class="text-dark">
-        <%= post.name %>
-      </div>
-    <% end %>
+    <% if admin_signed_in? %>
+      <%= link_to admin_post_path(post.id) do %>
+        <div class="text-dark text-truncate">
+          <%= post.user.user_name %>
+        </div>
+        <div class="m-2">
+          <% if post.images.attached? %>
+            <%= image_tag post.get_image(post.images[0], 120,120) %>
+          <% else %>
+            <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
+          <% end %>
+        </div>
+        <div class="text-dark">
+          <%= post.name %>
+        </div>
+      <% end %>
+    <% else %>  
+      <%= link_to post_path(post.id) do %>
+        <div class="text-dark text-truncate">
+          <%= post.user.user_name %>
+        </div>
+        <div class="m-2">
+          <% if post.images.attached? %>
+            <%= image_tag post.get_image(post.images[0], 120,120) %>
+          <% else %>
+            <%= image_tag asset_path('no_image.jpg'),width: 80, height: 70 %>
+          <% end %>
+        </div>
+        <div class="text-dark">
+          <%= post.name %>
+        </div>
+      <% end %>
+    <% end %>  
   </div>
 </div>

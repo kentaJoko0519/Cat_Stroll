@@ -26,26 +26,29 @@
     <div class="col-md-8 user-list text-center">
       <table class="table table-sm table-hover">
         <% @users.each do |user| %>
-        <tbody>
-          <tr class="row" data-href="/admin/users/<%= user.id %>">
-            <td class="col-3">
-              <%= image_tag user.get_profile_image(70,70) %>
-            </td>
-            <td class="col-6 d-flex align-items-center justify-content-center">
-              <%= user.user_name%>
-            </td>
-            <td class="col-3 d-flex align-items-center justify-content-center">
-              <% if user.is_deleted == false %>
-                <strong style="color:blue;">有効</strong>
-              <% else %>
-                <strong style="color:red;">退会</strong>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
+          <tbody>
+            <tr class="row" data-href="/admin/users/<%= user.id %>">
+              <td class="col-3">
+                <%= image_tag user.get_profile_image(70,70) %>
+              </td>
+              <td class="col-6 d-flex align-items-center justify-content-center">
+                <%= user.user_name%>
+              </td>
+              <td class="col-3 d-flex align-items-center justify-content-center">
+                <% if user.is_deleted == false %>
+                  <strong style="color:blue;">有効</strong>
+                <% else %>
+                  <strong style="color:red;">退会</strong>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
         <% end %>
       </table>
     </div>
+  </div>
+  <div class="d-flex justify-content-center mt-2">
+    <%= paginate @users %>
   </div>
   <!--link_to "" do が機能しなかった為、JSで実装-->
   <script>

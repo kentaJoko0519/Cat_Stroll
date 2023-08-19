@@ -39,6 +39,27 @@
   top: -43%;
 }
 
+/*ページネーション自体のデザイン*/
+.pagination>li>a {
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  padding: 1px 7px;
+  color: #696969;
+  text-decoration: none;
+  margin: 0px 10px;
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  border-radius: 15px;    /*角を丸くする*/
+}
+
 @media screen and (max-width:576px) {
 
   .header-cat {
