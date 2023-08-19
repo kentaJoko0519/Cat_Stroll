@@ -29,13 +29,23 @@
           <div class="tabbox<%= @select.nil? || @select == "user" ? ' box-show' : '' %>">
             <%= render 'list', users: @users %>
           </div>
+          <div class="d-flex justify-content-center mt-2">
+            <%= paginate @users %>
+          </div>
         <!--フォロワー-->
           <div class="tabbox<%= @select == "follower" ? ' box-show' : '' %>">
             <%= render 'list', users: @follower_users %>
+            <div class="d-flex justify-content-center mt-2">
+              <%= paginate @follower_users %>
+            </div>
           </div>
+          
         <!--フォロー中-->
           <div class="tabbox<%= @select == "folloing" ? ' box-show' : '' %>">
             <%= render 'list', users: @following_users %>
+            <div class="d-flex justify-content-center mt-2">
+              <%= paginate @following_users %>
+            </div>
           </div>
         </div>
     </div>

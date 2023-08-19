@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.with_out_is_deleted
+    @posts = Post.with_out_is_deleted.page(params[:page])
     # 検索機能
     if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
       # 投稿のタグから探す
@@ -48,7 +48,7 @@ class Public::PostsController < ApplicationController
     @post.split_text
     @user = @post.user
     # コメント機能
-    @comments = @post.comments                #投稿詳細に関連付けてあるコメントを全取得
+    @comments = @post.comments.page(params[:page])                #投稿詳細に関連付けてあるコメントを全取得
     @comment = Comment.new
   end
 

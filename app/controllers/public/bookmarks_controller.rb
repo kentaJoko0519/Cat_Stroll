@@ -3,7 +3,7 @@ class Public::BookmarksController < ApplicationController
 # ユーザー側  ブックマーク
   before_action :authenticate_user!
   def favorite
-    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @bookmarks = Bookmark.where(user_id: current_user.id).page(params[:page]).per(20)
   end
 
   def create

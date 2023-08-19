@@ -60,7 +60,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # デバイス
 gem 'devise'
-
+gem 'kaminari','~> 1.2.1'
 gem 'image_processing', '~> 1.2'
 # 地図機能
 gem 'dotenv-rails'
