@@ -16,8 +16,9 @@ import "../stylesheets/application"
 // FontAwesome
 import '@fortawesome/fontawesome-free/js/all'
 import '../stylesheets/style'
-
+// JavaScript
 import "script.js"
+import 'jquery'
 
 Rails.start()
 Turbolinks.start()
