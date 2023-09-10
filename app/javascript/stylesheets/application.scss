@@ -535,6 +535,17 @@ button.gradient:hover {
   width: 57%;
 }
 
+.custom-map-control-button {
+  position: absolute;
+  top: 0px;
+  left: 325px;
+  width: 85px;
+  height: 35px;
+  font-size: 15px;
+  background-color: white;
+  margin-top: 7px;
+}
+
 @media screen and (max-width: 767.98px) {
   .search-box {
     width: 72%;
