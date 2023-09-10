@@ -28,23 +28,76 @@
 
       <!--地図のjs-->
       <script>
-        let map;
-        let geocoder;
-        let marker;
-        let infoWindow;
-
+        let map, infoWindow, geocoder, marker;
+  // 【マップの表示・設定】
         function initMap() {
           geocoder = new google.maps.Geocoder(); // ジオコーディングができるようにしておく
-
-          var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
-          var Options = {
-           zoom: 15,      //地図の縮尺値
-           center: MyLatLng,    //地図の中心座標
-           mapTypeId: 'roadmap'   //地図の種類
-          };
-          map = new google.maps.Map(document.getElementById('map'), Options);
+          map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 35.6811673, lng: 139.7670516 },    //地図の中心座標
+            zoom: 15,      //地図の縮尺値
+            mapTypeId: 'roadmap'   //地図の種類
+          });
+          infoWindow = new google.maps.InfoWindow();
+        
+  // 【現在位置表示のボタン】
+          const locationButton = document.createElement("button");
+          // ボタンのテキスト
+          locationButton.textContent = "現在地へ";
+          // ボタンにクラスを追加。javascript / stylesheets / application.scss にスタイル設定
+          locationButton.classList.add("custom-map-control-button");
+          //ボタンをマップに表示
+          map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+          // ボタンクリック時のイベント
+          locationButton.addEventListener("click", () => {
+            // ブラウザがGeolocation APIに対応しているかのチェック
+            if (navigator.geolocation) {
+              // 対応している場合
+              // getCurrentPosition ＝ 現在位置を取得するメソッド
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  const pos = {
+                    // 現在位置の緯度・経度
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                  };
+                  // 現在位置にマーカー設置
+                  infoWindow.setPosition(pos);
+                  var marker = new google.maps.Marker({
+                    map : map,         
+                    position : pos
+                  });
+                  // マップの真ん中に「現在地」Windowを表示
+                  infoWindow.setContent("Found you!　");
+                  infoWindow.open(map);
+                  map.setCenter(pos);
+                  
+                },
+                // 現在位置の取得に失敗した時のエラーメッセージ
+                () => {
+                  handleLocationError(true, infoWindow, map.getCenter());
+                }
+              );
+            // ブラウザがGeolocation APIに対応していない場合、エラーメッセージを表示
+            } else {
+              handleLocationError(false, infoWindow, map.getCenter());
+            }
+          });
         }
-
+        
+        // エラーメッセージ内容
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(
+            browserHasGeolocation
+              ? "現在位置の取得に失敗しました。"
+              : "ご使用中のブラウザは現在地検索に対応されておりません。"
+          );
+          infoWindow.open(map);
+        }
+        
+        window.initMap = initMap;
+    
+  // 【投稿検索】
         function codeAddress() {
           let inputAddress = $('#address').val(); // テキストエリアから検索対象文字取得
 
@@ -95,6 +148,7 @@
             }
           })
         }
+
       </script>
 
       <!--APIキー-->
