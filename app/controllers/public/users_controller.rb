@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users=User.where(is_deleted: false).page(params[:page]).per(10)                  # ユーザーの退会ステータスが false(有効)のユーザーを取得
+    @users=User.where(is_deleted: false)               # ユーザーの退会ステータスが false(有効)のユーザーを取得
     @following_users = current_user.following_user.page(params[:page]).per(10)        # タブで切り替えれるように部分テンプレートの設定
     @follower_users = current_user.follower_user.page(params[:page]).per(10)          # タブで切り替えれるように部分テンプレートの設定
     # 検索機能
