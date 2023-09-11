@@ -87,7 +87,7 @@
       </div>
       
       <!--投稿情報-->
-      <div class="col-md-9 col-lg-8 mt-5 text-center mx-auto">
+      <div class="col-md-9 col-lg-8 mt-3 text-center mx-auto">
         <table class="table table-border">
           <tr class="row">
             <td class="col-3">投稿日</td>
@@ -102,3 +102,46 @@
             <td class="col-9"><%= post.address %></td>
           </tr>
         </table>
+
+        <!--タグのリンク一覧表示(リンク先はそのタグが検索された状態の一覧画面)-->
+        <% if post.tags.present? %>
+          <p class="d-inline"><strong>タグ：</strong></p>
+          <% post.tags.each do |post| %>
+            <% if admin_signed_in? %>
+              <%= link_to post.name, admin_posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
+            <% else %>
+              <%= link_to post.name, posts_path(search: post.name), 'data-turbolinks': false, class: "badge rounded-pill bg-secondary", style: "color:#fff;" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-12 col-md-9 col-lg-8 mt-2 text-center mx-auto">
+        <!--ブックマーク機能-->
+        <% if user_signed_in? %>
+          <div class="mb-2 d-flex justify-content-center bookmark-link">
+            <% if post.bookmarked_by?(current_user) %>
+              <%= link_to "ブックマークから外す", post_bookmarks_path(post), method: :delete, class: "remove-bookmark gradient" %>
+            <% else %>
+              <%= link_to "ブックマーク", post_bookmarks_path(post), method: :post, class: "add-bookmark gradient" %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <!--投稿文-->
+        <div class="subtitle mt-3 text-center">
+          <strong>投稿文</strong>
+        </div>
+        <div class="post">
+          <%= post.introduction %>
+        </div>
+
+        <!--コメント欄-->
+        <div class="subtitle text-center mt-3">
+          <strong>コメント</strong>
+          <p>コメント件数：<%= post.comments.with_out_is_deleted.count %>件</p>
+        </div>
