@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.with_out_is_deleted.page(params[:page])
+    @posts = Post.with_out_is_deleted
     # 検索機能
     if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
       # 投稿のタグから探す

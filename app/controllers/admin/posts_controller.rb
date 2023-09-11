@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @posts = Post.all.page(params[:page])
+    @posts = Post.all
     # 検索機能
     if admin_signed_in?
       if params[:search].present?             # 検索のフォームに何か検索ワードが入っていたら
