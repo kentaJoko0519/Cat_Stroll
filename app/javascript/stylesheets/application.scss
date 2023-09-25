@@ -563,7 +563,7 @@ button.gradient:hover {
 }
 
 .post-box {
-  height: 185px;
+  height: 200px;
   border: 1px solid black;
   border-radius: 15px;
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.4);
@@ -799,6 +799,12 @@ button.gradient:hover {
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーpublic/users/my_page.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 // マイページの情報
+.profile_image {
+    object-fit: cover;
+    border: 1px solid #111;
+    border-radius: 50%;
+}
+
 .mypage-info{
   border: 1px solid white;
   border-radius: 15px;
