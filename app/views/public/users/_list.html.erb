@@ -24,10 +24,12 @@
             <% users.each do |user| %>
               <tr class="row" data-href="/users/<%= user.id %>">
                 <td class="col-4">
-                  <%= image_tag user.get_profile_image(70,70) %><!--プロフィール画像-->
+                  <!--プロフィール画像-->
+                  <%= image_tag user.get_profile_image(70,70), class: "profile_image", style: "height: 70px; width: 70px;" %>
                 </td>
                 <td class="col-8 d-flex align-items-center justify-content-center">
-                  <%= user.user_name%><!--ユーザーネーム-->
+                  <!--ユーザーネーム-->
+                  <%= user.user_name%>
                 </td>
               </tr>
             <% end %>
