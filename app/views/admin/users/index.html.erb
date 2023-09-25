@@ -29,7 +29,7 @@
           <tbody>
             <tr class="row" data-href="/admin/users/<%= user.id %>">
               <td class="col-3">
-                <%= image_tag user.get_profile_image(70,70) %>
+                <%= image_tag user.get_profile_image(70,70), class: "profile_image", style: "height: 70px; width: 70px;" %>
               </td>
               <td class="col-6 d-flex align-items-center justify-content-center">
                 <%= user.user_name%>
