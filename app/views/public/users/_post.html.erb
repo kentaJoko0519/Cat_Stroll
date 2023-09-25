@@ -18,10 +18,11 @@
       <% end %>
     <% else %>  
       <%= link_to post_path(post.id) do %>
-        <div class="text-dark text-truncate">
+        <div class="text-dark text-truncate mt-2">
+          <%= image_tag post.user.get_profile_image(100,100), class: "profile_image", style: "height: 35px; width: 35px;" %>
           <%= post.user.user_name %>
         </div>
-        <div class="m-2">
+        <div class="m-1">
           <% if post.images.attached? %>
             <%= image_tag post.get_image(post.images[0], 120,120) %>
           <% else %>
