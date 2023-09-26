@@ -799,6 +799,22 @@ button.gradient:hover {
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーpublic/users/my_page.html.erbーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 // マイページの情報
+.hedder_profile_image {
+  height: 70px;
+  width: 70px; 
+  margin-bottom: -58px;
+  object-fit: cover;
+  border: 1px solid #111;
+  border-radius: 50%;
+}
+@media screen and (max-width: 767.98px) {
+  .hedder_profile_image {
+    height: 50px;
+    width: 50px; 
+    margin-top: -145px;
+  }
+}
+
 .profile_image {
     object-fit: cover;
     border: 1px solid #111;

@@ -59,7 +59,9 @@
           <div class="col-md-12 mb-2">
             <!--adminのログイン中のHeader-->
             <nav>
-              <%= image_tag current_user.get_profile_image(70,70), class: "profile_image", style: "height: 70px; width: 70px; margin-bottom: -58px;" %>
+              <% if user_signed_in? %>
+                <%= image_tag current_user.get_profile_image(70,70), class: "hedder_profile_image" %>
+              <% end %>
               <ul>
                 <% if admin_signed_in? %>
                   <li>
